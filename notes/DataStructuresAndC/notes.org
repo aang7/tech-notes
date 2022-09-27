@@ -1,0 +1,186 @@
+# -*- eval: (progn  (defun org-babel-edit-prep:cpp (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO." (setq-local default-directory (->> babel-info caddr (alist-get :dir))) (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp)) (defun org-babel-edit-prep:C (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO." (setq-local default-directory (->> babel-info caddr (alist-get :dir))) (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp))) -*-
+#+BEGIN_COMMENT
+If you want to know what about the top line. Look at this references
+- [[https://github.com/emacs-lsp/lsp-mode/issues/2842][reference 1]]
+- [[https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions][reference 2]]
+#+END_COMMENT
+
+* Introduction
+I am trying to practicing again the main concepts in programming with the help of one course about the main of data structures and algorithms. This course can be found in [[https://www.udemy.com/course/datastructurescncpp/][udemy]].
+
+So this file will be and is my playground for taking notes.
+
+* Let's started
+
+All chapters will be in *C* or *C++*. This because, I am trying to remember the fundamentals, and C and C++ are almost the same, considered as low programming languages. We can look at conceptos like pointers, memory allocation, etc. Concepts that may not be to close for the end user on other programming languges of high level.
+
+** Pointers
+So a pointer is simply a variable of 8 bytes (on 64 bit computer) or 4 bytes (on a 32 bit computer) that points to a memory address.
+For instance, all beginner programmer will know a primitive type like =int=, which referers to =integer=. Usually an =int= type consists of 4 bytes (that means, 8 bits), in memory terms this means that to represent a integer value, the computer must reserve 4 bytes of memory on the main memory of the computer for the program on execution be able to run, use or represent an integer value.
+
+That spot of reserved memory contains an address as a house contains an address. That means we can look for the address, to later get whatever the address holds.
+
+Below there is a little C program that uses pointers.
+
+#+begin_src cpp :exports both :results output
+  #include <iostream>
+  #define size 5
+  using namespace std;
+
+  int main(int argc, char *argv[])
+  {
+    // declare an array of 5 integers
+    int array[size] = {1, 2, 3, 4, 5};
+    // declare pointer that points to an integer data type
+    int *p;
+
+    for (int i = 0; i < size; ++i)
+      cout << array[i] << " ";
+    cout << endl;
+
+
+    // point to the above array
+    // this can be done, because an array is a data structure
+    // that reserves contiguous memory on the process/program timeline execution.
+    p = array;
+
+
+    for (int i = 0; i < size; ++i)
+      cout << "value:" << p[i] << " memory address: " << &p[i] << endl;
+
+    // same output . different way
+    for (int i = 0; i < size; ++i)
+      cout << "value:" << (*(p + i)) << " memory address: " << (p + i) << endl;
+
+    // now lets change the value of an integer getting its reference and modifying the value
+    int valuex = 10;
+    cout << "valuex before: " << valuex << endl;
+    int* xptr = &valuex; // the amperson indicates: "give me the memory adress of this variable"
+    ,*xptr = 7;
+    cout << "valuex after: " << valuex << endl;
+
+    // Notes:
+    // all the pointers occupy the same amount of memory.
+    // the size of the pointer will depend on the system architecture target compile.
+    // we can point to any existing type of data, that includes "structs".
+    // pointers are used everywhere, in all programming languages, implicitly or explicitly but everywhere.
+
+    return 0;
+  }
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+1 2 3 4 5 
+value:1 memory address: 0x16efab4f0
+value:2 memory address: 0x16efab4f4
+value:3 memory address: 0x16efab4f8
+value:4 memory address: 0x16efab4fc
+value:5 memory address: 0x16efab500
+value:1 memory address: 0x16efab4f0
+value:2 memory address: 0x16efab4f4
+value:3 memory address: 0x16efab4f8
+value:4 memory address: 0x16efab4fc
+value:5 memory address: 0x16efab500
+valuex before: 10
+valuex after: 7
+#+end_example
+
+
+#+begin_src cpp :tangle pointers2.cpp :dir /Users/aang/Documents/aang/studynotes/DataStructuresAndC/ :results output
+  #include <iostream>
+
+  struct Book {
+    float price;
+    char name[50];
+  };
+
+  int main(int argc, char *argv[])
+  {
+    Book bookx;
+    // set up some random values
+    strcpy(bookx.name, "C Programming");
+    bookx.price = 77;
+
+    // declare a pointer to an struct
+    struct Book * bookPtr;
+    bookPtr = &bookx;
+  
+    std::cout << "Book Name: " << bookPtr->name <<
+      " Book price($dlls): " << bookPtr->price << std::endl;
+
+    // changing the value by reference
+    strcpy(bookPtr->name, "C++ Programming");
+    bookPtr->price = 87;
+
+    std::cout << "Book Name: " << bookPtr->name <<
+      " Book price($dlls): " << bookPtr->price << std::endl;
+    return 0;
+  }
+
+#+end_src
+
+#+RESULTS:
+: Book Name: C ProgrammingBook price($dlls): 77
+: Book Name: C++ ProgrammingBook price($dlls): 87
+
+** Allocating dynamic memory
+
+To a program be able to start, it needs to be attached to a process, which the operating system needs to handle. This *process* asks the operating system for an amount of memory to be used by the program itself. One concept to know here is the *[[https://www.scaler.com/topics/java/heap-memory-and-stack-memory-in-java/][stack memory*]], and the [[https://www.techtarget.com/whatis/definition/heap#:~:text=In%20certain%20programming%20languages%20including,until%20the%20program%20is%20running.][*heap]]*.
+
+Below there is a simply sample of allocating dinamyc memory in *C* and *C++*.
+
+#+begin_src C :tangle dynmem1.c :dir /Users/aang/Documents/aang/studynotes/DataStructuresAndC/ :results output :exports both
+  #include<stdlib.h>
+  #include<stdio.h>
+
+  int main(int argc, char *argv[])
+  {
+
+    // allocating memory using malloc helper function
+    int* array = malloc(sizeof(int) * 5);
+    array[0] = 7;
+    printf("%d", array[0]);
+
+    // Note: be aware that in C and C++ always you do memory allocation
+    // you must free or release it when you finish to use it,
+    // otherwise you can have memory leak problems.
+    // In C we use the free function to release the allocated memory.
+    // In C++ we use the delete keyword. (Look at the next c++ example snippet)
+    free(array);
+    return 0;
+  }
+
+#+end_src
+
+#+RESULTS:
+: 7
+
+#+begin_src cpp :tangle dynmem1.cpp :dir /Users/aang/Documents/aang/studynotes/DataStructuresAndC/ :results output :exports both
+  #include <iostream>
+  #include <ostream>
+
+  int main(int argc, char *argv[])
+  {
+
+    int *array = new int[5];
+    array[0] = 7;
+
+    std::cout << array[0] << std::endl;
+    // Notes:
+    // instead of using malloc function as in C, we can use the 'new' keyword.
+
+    // here we use the 'delete' keyword followed by the brackets to indicate that
+    // we cant to release the allocated memory.
+
+    delete [] array;
+    return 0;
+  }
+
+#+end_src
+
+#+RESULTS:
+: 7
+
+

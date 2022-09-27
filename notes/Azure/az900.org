@@ -1,0 +1,99 @@
+#+options: ':t *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t
+#+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK")
+#+options: date:t e:t email:nil f:t inline:t num:nil p:nil pri:nil
+#+options: prop:nil stat:t tags:t tasks:t tex:t timestamp:t title:t
+#+options: toc:nil todo:t |:t
+#+title: Azure AZ-900 notes
+#+date: <2022-09-26 Mon>
+#+author: Abel Abner
+#+email: aang@Abels-MacBook-Pro.local
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 28.1 (Org mode 9.5.2)
+#+cite_export:
+
+* Intro
+
+Notes of azure az-900 training
+
+* Describe core Azure services
+
+Each service provides different options depending on your requirements. Some of the most prominent services are:
+
+- Azure Virtual Machines
+- Azure Container Instances
+- Azure App Service
+- Azure Functions (or serverless computing)
+
+ 
+
+** App Service
+With App Service, you can host most common app service styles like:
+
+- Web apps
+- API apps
+- WebJobs
+- Mobile apps
+
+** Containerazation
+
+*** Manage containers
+Containers are managed through a container orchestrator, which can start, stop, and scale out application instances as needed. There are two ways to manage both Docker and Microsoft-based containers in Azure: Azure Container Instances and Azure Kubernetes Service (AKS).
+
+
+
+* Explore Azure networking services
+
+** Azure virtual networking
+Azure virtual networks provide the following key networking capabilities:
+
+- Isolation and segmentation
+- Internet communications
+- Communicate between Azure resources
+- Communicate with on-premises resources
+- Route network traffic
+- Filter network traffic
+- Connect virtual networks
+
+
+*** Azure Express route
+Is used to connect on-premises infrastructure with cloud services of azure.
+The connection is not encrypted.
+- It has the following connectivity models:
+- CloudExchange colocation
+- Point-to-point Ethernet connection
+- Any-to-any connection
+- Directly from ExpressRoute sites
+
+  [[file:az900.org_imgs/20220822_162711_FKKQRf.png]]
+
+  
+* Explore Azure storage services
+- Azure Blob Storage
+- Azure Disk Storage
+- Azure Files Storage
+- Azure Blob Access tiers
+
+  Notes
+
+  nrsa: non-revenue services
+  ssm: self service
+  FOS: flight operation system
+  
+* Explore Azure databases and analytics services
+
+** Azure SQL Database
+** Azure SQL Managed Instance
+** Explore big data and analytics
+- Azure Synapse Analytics
+  antes sql data warehouse,
+- Azure HDInsight
+  opensource
+- Azure Databricks
+  se puede usar con python, R, java y sql
+- Azure Data Lake Analytics.
+  para uso on-demand.
+* Protect against security threats on Azure
+
+[[file:az900.org_imgs/20220826_143049_UnjaY6.png]]

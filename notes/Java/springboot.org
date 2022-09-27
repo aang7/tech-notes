@@ -1,0 +1,311 @@
+* General Concepts
+
+** What is a bean?
+In Spring, the objects that form the backbone of your application and that are managed by the Spring IoC container are called beans. A bean is an object that is instantiated, assembled, and managed by a Spring [[*What is Inversion of Control?][IoC]] container (IoC means "Inversion of Control") . Otherwise, a bean is simply one of many objects in your application. Beans, and the dependencies among them, are reflected in the configuration metadata used by a container.
+
+[[file:springboot.org_imgs/20220902_131340_eAfhVQ.png]]
+
+[[file:springboot.org_imgs/20220902_131923_xnivx1.png]]
+
+Images and information were taken from the [[https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-introduction][spring documentation website]].
+For a more practical way to understand this please visit [[https://www.baeldung.com/spring-bean#:~:text=Bean%20Definition,by%20a%20Spring%20IoC%20container.][this link]]
+
+** What is Inversion of Control?
+Simply put, Inversion of Control (IoC) is a process in which an object defines its dependencies without creating them. This object delegates the job of constructing such dependencies to an IoC container.
+
+** My own conclusion
+Spring usa Algo que se llama aplication context para poder hacer la configuracion y la creacion de todo el seteo necesario para poder correr un proyecto de forma "automatizada" automatizada entre comillas porque pues tambien tienes que hacer uso de sus standares.
+En java un Bean no es mas que una clase que sigue un determinado standard, entre esos standares esta el usar variables privadas con sus respectivos getters and setters, un constructor vacio, etc. Pero tambien están los SpringBeans que siguen la misma que un Java Bean solo que necesita otras reglas o standards para poder considerarse SpringBean. De esa manera con el application context de Spring, Springboot sabe que beans existen y que dependencias tienen y así puede instanciar de manera automatica y tener un registro de las dependencias de la aplicacion de Spring. Obviamente esto es muy por encimita pero es lo que entendí hasta el momento. Pero en general para poder correr una aplicacion de SpringBoot se necesitan:
+
+1. Un ApplicationContext
+2. Un ApplicationConfig
+3. Los componentes o beans que van a ser utilizados.
+
+   
+* Managing configuration
+:PROPERTIES:
+:DESCRIPTION: This resume it's under chapter 2
+:END:
+
+In Spring boot we can use several approaches to define the configuration of the program, we can set multiple environments(development, stage, uat, production, etc).
+The various approaches include property files, YAML files, environment variables, and command-line arguments.
+
+** Using the SpringApplication class  
+We can use a property file, [[https://github.com/spring-boot-in-practice/repo/blob/main/ch02/spring-application/src/main/java/com/manning/sbip/ch02/SpringBootAppDemoApplication.java][look at this example]], you will find a file called "properties" over =resources= folder.
+So we are loading the properties instantiating the *Properties* class and then passing over the =SpringApplication= instance.
+
+** Using @PropertySource
+We can also use an annotation called =@PropertySource= with an *Environment* object instance as you can see [[https://github.com/spring-boot-in-practice/repo/blob/main/ch02/property-sources/src/main/java/com/manning/sbip/ch02/DbConfiguration.java][here]].
+Here we need to use the =@Autowired= annotation under the Environment instance variable and =@Configuration= to automatically make an instance of the *Environment* class and pass the path of the file that contains the environment variables as you can see the in the following snippet.
+
+#+begin_src java -n -r 
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.context.annotation.Configuration;
+  import org.springframework.context.annotation.PropertySource;
+  import org.springframework.core.env.Environment;
+
+  @Configuration
+  @PropertySource("classpath:dbConfig.properties")
+  public class DbConfiguration {
+
+          @Autowired
+          private Environment env; (ref:AutoEnvInstance)
+
+          @Override
+          public String toString() {
+                  return "User: "+env.getProperty("user") +", Password: "+env.getProperty("password");
+          }
+
+  }
+#+end_src
+
+Now obviously we need to have a =dbConfig.properties= file under resources folder located over the /class path/ location. There we would have the environment variables defined as in UNIX are defined.
+
+#+begin_src shell
+  user=sa
+  password=p@sswOrd
+#+end_src
+
+then we will be able to get the configuration as the following snippet shows on line [[(DbConfiguration)]]:
+
+#+begin_src java -n -r
+  @SpringBootApplication
+  public class SpringBootAppDemoApplication {
+
+          private static final Logger log = LoggerFactory.getLogger(SpringBootAppDemoApplication.class);
+  
+          public static void main(String[] args) {
+
+                  ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringBootAppDemoApplication.class, args);
+                  DbConfiguration dbConfiguration = applicationContext.getBean(DbConfiguration.class);(ref:dbConfiguration)
+                  log.info(dbConfiguration.toString());
+          }
+  }
+
+#+end_src
+
+*Note*: YAML files are not supported under this approach.
+
+** Config data file
+
+Spring Boot lets you specify the application configuration properties in the application.properties or application.yml file. This is the most widely used approach to provide a configuration in a Spring Boot application. By default, the Spring Initializr-generated Spring Boot project includes an empty application.properties file.
+
+
+By default, Spring Boot reads the =application.properties= or =application.yml= file from the following locations:
+
+      1. The classpath root
+      2. The classpath /config package
+      3. The current directory
+      4. The /config subdirectory in the current directory
+      5. Immediate child directories of the /config sub directory
+
+You can find the sample project [[https://github.com/spring-boot-in-practice/repo/tree/main/ch02/config-data-file/src/main/resources][here]]. To get the values of the environment variables you have to use an =Environment=
+instance as we saw an above snippet on line [[(AutoEnvInstance)]].
+
+** OS Environment Variables
+
+We can also refer to the operating system environment variables. Look at the below sample to know how to do it.
+
+#+CAPTION: "application.properties" file
+#+begin_example
+app.timeout=${APP_TIMEOUT}
+#+end_example
+
+The =APP_TIMEOUT= is an environment variable. In Linux you can define an environment variable as below line shows:
+
+#+begin_src shell
+  export APP_TIMEOUT=30
+#+end_src
+
+Then to get the values of the defined OS environment variables you can do the following:
+
+#+begin_src java -n
+  package com.manning.sbip.ch02;
+  //imports
+
+  @SpringBootApplication
+  public class SpringBootAppDemoApplication {
+      private static final Logger log = LoggerFactory.getLogger(SpringBootAppDemoApplication.class);
+
+      public static void main(String[] args) {
+          ConfigurableApplicationContext applicationContext = SpringApplication.run(SpringBootAppDemoApplication.class, args);
+          Environment env = applicationContext.getBean(Environment.class); 
+          log.info("Configured application timeout value: "+ env.getProperty("app.timeout"));
+      }
+  }
+#+end_src
+
+
+
+
+** Creating custom properties with @ConfigurationProperties
+
+There are two categories of spring boot properties or environment variables:
+        1. built-in properties
+        2. custom properties
+
+Another way to define a custom property is through the =@ConfiguratioProperties= annotation. This technique is useful
+when we would like to have properties type validations. To know more details, please refer to section =2.2.1= of the book.
+You can see a sample of this technique looking at [[http://mng.bz/7Wr9][this sample project]] on GitHub provided by the author of the referenced book of this very brief resume.
+
+* Executing code on Spring Boot app startup
+
+At times, you'll need to execute custom code at Spring Boot application startup. For instance, you may want to execute a database initialization script before the application finishes its initialization or consume a REST service to load data for your application.
+
+The *CommandLineRunner* and *ApplicationRunner* are two Spring Boot interfaces that provide a single =run(..)= method and are invoked just before a Spring Boot application finishes its initialization. These methods are invoked only once at the time of the Spring Boot application startup.
+Both interfaces are almost the same. CommandLineRunner is the most used one, and there are three ways we can implement it.
+
+        - In the Spring Boot main class that implements the CommandLineRunner interface
+        - By providing the CommandLineRunner implementation as a bean definition using the @Bean annotation
+        - By providing the CommandLineRunner as a Spring Component using the *@Component* annotation
+
+Look at the sample project [[https://github.com/spring-boot-in-practice/repo/tree/main/ch02/command-line-runner/spring-boot-app-final/src/main/java/com/manning/sbip/ch02][here]].         
+        
+In a CommandLineRunner implementation you can also autowire any dependency using Spring's dependency injection mechanism. Since a CommandLineRunner implementation runs when the Spring Boot application almost finishes its initialization, all bean definitions are available for autowire. Hence, you can autowire any bean dependency in your CommandLineRunner implementation.
+
+For example, in the upcoming techniques when you'll learn the Spring Data repository, you'll see the use of the CourseRepository interface as a dependency on the CommandLineRunner implementation. The following listing shows an example.
+
+#+CAPTION: CommandLineRunner Bean definition. The CourseRepository is injected via Spring dependency injection.
+#+begin_src java
+  @Bean
+  public CommandLineRunner commandLineRunner(CourseRepository courseRepository) {
+      return args -> { // lambda expression
+          System.out.println("===== Course Details =====");
+          courseRepository.findAll().forEach(System.out::println);
+      };
+
+  }
+#+end_src
+
+* Configuring Logging
+
+This subject will not have its resume at the moment. For more information please look at the book.
+
+* Using built-in Bean Validation annotations to validate business entity in a Spring Boot app
+
+[[file:springboot.org_imgs/20220906_150011_f2IW0t.png]]
+
+
+For more details please refer to the =2.3= section.
+
+Also you can use third party libraries to do validations.
+Please refer to the project sample [[https://github.com/spring-boot-in-practice/repo/blob/main/ch02/bean-validation-custom-annotation/spring-boot-app-final/src/main/java/com/manning/sbip/ch02/CourseTrackerSpringBootApplication.java][link on GitHub]] to check it out.
+
+
+* Chapter 3
+
+** Defining query methods
+
+Spring Data JPA provides two ways to define custom query methods that can meet most of these custom requirements:
+
+- Defining custom methods in the repository interfaces with specific naming patterns. Spring Data can internally parse these methods and generate the query from it.
+- Defining custom methods and providing an SQL query that is directly used by the Spring Data to query the entities.
+
+
+Spring Data uses the concept of a Subject and Predicate to parse the methods. It splits the method signature based on the By clause and treats the first half as the subject and the remaining part as the predicate. Thus, if you define a method named findDistinctCourseByCategoryOrderByName(), then the part DistinctCourse is the subject, and the CategoryOrderByName is the predicate. This is demonstrated in figure 3.6. Let's use a technique to learn how you can define query methods to retrieve data from the database.
+
+[[file:springboot.org_imgs/20220906_190232_USdp4P.png]]
+
+
+You can refer to [[https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods][this link]] to learn more about all the expressions or query methods you can use in the query method name.
+
+If you want to see sample project please refer to [[http://mng.bz/dogO][this link]].
+
+** Criteria API vs QueryDSL
+:PROPERTIES:
+:DESCRIPTION: This resume it's under chapter 3.5 and 3.6
+:END:
+
+
+*In conclusion is better to use QueryDSL.*
+These two different tools can be used as techniques to programmatically define queries in a type-safe manner. This because when using the @Query annotation we don't have any type validation on queries, so if we have an error on any query definition the error will be throw on execution time, causing undesired results.
+
+Which one should you use in your application? Well, both APIs are popular and widely used. Following are a few points to consider when deciding which API to use:
+          
+        - The Criteria API is a native JPA library and, thus, has native support in JPA, whereas the QueryDSL is an open-source, third-party library.
+      
+        - The Criteria API is criticized for its verbosity and complex nature of the API. You need to write more to even execute a simple query. The QueryDSL has a more approachable API due to the simpler and English-like API.
+      
+        - Criteria API is only applicable for JPA. QueryDSL has integration with other data stores, such as MongoDB, Lucene, and JDO.
+
+
+A sample project of the use QueryDSL can be found here: http://mng.bz/7Wn9.
+
+** Managing domain object relationships
+In the relational database nomenclature, retrieving the required columns from different tables is known as *projection*.
+Spring Data lets you use projections either through interface-based projection or class-based projection.
+For more details please refer to the project.
+
+#+CAPTION: sample of postgresql squema.sql script
+#+begin_src sql
+  CREATE TABLE authors (
+    id   BIGINT NOT NULL,
+    bio  VARCHAR(255),
+    name VARCHAR(255),
+    PRIMARY KEY (id)
+  );
+
+  CREATE TABLE authors_courses (
+    author_id BIGINT NOT NULL,
+    course_id BIGINT NOT NULL,
+    PRIMARY KEY (author_id, course_id)
+  );
+
+  CREATE TABLE courses (
+    id          BIGINT NOT NULL,
+    category    VARCHAR(255),
+    description VARCHAR(255),
+    name        VARCHAR(255),
+    rating      INTEGER NOT NULL,
+    PRIMARY KEY (id)
+  );
+
+  ALTER TABLE authors_courses
+    ADD CONSTRAINT course_id_fk FOREIGN KEY
+   (course_id) REFERENCES courses (id);
+
+  ALTER TABLE authors_courses
+    ADD CONSTRAINT author_id_fk FOREIGN KEY (author_id) REFERENCES authors (id);
+#+end_src
+
+#+CAPTION: sample of postgresql insert data.sql script
+#+begin_src sql
+INSERT INTO COURSES(ID, NAME, CATEGORY, RATING, DESCRIPTION)
+ VALUES(1, 'Rapid Spring Boot Application Development',
+ 'Spring', 4, 'Spring Boot gives all the power of the
+ Spring Framework without all of the complexity');
+INSERT INTO COURSES(ID, NAME, CATEGORY, RATING, DESCRIPTION)
+ VALUES(2, 'Getting Started with Spring Security DSL',
+ 'Spring', 5, 'Learn Spring Security DSL in easy steps');
+INSERT INTO COURSES(ID, NAME, CATEGORY, RATING, DESCRIPTION)
+ VALUES(3, 'Getting Started with Spring Cloud Kubernetes',
+ 'Python', 3, 'Master Spring Boot application deployment
+ with Kubernetes');
+INSERT INTO AUTHORS(ID, NAME, BIO)
+ VALUES(1, 'John Doe',
+ 'Author of several Spring Boot courses');
+INSERT INTO AUTHORS(ID, NAME, BIO)
+ VALUES(2, 'Steve Muller', 'Author of several
+ popular Spring and Python courses');
+INSERT INTO AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) VALUES(1, 1);
+INSERT INTO AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) VALUES(1, 2);
+INSERT INTO AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) VALUES(2, 1);
+INSERT INTO AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) VALUES(2, 2);
+INSERT INTO AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) VALUES(2, 3);
+#+end_src
+
+
+
+
+* Containerizing an Spring Boot app
+
+[[https://www.docker.com/blog/9-tips-for-containerizing-your-spring-boot-code/#:~:text=Containerizing%20a%20Spring%20Boot%20application,it%20as%20a%20Docker%20image.][This article on the docker official website]] is really helpful to get the better tips to containerize an Spring Boot code.
+
+
+* Extras
+If we would like to connect to a database such as Postgresql, we can look at the repository I created and uploaded on GitHub here.
+Also [[https://www.postgresql.org/ftp/projects/pgFoundry/dbsamples/world/dbsamples-0.1/][here is a file]] that contains a sample of an sql file to create a database and tables on it and insert sample data from the Postgresql website.
+
+
+Some informal videos I recorded for reference.
+- https://youtu.be/_WNAg4oS6bc

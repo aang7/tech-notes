@@ -1,0 +1,26 @@
+* TDD
+[[file:nodejs.org_imgs/20220924_190154_aPeAz0.png]]
+
+
+* Tests
+
+** Types of tests
+
+[[file:nodejs.org_imgs/20220531_103404_3xunju.png]]
+
+*** Integrations tests
+Tests a class or component with its external dependencies.
+- Take longer to execute
+- Give you more confidence because it interacts with a database, for example.
+
+*** End-to-end tests
+Drives an application trough the UI.
+
+- gives you great confidence
+- But they are very slow.
+- An example of a program used to do this kind of tests, is selenium.
+
+** Tooling for tests
+
+[[file:nodejs.org_imgs/20220531_104113_H01DDK.png]]
+

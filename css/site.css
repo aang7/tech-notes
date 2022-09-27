@@ -1,0 +1,11 @@
+body > footer {
+    border-top: none;
+}
+
+h1 {
+    color: green;
+}
+
+.pubdate {
+    font-size: small;
+}
