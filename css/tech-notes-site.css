@@ -1,0 +1,44 @@
+body > footer {
+    border-top: none;
+}
+
+p > .pubdate {
+    
+}
+
+.footdef {
+    /* make footnote number and content to be on th same line */
+    display: flex;
+}
+
+
+h2 {
+    color: #00FF41;
+}
+
+h3 {
+    color: #008F11;
+}
+
+
+/* @media (prefers-color-scheme: dark) { */
+/*   :root { */
+/*     color-scheme: dark; */
+/*     --bg: #212121; */
+/*     --accent-bg: #2b2b2b; */
+/*     --text: #dcdcdc; */
+/*     --text-light: #ababab; */
+/*     --border: #666; */
+/*     --accent: #ffb300; */
+/*     --code: #f06292; */
+/*     --preformatted: #ccc; */
+/*     --disabled: #111; */
+/*     /\* Brightness filter in hover state is updated to improve visibility in dark-mode *\/ */
+/*     --hover-brightness: brightness(1.4); */
+/*   } */
+/*   /\* Add a bit of transparency so light media isn't so glaring in dark mode *\/ */
+/*   img, */
+/*   video { */
+/*     opacity: 0.8; */
+/*   } */
+/* } */
