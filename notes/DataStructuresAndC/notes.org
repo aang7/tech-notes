@@ -1,3 +1,18 @@
+#+options: ':t *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t
+#+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK")
+#+options: date:t e:t email:nil f:t inline:t num:nil p:nil pri:nil
+#+options: prop:nil stat:t tags:t tasks:t tex:t timestamp:t title:t
+#+options: toc:nil todo:t |:t
+#+title: Data Structures and C/C++
+#+date: <2022-09-26 Mon>
+#+author: Abel Abner
+#+email: aang@Abels-MacBook-Pro.local
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 28.1 (Org mode 9.5.2)
+#+cite_export:
+
 # -*- eval: (progn  (defun org-babel-edit-prep:cpp (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO." (setq-local default-directory (->> babel-info caddr (alist-get :dir))) (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp)) (defun org-babel-edit-prep:C (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO." (setq-local default-directory (->> babel-info caddr (alist-get :dir))) (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp))) -*-
 #+BEGIN_COMMENT
 If you want to know what about the top line. Look at this references

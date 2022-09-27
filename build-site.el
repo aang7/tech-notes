@@ -29,7 +29,7 @@
 ;; Customize the HTML output
 (setq org-html-validation-link t            ;; Don't show validation link
       org-html-head-include-scripts t       ;; Use our own scripts
-      org-html-head-include-default-style t ;; Use our own styles
+      org-html-head-include-default-style nil ;; Use our own styles
       ;;org-html-head "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />"
       )
 
@@ -66,8 +66,8 @@ Last updated on %C using %c <br>
   "")
 
 (defvar aang-website-html-head
-  "<!-- <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' /> -->
-   <link rel='stylesheet' type='text/css' href='../css/site.css' />")
+  "<link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
+   <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />")
 
 
 
