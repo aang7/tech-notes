@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>&lrm;</title>
+<meta name="generator" content="Org mode">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<!-- <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' /> -->
+   <link rel='stylesheet' type='text/css' href='../css/site.css' />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><nil id="nil">
+<section id="outline-container-org21e631e" class="outline-2">
+<h2 id="org21e631e">Introduction</h2>
+<div class="outline-text-2" id="text-org21e631e">
+<p>
+I am trying to practicing again the main concepts in programming with the help of one course about the main of data structures and algorithms. This course can be found in <a href="https://www.udemy.com/course/datastructurescncpp/">udemy</a>.
+</p>
+
+<p>
+So this file will be and is my playground for taking notes.
+</p>
+</div>
+</section>
+
+<section id="outline-container-orgb9a9f34" class="outline-2">
+<h2 id="orgb9a9f34">Let&rsquo;s started</h2>
+<div class="outline-text-2" id="text-orgb9a9f34">
+<p>
+All chapters will be in <b>C</b> or <b>C++</b>. This because, I am trying to remember the fundamentals, and C and C++ are almost the same, considered as low programming languages. We can look at conceptos like pointers, memory allocation, etc. Concepts that may not be to close for the end user on other programming languges of high level.
+</p>
+</div>
+
+<div id="outline-container-org2ee3770" class="outline-3">
+<h3 id="org2ee3770">Pointers</h3>
+<div class="outline-text-3" id="text-org2ee3770">
+<p>
+So a pointer is simply a variable of 8 bytes (on 64 bit computer) or 4 bytes (on a 32 bit computer) that points to a memory address.
+For instance, all beginner programmer will know a primitive type like <code>int</code>, which referers to <code>integer</code>. Usually an <code>int</code> type consists of 4 bytes (that means, 8 bits), in memory terms this means that to represent a integer value, the computer must reserve 4 bytes of memory on the main memory of the computer for the program on execution be able to run, use or represent an integer value.
+</p>
+
+<p>
+That spot of reserved memory contains an address as a house contains an address. That means we can look for the address, to later get whatever the address holds.
+</p>
+
+<p>
+Below there is a little C program that uses pointers.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">size</span> 5
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
+{
+  <span class="org-comment-delimiter">// </span><span class="org-comment">declare an array of 5 integers</span>
+  <span class="org-type">int</span> <span class="org-variable-name">array</span>[size] = {1, 2, 3, 4, 5};
+  <span class="org-comment-delimiter">// </span><span class="org-comment">declare pointer that points to an integer data type</span>
+  <span class="org-type">int</span> *<span class="org-variable-name">p</span>;
+
+  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; size; ++i)
+    cout &lt;&lt; array[i] &lt;&lt; <span class="org-string">" "</span>;
+  cout &lt;&lt; endl;
+
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">point to the above array</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">this can be done, because an array is a data structure</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">that reserves contiguous memory on the process/program timeline execution.</span>
+  p = array;
+
+
+  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; size; ++i)
+    cout &lt;&lt; <span class="org-string">"value:"</span> &lt;&lt; p[i] &lt;&lt; <span class="org-string">" memory address: "</span> &lt;&lt; &amp;p[i] &lt;&lt; endl;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">same output . different way</span>
+  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; size; ++i)
+    cout &lt;&lt; <span class="org-string">"value:"</span> &lt;&lt; (*(p + i)) &lt;&lt; <span class="org-string">" memory address: "</span> &lt;&lt; (p + i) &lt;&lt; endl;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">now lets change the value of an integer getting its reference and modifying the value</span>
+  <span class="org-type">int</span> <span class="org-variable-name">valuex</span> = 10;
+  cout &lt;&lt; <span class="org-string">"valuex before: "</span> &lt;&lt; valuex &lt;&lt; endl;
+  <span class="org-type">int</span>* <span class="org-variable-name">xptr</span> = &amp;valuex; <span class="org-comment-delimiter">// </span><span class="org-comment">the amperson indicates: "give me the memory adress of this variable"</span>
+  *xptr = 7;
+  cout &lt;&lt; <span class="org-string">"valuex after: "</span> &lt;&lt; valuex &lt;&lt; endl;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Notes:</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">all the pointers occupy the same amount of memory.</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">the size of the pointer will depend on the system architecture target compile.</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">we can point to any existing type of data, that includes "structs".</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">pointers are used everywhere, in all programming languages, implicitly or explicitly but everywhere.</span>
+
+  <span class="org-keyword">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 4 5 
+value:1 memory address: 0x16efab4f0
+value:2 memory address: 0x16efab4f4
+value:3 memory address: 0x16efab4f8
+value:4 memory address: 0x16efab4fc
+value:5 memory address: 0x16efab500
+value:1 memory address: 0x16efab4f0
+value:2 memory address: 0x16efab4f4
+value:3 memory address: 0x16efab4f8
+value:4 memory address: 0x16efab4fc
+value:5 memory address: 0x16efab500
+valuex before: 10
+valuex after: 7
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+
+<span class="org-keyword">struct</span> <span class="org-type">Book</span> {
+  <span class="org-type">float</span> <span class="org-variable-name">price</span>;
+  <span class="org-type">char</span> <span class="org-variable-name">name</span>[50];
+};
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
+{
+  <span class="org-type">Book</span> <span class="org-variable-name">bookx</span>;
+  <span class="org-comment-delimiter">// </span><span class="org-comment">set up some random values</span>
+  strcpy(bookx.name, <span class="org-string">"C Programming"</span>);
+  bookx.price = 77;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">declare a pointer to an struct</span>
+  <span class="org-keyword">struct</span> <span class="org-type">Book</span> * <span class="org-variable-name">bookPtr</span>;
+  bookPtr = &amp;bookx;
+
+  <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"Book Name: "</span> &lt;&lt; bookPtr-&gt;name &lt;&lt;
+    <span class="org-string">" Book price($dlls): "</span> &lt;&lt; bookPtr-&gt;price &lt;&lt; <span class="org-constant">std</span>::endl;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">changing the value by reference</span>
+  strcpy(bookPtr-&gt;name, <span class="org-string">"C++ Programming"</span>);
+  bookPtr-&gt;price = 87;
+
+  <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"Book Name: "</span> &lt;&lt; bookPtr-&gt;name &lt;&lt;
+    <span class="org-string">" Book price($dlls): "</span> &lt;&lt; bookPtr-&gt;price &lt;&lt; <span class="org-constant">std</span>::endl;
+  <span class="org-keyword">return</span> 0;
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org816ef69" class="outline-3">
+<h3 id="org816ef69">Allocating dynamic memory</h3>
+<div class="outline-text-3" id="text-org816ef69">
+<p>
+To a program be able to start, it needs to be attached to a process, which the operating system needs to handle. This <b>process</b> asks the operating system for an amount of memory to be used by the program itself. One concept to know here is the <b><a href="https://www.scaler.com/topics/java/heap-memory-and-stack-memory-in-java/">stack memory*</a>, and the <a href="https://www.techtarget.com/whatis/definition/heap#:~:text=In%20certain%20programming%20languages%20including,until%20the%20program%20is%20running.">*heap</a></b>.
+</p>
+
+<p>
+Below there is a simply sample of allocating dinamyc memory in <b>C</b> and <b>C++</b>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span class="org-preprocessor">#include</span><span class="org-string">&lt;stdlib.h&gt;</span>
+<span class="org-preprocessor">#include</span><span class="org-string">&lt;stdio.h&gt;</span>
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
+{
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">allocating memory using malloc helper function</span>
+  <span class="org-type">int</span>* <span class="org-variable-name">array</span> = malloc(<span class="org-keyword">sizeof</span>(<span class="org-type">int</span>) * 5);
+  array[0] = 7;
+  printf(<span class="org-string">"%d"</span>, array[0]);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Note: be aware that in C and C++ always you do memory allocation</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">you must free or release it when you finish to use it,</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">otherwise you can have memory leak problems.</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">In C we use the free function to release the allocated memory.</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">In C++ we use the delete keyword. (Look at the next c++ example snippet)</span>
+  free(array);
+  <span class="org-keyword">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+7
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;ostream&gt;</span>
+
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
+{
+
+  <span class="org-type">int</span> *<span class="org-variable-name">array</span> = <span class="org-keyword">new</span> <span class="org-type">int</span>[5];
+  array[0] = 7;
+
+  <span class="org-constant">std</span>::cout &lt;&lt; array[0] &lt;&lt; <span class="org-constant">std</span>::endl;
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Notes:</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">instead of using malloc function as in C, we can use the 'new' keyword.</span>
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">here we use the 'delete' keyword followed by the brackets to indicate that</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">we cant to release the allocated memory.</span>
+
+  <span class="org-keyword">delete</span> [] array;
+  <span class="org-keyword">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+7
+
+</pre>
+</div>
+</div>
+</section>
+</nil>
+<footer id="postamble" class="status">
+
+<div class='footer'>
+Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
+Last updated on Sep 27, 2022 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9) <br>
+</div>
+</footer>
+</body>
+</html>

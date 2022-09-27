@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>&lrm;</title>
+<meta name="generator" content="Org mode">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<!-- <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' /> -->
+   <link rel='stylesheet' type='text/css' href='../css/site.css' />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><nil id="nil">
+<section id="outline-container-org910da5d" class="outline-2">
+<h2 id="org910da5d">General Concepts</h2>
+<div class="outline-text-2" id="text-org910da5d">
+</div>
+<div id="outline-container-org0907f31" class="outline-3">
+<h3 id="org0907f31">What is a bean?</h3>
+<div class="outline-text-3" id="text-org0907f31">
+<p>
+In Spring, the objects that form the backbone of your application and that are managed by the Spring IoC container are called beans. A bean is an object that is instantiated, assembled, and managed by a Spring <a href="#org182a535">IoC</a> container (IoC means &ldquo;Inversion of Control&rdquo;) . Otherwise, a bean is simply one of many objects in your application. Beans, and the dependencies among them, are reflected in the configuration metadata used by a container.
+</p>
+
+
+<figure>
+<img src="springboot.org_imgs/20220902_131340_eAfhVQ.png" alt="20220902_131340_eAfhVQ.png">
+
+</figure>
+
+
+<figure>
+<img src="springboot.org_imgs/20220902_131923_xnivx1.png" alt="20220902_131923_xnivx1.png">
+
+</figure>
+
+<p>
+Images and information were taken from the <a href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-introduction">spring documentation website</a>.
+For a more practical way to understand this please visit <a href="https://www.baeldung.com/spring-bean#:~:text=Bean%20Definition,by%20a%20Spring%20IoC%20container.">this link</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org182a535" class="outline-3">
+<h3 id="org182a535">What is Inversion of Control?</h3>
+<div class="outline-text-3" id="text-org182a535">
+<p>
+Simply put, Inversion of Control (IoC) is a process in which an object defines its dependencies without creating them. This object delegates the job of constructing such dependencies to an IoC container.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge584476" class="outline-3">
+<h3 id="orge584476">My own conclusion</h3>
+<div class="outline-text-3" id="text-orge584476">
+<p>
+Spring usa Algo que se llama aplication context para poder hacer la configuracion y la creacion de todo el seteo necesario para poder correr un proyecto de forma &ldquo;automatizada&rdquo; automatizada entre comillas porque pues tambien tienes que hacer uso de sus standares.
+En java un Bean no es mas que una clase que sigue un determinado standard, entre esos standares esta el usar variables privadas con sus respectivos getters and setters, un constructor vacio, etc. Pero tambien están los SpringBeans que siguen la misma que un Java Bean solo que necesita otras reglas o standards para poder considerarse SpringBean. De esa manera con el application context de Spring, Springboot sabe que beans existen y que dependencias tienen y así puede instanciar de manera automatica y tener un registro de las dependencias de la aplicacion de Spring. Obviamente esto es muy por encimita pero es lo que entendí hasta el momento. Pero en general para poder correr una aplicacion de SpringBoot se necesitan:
+</p>
+
+<ol class="org-ol">
+<li>Un ApplicationContext</li>
+<li>Un ApplicationConfig</li>
+<li>Los componentes o beans que van a ser utilizados.</li>
+</ol>
+</div>
+</div>
+</section>
+
+
+<section id="outline-container-org437dd36" class="outline-2">
+<h2 id="org437dd36">Managing configuration</h2>
+<div class="outline-text-2" id="text-org437dd36">
+<p>
+In Spring boot we can use several approaches to define the configuration of the program, we can set multiple environments(development, stage, uat, production, etc).
+The various approaches include property files, YAML files, environment variables, and command-line arguments.
+</p>
+</div>
+
+<div id="outline-container-orgaf17024" class="outline-3">
+<h3 id="orgaf17024">Using the SpringApplication class</h3>
+<div class="outline-text-3" id="text-orgaf17024">
+<p>
+We can use a property file, <a href="https://github.com/spring-boot-in-practice/repo/blob/main/ch02/spring-application/src/main/java/com/manning/sbip/ch02/SpringBootAppDemoApplication.java">look at this example</a>, you will find a file called &ldquo;properties&rdquo; over <code>resources</code> folder.
+So we are loading the properties instantiating the <b>Properties</b> class and then passing over the <code>SpringApplication</code> instance.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf4f275b" class="outline-3">
+<h3 id="orgf4f275b">Using @PropertySource</h3>
+<div class="outline-text-3" id="text-orgf4f275b">
+<p>
+We can also use an annotation called <code>@PropertySource</code> with an <b>Environment</b> object instance as you can see <a href="https://github.com/spring-boot-in-practice/repo/blob/main/ch02/property-sources/src/main/java/com/manning/sbip/ch02/DbConfiguration.java">here</a>.
+Here we need to use the <code>@Autowired</code> annotation under the Environment instance variable and <code>@Configuration</code> to automatically make an instance of the <b>Environment</b> class and pass the path of the file that contains the environment variables as you can see the in the following snippet.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="linenr"> 1: </span><span class="org-keyword">import</span> <span class="org-constant">org</span>.<span class="org-constant">springframework</span>.<span class="org-constant">beans</span>.<span class="org-constant">factory</span>.<span class="org-constant">annotation</span>.<span class="org-type">Autowired</span>;
+<span class="linenr"> 2: </span><span class="org-keyword">import</span> <span class="org-constant">org</span>.<span class="org-constant">springframework</span>.<span class="org-constant">context</span>.<span class="org-constant">annotation</span>.<span class="org-type">Configuration</span>;
+<span class="linenr"> 3: </span><span class="org-keyword">import</span> <span class="org-constant">org</span>.<span class="org-constant">springframework</span>.<span class="org-constant">context</span>.<span class="org-constant">annotation</span>.<span class="org-type">PropertySource</span>;
+<span class="linenr"> 4: </span><span class="org-keyword">import</span> <span class="org-constant">org</span>.<span class="org-constant">springframework</span>.<span class="org-constant">core</span>.<span class="org-constant">env</span>.<span class="org-type">Environment</span>;
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span class="org-c-annotation">@Configuration</span>
+<span class="linenr"> 7: </span><span class="org-c-annotation">@PropertySource</span>(<span class="org-string">"classpath:dbConfig.properties"</span>)
+<span class="linenr"> 8: </span><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">DbConfiguration</span> {
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span>        <span class="org-c-annotation">@Autowired</span>
+<span id="coderef-AutoEnvInstance" class="coderef-off"><span class="linenr">11: </span>        <span class="org-keyword">private</span> <span class="org-type">Environment</span> <span class="org-variable-name">env</span>;</span>
+<span class="linenr">12: </span>
+<span class="linenr">13: </span>        <span class="org-c-annotation">@Override</span>
+<span class="linenr">14: </span>        <span class="org-keyword">public</span> <span class="org-type">String</span> <span class="org-function-name">toString</span>() {
+<span class="linenr">15: </span>                <span class="org-keyword">return</span> <span class="org-string">"User: "</span>+env.getProperty(<span class="org-string">"user"</span>) +<span class="org-string">", Password: "</span>+env.getProperty(<span class="org-string">"password"</span>);
+<span class="linenr">16: </span>        }
+<span class="linenr">17: </span>
+<span class="linenr">18: </span>}
+</pre>
+</div>
+
+<p>
+Now obviously we need to have a <code>dbConfig.properties</code> file under resources folder located over the <i>class path</i> location. There we would have the environment variables defined as in UNIX are defined.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span class="org-variable-name">user</span>=sa
+<span class="org-variable-name">password</span>=p@sswOrd
+</pre>
+</div>
+
+<p>
+then we will be able to get the configuration as the following snippet shows on line <a href="#coderef-DbConfiguration" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-DbConfiguration');" onmouseout="CodeHighlightOff(this, 'coderef-DbConfiguration');">9</a>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="linenr"> 1: </span><span class="org-c-annotation">@SpringBootApplication</span>
+<span class="linenr"> 2: </span><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">SpringBootAppDemoApplication</span> {
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>        <span class="org-keyword">private</span> <span class="org-keyword">static</span> <span class="org-keyword">final</span> <span class="org-type">Logger</span> <span class="org-variable-name">log</span> = LoggerFactory.getLogger(SpringBootAppDemoApplication.<span class="org-keyword">class</span>);
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span>        <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span>(<span class="org-type">String</span>[] <span class="org-variable-name">args</span>) {
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>                <span class="org-type">ConfigurableApplicationContext</span> <span class="org-variable-name">applicationContext</span> = SpringApplication.run(SpringBootAppDemoApplication.<span class="org-keyword">class</span>, args);
+<span id="coderef-dbConfiguration" class="coderef-off"><span class="linenr"> 9: </span>                <span class="org-type">DbConfiguration</span> <span class="org-variable-name">dbConfiguration</span> = applicationContext.getBean(DbConfiguration.<span class="org-keyword">class</span>);</span>
+<span class="linenr">10: </span>                log.info(dbConfiguration.toString());
+<span class="linenr">11: </span>        }
+<span class="linenr">12: </span>}
+<span class="linenr">13: </span>
+</pre>
+</div>
+
+<p>
+<b>Note</b>: YAML files are not supported under this approach.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdf0c0b3" class="outline-3">
+<h3 id="orgdf0c0b3">Config data file</h3>
+<div class="outline-text-3" id="text-orgdf0c0b3">
+<p>
+Spring Boot lets you specify the application configuration properties in the application.properties or application.yml file. This is the most widely used approach to provide a configuration in a Spring Boot application. By default, the Spring Initializr-generated Spring Boot project includes an empty application.properties file.
+</p>
+
+
+<p>
+By default, Spring Boot reads the <code>application.properties</code> or <code>application.yml</code> file from the following locations:
+</p>
+
+<ol class="org-ol">
+<li>The classpath root</li>
+<li>The classpath /config package</li>
+<li>The current directory</li>
+<li>The /config subdirectory in the current directory</li>
+<li>Immediate child directories of the /config sub directory</li>
+</ol>
+
+<p>
+You can find the sample project <a href="https://github.com/spring-boot-in-practice/repo/tree/main/ch02/config-data-file/src/main/resources">here</a>. To get the values of the environment variables you have to use an <code>Environment</code>
+instance as we saw an above snippet on line <a href="#coderef-AutoEnvInstance" class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-AutoEnvInstance');" onmouseout="CodeHighlightOff(this, 'coderef-AutoEnvInstance');">11</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc1799a8" class="outline-3">
+<h3 id="orgc1799a8">OS Environment Variables</h3>
+<div class="outline-text-3" id="text-orgc1799a8">
+<p>
+We can also refer to the operating system environment variables. Look at the below sample to know how to do it.
+</p>
+
+<pre class="example">
+app.timeout=${APP_TIMEOUT}
+</pre>
+
+<p>
+The <code>APP_TIMEOUT</code> is an environment variable. In Linux you can define an environment variable as below line shows:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell"><span class="org-builtin">export</span> <span class="org-variable-name">APP_TIMEOUT</span>=30
+</pre>
+</div>
+
+<p>
+Then to get the values of the defined OS environment variables you can do the following:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span class="linenr"> 1: </span><span class="org-keyword">package</span> com.manning.sbip.<span class="org-constant">ch02</span>;
+<span class="linenr"> 2: </span><span class="org-comment-delimiter">//</span><span class="org-comment">imports</span>
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span class="org-c-annotation">@SpringBootApplication</span>
+<span class="linenr"> 5: </span><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">SpringBootAppDemoApplication</span> {
+<span class="linenr"> 6: </span>    <span class="org-keyword">private</span> <span class="org-keyword">static</span> <span class="org-keyword">final</span> <span class="org-type">Logger</span> <span class="org-variable-name">log</span> = LoggerFactory.getLogger(SpringBootAppDemoApplication.<span class="org-keyword">class</span>);
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span>(<span class="org-type">String</span>[] <span class="org-variable-name">args</span>) {
+<span class="linenr"> 9: </span>        <span class="org-type">ConfigurableApplicationContext</span> <span class="org-variable-name">applicationContext</span> = SpringApplication.run(SpringBootAppDemoApplication.<span class="org-keyword">class</span>, args);
+<span class="linenr">10: </span>        <span class="org-type">Environment</span> <span class="org-variable-name">env</span> = applicationContext.getBean(Environment.<span class="org-keyword">class</span>); 
+<span class="linenr">11: </span>        log.info(<span class="org-string">"Configured application timeout value: "</span>+ env.getProperty(<span class="org-string">"app.timeout"</span>));
+<span class="linenr">12: </span>    }
+<span class="linenr">13: </span>}
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-org4384def" class="outline-3">
+<h3 id="org4384def">Creating custom properties with @ConfigurationProperties</h3>
+<div class="outline-text-3" id="text-org4384def">
+<p>
+There are two categories of spring boot properties or environment variables:
+</p>
+<ol class="org-ol">
+<li>built-in properties</li>
+<li>custom properties</li>
+</ol>
+
+<p>
+Another way to define a custom property is through the <code>@ConfiguratioProperties</code> annotation. This technique is useful
+when we would like to have properties type validations. To know more details, please refer to section <code>2.2.1</code> of the book.
+You can see a sample of this technique looking at <a href="http://mng.bz/7Wr9">this sample project</a> on GitHub provided by the author of the referenced book of this very brief resume.
+</p>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org2aa60ff" class="outline-2">
+<h2 id="org2aa60ff">Executing code on Spring Boot app startup</h2>
+<div class="outline-text-2" id="text-org2aa60ff">
+<p>
+At times, you&rsquo;ll need to execute custom code at Spring Boot application startup. For instance, you may want to execute a database initialization script before the application finishes its initialization or consume a REST service to load data for your application.
+</p>
+
+<p>
+The <b>CommandLineRunner</b> and <b>ApplicationRunner</b> are two Spring Boot interfaces that provide a single <code>run(..)</code> method and are invoked just before a Spring Boot application finishes its initialization. These methods are invoked only once at the time of the Spring Boot application startup.
+Both interfaces are almost the same. CommandLineRunner is the most used one, and there are three ways we can implement it.
+</p>
+
+<ul class="org-ul">
+<li>In the Spring Boot main class that implements the CommandLineRunner interface</li>
+<li>By providing the CommandLineRunner implementation as a bean definition using the @Bean annotation</li>
+<li>By providing the CommandLineRunner as a Spring Component using the <b>@Component</b> annotation</li>
+</ul>
+
+<p>
+Look at the sample project <a href="https://github.com/spring-boot-in-practice/repo/tree/main/ch02/command-line-runner/spring-boot-app-final/src/main/java/com/manning/sbip/ch02">here</a>.         
+</p>
+
+<p>
+In a CommandLineRunner implementation you can also autowire any dependency using Spring&rsquo;s dependency injection mechanism. Since a CommandLineRunner implementation runs when the Spring Boot application almost finishes its initialization, all bean definitions are available for autowire. Hence, you can autowire any bean dependency in your CommandLineRunner implementation.
+</p>
+
+<p>
+For example, in the upcoming techniques when you&rsquo;ll learn the Spring Data repository, you&rsquo;ll see the use of the CourseRepository interface as a dependency on the CommandLineRunner implementation. The following listing shows an example.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>CommandLineRunner Bean definition. The CourseRepository is injected via Spring dependency injection.</label><pre class="src src-java"><span class="org-c-annotation">@Bean</span>
+<span class="org-keyword">public</span> <span class="org-type">CommandLineRunner</span> <span class="org-function-name">commandLineRunner</span>(<span class="org-type">CourseRepository</span> <span class="org-variable-name">courseRepository</span>) {
+    <span class="org-keyword">return</span> args -&gt; { <span class="org-comment-delimiter">// </span><span class="org-comment">lambda expression</span>
+        System.out.println(<span class="org-string">"===== Course Details ====="</span>);
+        courseRepository.findAll().forEach(System.out::println);
+    };
+
+}
+</pre>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org664fd36" class="outline-2">
+<h2 id="org664fd36">Configuring Logging</h2>
+<div class="outline-text-2" id="text-org664fd36">
+<p>
+This subject will not have its resume at the moment. For more information please look at the book.
+</p>
+</div>
+</section>
+
+<section id="outline-container-org2bbc8cd" class="outline-2">
+<h2 id="org2bbc8cd">Using built-in Bean Validation annotations to validate business entity in a Spring Boot app</h2>
+<div class="outline-text-2" id="text-org2bbc8cd">
+
+<figure>
+<img src="springboot.org_imgs/20220906_150011_f2IW0t.png" alt="20220906_150011_f2IW0t.png">
+
+</figure>
+
+
+<p>
+For more details please refer to the <code>2.3</code> section.
+</p>
+
+<p>
+Also you can use third party libraries to do validations.
+Please refer to the project sample <a href="https://github.com/spring-boot-in-practice/repo/blob/main/ch02/bean-validation-custom-annotation/spring-boot-app-final/src/main/java/com/manning/sbip/ch02/CourseTrackerSpringBootApplication.java">link on GitHub</a> to check it out.
+</p>
+</div>
+</section>
+
+
+<section id="outline-container-orgcd9de3e" class="outline-2">
+<h2 id="orgcd9de3e">Chapter 3</h2>
+<div class="outline-text-2" id="text-orgcd9de3e">
+</div>
+<div id="outline-container-orgac33e6d" class="outline-3">
+<h3 id="orgac33e6d">Defining query methods</h3>
+<div class="outline-text-3" id="text-orgac33e6d">
+<p>
+Spring Data JPA provides two ways to define custom query methods that can meet most of these custom requirements:
+</p>
+
+<ul class="org-ul">
+<li>Defining custom methods in the repository interfaces with specific naming patterns. Spring Data can internally parse these methods and generate the query from it.</li>
+<li>Defining custom methods and providing an SQL query that is directly used by the Spring Data to query the entities.</li>
+</ul>
+
+
+<p>
+Spring Data uses the concept of a Subject and Predicate to parse the methods. It splits the method signature based on the By clause and treats the first half as the subject and the remaining part as the predicate. Thus, if you define a method named findDistinctCourseByCategoryOrderByName(), then the part DistinctCourse is the subject, and the CategoryOrderByName is the predicate. This is demonstrated in figure 3.6. Let&rsquo;s use a technique to learn how you can define query methods to retrieve data from the database.
+</p>
+
+
+<figure>
+<img src="springboot.org_imgs/20220906_190232_USdp4P.png" alt="20220906_190232_USdp4P.png">
+
+</figure>
+
+
+<p>
+You can refer to <a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods">this link</a> to learn more about all the expressions or query methods you can use in the query method name.
+</p>
+
+<p>
+If you want to see sample project please refer to <a href="http://mng.bz/dogO">this link</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge49b2c4" class="outline-3">
+<h3 id="orge49b2c4">Criteria API vs QueryDSL</h3>
+<div class="outline-text-3" id="text-orge49b2c4">
+<p>
+<b>In conclusion is better to use QueryDSL.</b>
+These two different tools can be used as techniques to programmatically define queries in a type-safe manner. This because when using the @Query annotation we don&rsquo;t have any type validation on queries, so if we have an error on any query definition the error will be throw on execution time, causing undesired results.
+</p>
+
+<p>
+Which one should you use in your application? Well, both APIs are popular and widely used. Following are a few points to consider when deciding which API to use:
+</p>
+
+<ul class="org-ul">
+<li>The Criteria API is a native JPA library and, thus, has native support in JPA, whereas the QueryDSL is an open-source, third-party library.</li>
+
+<li>The Criteria API is criticized for its verbosity and complex nature of the API. You need to write more to even execute a simple query. The QueryDSL has a more approachable API due to the simpler and English-like API.</li>
+
+<li>Criteria API is only applicable for JPA. QueryDSL has integration with other data stores, such as MongoDB, Lucene, and JDO.</li>
+</ul>
+
+
+<p>
+A sample project of the use QueryDSL can be found here: <a href="http://mng.bz/7Wn9">http://mng.bz/7Wn9</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge39cce3" class="outline-3">
+<h3 id="orge39cce3">Managing domain object relationships</h3>
+<div class="outline-text-3" id="text-orge39cce3">
+<p>
+In the relational database nomenclature, retrieving the required columns from different tables is known as <b>projection</b>.
+Spring Data lets you use projections either through interface-based projection or class-based projection.
+For more details please refer to the project.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>sample of postgresql squema.sql script</label><pre class="src src-sql"><span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">authors</span> (
+  id   BIGINT <span class="org-keyword">NOT</span> <span class="org-keyword">NULL</span>,
+  bio  <span class="org-type">VARCHAR</span>(255),
+  <span class="org-keyword">name</span> <span class="org-type">VARCHAR</span>(255),
+  <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span> (id)
+);
+
+<span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">authors_courses</span> (
+  author_id BIGINT <span class="org-keyword">NOT</span> <span class="org-keyword">NULL</span>,
+  course_id BIGINT <span class="org-keyword">NOT</span> <span class="org-keyword">NULL</span>,
+  <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span> (author_id, course_id)
+);
+
+<span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">courses</span> (
+  id          BIGINT <span class="org-keyword">NOT</span> <span class="org-keyword">NULL</span>,
+  category    <span class="org-type">VARCHAR</span>(255),
+  description <span class="org-type">VARCHAR</span>(255),
+  <span class="org-keyword">name</span>        <span class="org-type">VARCHAR</span>(255),
+  rating      <span class="org-type">INTEGER</span> <span class="org-keyword">NOT</span> <span class="org-keyword">NULL</span>,
+  <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span> (id)
+);
+
+<span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">authors_courses</span>
+  <span class="org-keyword">ADD</span> <span class="org-keyword">CONSTRAINT</span> course_id_fk <span class="org-keyword">FOREIGN</span> <span class="org-keyword">KEY</span>
+ (course_id) <span class="org-keyword">REFERENCES</span> courses (id);
+
+<span class="org-keyword">ALTER</span> <span class="org-keyword">TABLE</span> <span class="org-function-name">authors_courses</span>
+  <span class="org-keyword">ADD</span> <span class="org-keyword">CONSTRAINT</span> author_id_fk <span class="org-keyword">FOREIGN</span> <span class="org-keyword">KEY</span> (author_id) <span class="org-keyword">REFERENCES</span> authors (id);
+</pre>
+</div>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 3: </span>sample of postgresql insert data.sql script</label><pre class="src src-sql"><span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> COURSES(ID, <span class="org-keyword">NAME</span>, CATEGORY, RATING, DESCRIPTION)
+ <span class="org-keyword">VALUES</span>(1, <span class="org-string">'Rapid Spring Boot Application Development'</span>,
+ <span class="org-string">'Spring'</span>, 4, <span class="org-string">'Spring Boot gives all the power of the</span>
+<span class="org-string"> Spring Framework without all of the complexity'</span>);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> COURSES(ID, <span class="org-keyword">NAME</span>, CATEGORY, RATING, DESCRIPTION)
+ <span class="org-keyword">VALUES</span>(2, <span class="org-string">'Getting Started with Spring Security DSL'</span>,
+ <span class="org-string">'Spring'</span>, 5, <span class="org-string">'Learn Spring Security DSL in easy steps'</span>);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> COURSES(ID, <span class="org-keyword">NAME</span>, CATEGORY, RATING, DESCRIPTION)
+ <span class="org-keyword">VALUES</span>(3, <span class="org-string">'Getting Started with Spring Cloud Kubernetes'</span>,
+ <span class="org-string">'Python'</span>, 3, <span class="org-string">'Master Spring Boot application deployment</span>
+<span class="org-string"> with Kubernetes'</span>);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> AUTHORS(ID, <span class="org-keyword">NAME</span>, BIO)
+ <span class="org-keyword">VALUES</span>(1, <span class="org-string">'John Doe'</span>,
+ <span class="org-string">'Author of several Spring Boot courses'</span>);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> AUTHORS(ID, <span class="org-keyword">NAME</span>, BIO)
+ <span class="org-keyword">VALUES</span>(2, <span class="org-string">'Steve Muller'</span>, <span class="org-string">'Author of several</span>
+<span class="org-string"> popular Spring and Python courses'</span>);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) <span class="org-keyword">VALUES</span>(1, 1);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) <span class="org-keyword">VALUES</span>(1, 2);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) <span class="org-keyword">VALUES</span>(2, 1);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) <span class="org-keyword">VALUES</span>(2, 2);
+<span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) <span class="org-keyword">VALUES</span>(2, 3);
+</pre>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+<section id="outline-container-orgd3da093" class="outline-2">
+<h2 id="orgd3da093">Containerizing an Spring Boot app</h2>
+<div class="outline-text-2" id="text-orgd3da093">
+<p>
+<a href="https://www.docker.com/blog/9-tips-for-containerizing-your-spring-boot-code/#:~:text=Containerizing%20a%20Spring%20Boot%20application,it%20as%20a%20Docker%20image.">This article on the docker official website</a> is really helpful to get the better tips to containerize an Spring Boot code.
+</p>
+</div>
+</section>
+
+
+<section id="outline-container-orgd25f344" class="outline-2">
+<h2 id="orgd25f344">Extras</h2>
+<div class="outline-text-2" id="text-orgd25f344">
+<p>
+If we would like to connect to a database such as Postgresql, we can look at the repository I created and uploaded on GitHub here.
+Also <a href="https://www.postgresql.org/ftp/projects/pgFoundry/dbsamples/world/dbsamples-0.1/">here is a file</a> that contains a sample of an sql file to create a database and tables on it and insert sample data from the Postgresql website.
+</p>
+
+
+<p>
+Some informal videos I recorded for reference.
+</p>
+<ul class="org-ul">
+<li><a href="https://youtu.be/_WNAg4oS6bc">https://youtu.be/_WNAg4oS6bc</a></li>
+</ul>
+</div>
+</section>
+</nil>
+<footer id="postamble" class="status">
+
+<div class='footer'>
+Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
+Last updated on Sep 27, 2022 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9) <br>
+</div>
+</footer>
+</body>
+</html>
