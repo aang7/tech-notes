@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>&lrm;</title>
+<meta name="generator" content="Org mode">
+<link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
+   <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><nil id="nil">
+<section id="outline-container-orgbdfbfb9" class="outline-2">
+<h2 id="orgbdfbfb9">Intro</h2>
+<div class="outline-text-2" id="text-orgbdfbfb9">
+<p>
+This file contains my personal annotations on the Design Patterns subjects
+that I will be reading on the &ldquo;<b>Head First: Design Patterns</b>&rdquo; book.
+</p>
+
+<p>
+Source code of the book can be found on: <a href="http://wickedlysmart.com/head-first-design-patterns">http://wickedlysmart.com/head-first-design-patterns</a>.
+</p>
+</div>
+</section>
+
+<section id="outline-container-org5b9166a" class="outline-2">
+<h2 id="org5b9166a">Chapter 1</h2>
+<div class="outline-text-2" id="text-org5b9166a">
+<p>
+Design principles on <code>STRATEGY</code> pattern:
+</p>
+
+<ol class="org-ol">
+<li>Identify the aspects of your application that vary and separate them from what stays the same.</li>
+<li>Program to an interface, not an implementation.</li>
+<li>Favor composition over inheritance.</li>
+</ol>
+</div>
+
+
+<div id="outline-container-org58634a2" class="outline-3">
+<h3 id="org58634a2">Formal definition of Strategy pattern</h3>
+<div class="outline-text-3" id="text-org58634a2">
+<p>
+<code>The Strategy Pattern</code> defines a family of algorithms, encapsulates each one, and makes them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
+</p>
+</div>
+</div>
+</section>
+
+<section id="outline-container-org5389838" class="outline-2">
+<h2 id="org5389838">Chapter 2</h2>
+<div class="outline-text-2" id="text-org5389838">
+</div>
+<div id="outline-container-org26ffedb" class="outline-3">
+<h3 id="org26ffedb">The Observer Pattern</h3>
+<div class="outline-text-3" id="text-org26ffedb">
+<p>
+The Observer Pattern defines a one-to-many relationship between a set of objects.
+When the state of one object changes, all of its dependents are notified.
+</p>
+
+
+<figure>
+<img src="notes.org_imgs/20221003_151046_6x2ivp.png" alt="20221003_151046_6x2ivp.png">
+
+</figure>
+</div>
+</div>
+
+<div id="outline-container-org3e90608" class="outline-3">
+<h3 id="org3e90608">The Power of Loose Coupling</h3>
+<div class="outline-text-3" id="text-org3e90608">
+<p>
+When two objects are loosely coupled, they can interact, but they typically have very little knowledge of each other. Loosely coupled designs often give us a lot of flexibility.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0d99909" class="outline-3">
+<h3 id="org0d99909">Design Principles</h3>
+<div class="outline-text-3" id="text-org0d99909">
+<p>
+Design principles found in this chapter:
+</p>
+<ol class="org-ol">
+<li>Strive for loosely coupled designs between objects that interact.</li>
+</ol>
+</div>
+</div>
+</section>
+
+<section id="outline-container-orgaee46aa" class="outline-2">
+<h2 id="orgaee46aa">Chapter 3</h2>
+<div class="outline-text-2" id="text-orgaee46aa">
+</div>
+<div id="outline-container-org94dae45" class="outline-3">
+<h3 id="org94dae45">The Decorator Pattern</h3>
+<div class="outline-text-3" id="text-org94dae45">
+<p>
+Decorators are meant to add behavior to the object they wrap.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org69f70c9" class="outline-3">
+<h3 id="org69f70c9">Design Principles</h3>
+<div class="outline-text-3" id="text-org69f70c9">
+<p>
+Design principles found in this chapter:
+1.Classes should be open for extension, but closed for modification. (This is called the Open-Closed Principle)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgff6d7e6" class="outline-3">
+<h3 id="orgff6d7e6">Example</h3>
+<div class="outline-text-3" id="text-orgff6d7e6">
+<p>
+the <code>Java.io</code> package is one example of many where the Decorator Pattern is largely used.
+</p>
+
+
+<figure>
+<img src="notes.org_imgs/20221004_144956_Hxvl16.png" alt="20221004_144956_Hxvl16.png">
+
+</figure>
+
+<p>
+Java I/O also points out one of the downsides of the Decorator Pattern: designs using this pattern often result in a large number of small classes that can be overwhelming to a developer trying to use the Decorator-based API. But now that you know how Decorator works, you can keep things in perspective and when you’re using someone else’s Decorator-heavy API, you can work through how their classes are organized so that you can easily use wrapping to get the behavior you’re after.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbacf1d9" class="outline-3">
+<h3 id="orgbacf1d9">Points</h3>
+<div class="outline-text-3" id="text-orgbacf1d9">
+<p>
+<b>Good points:</b>
+</p>
+<ul class="org-ul">
+<li>add flexibility to designs, it can add new behaviours on runtime.</li>
+<li>you can usually insert decorators transparently and the client never has to know it’s dealing with a decorator.</li>
+<li>stays true to the Open-Closed Principle</li>
+</ul>
+
+<p>
+<b>Bad points:</b>
+</p>
+<ul class="org-ul">
+<li>increase the complexity of the code needed to instantiate the component. Once you&rsquo;ve got decorators, you&rsquo;ve got to not only instantiate the component, but also wrap it with who knows how many decorators.</li>
+<li>add a lot of small classes to a design, and this occasionally results in a design that’s less than straightforward for others to understand.</li>
+<li>have to be careful when inserting decorators</li>
+</ul>
+</div>
+</div>
+</section>
+</nil>
+<footer id="postamble" class="status">
+
+<div class='footer'>
+Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
+Last updated on Oct 04, 2022 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9) <br>
+</div>
+</footer>
+</body>
+</html>
