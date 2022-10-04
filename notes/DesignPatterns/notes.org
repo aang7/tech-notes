@@ -1,0 +1,63 @@
+* Intro
+This file contains my personal annotations on the Design Patterns subjects
+that I will be reading on the "*Head First: Design Patterns*" book.
+
+Source code of the book can be found on: http://wickedlysmart.com/head-first-design-patterns.
+
+* Chapter 1
+
+
+Design principles on =STRATEGY= pattern:
+
+1. Identify the aspects of your application that vary and separate them from what stays the same.
+2. Program to an interface, not an implementation.
+3. Favor composition over inheritance.
+
+   
+** Formal definition of Strategy pattern
+=The Strategy Pattern= defines a family of algorithms, encapsulates each one, and makes them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
+
+* Chapter 2
+** The Observer Pattern
+The Observer Pattern defines a one-to-many relationship between a set of objects.
+When the state of one object changes, all of its dependents are notified.
+
+[[file:notes.org_imgs/20221003_151046_6x2ivp.png]]
+
+** The Power of Loose Coupling
+When two objects are loosely coupled, they can interact, but they typically have very little knowledge of each other. Loosely coupled designs often give us a lot of flexibility.
+
+** Design Principles
+
+Design principles found in this chapter:
+1. Strive for loosely coupled designs between objects that interact.
+   
+* Chapter 3
+
+** The Decorator Pattern
+Decorators are meant to add behavior to the object they wrap.
+
+** Design Principles
+
+Design principles found in this chapter:
+1.Classes should be open for extension, but closed for modification. (This is called the Open-Closed Principle)
+
+** Example
+
+the =Java.io= package is one example of many where the Decorator Pattern is largely used.
+
+[[file:notes.org_imgs/20221004_144956_Hxvl16.png]]
+
+Java I/O also points out one of the downsides of the Decorator Pattern: designs using this pattern often result in a large number of small classes that can be overwhelming to a developer trying to use the Decorator-based API. But now that you know how Decorator works, you can keep things in perspective and when you’re using someone else’s Decorator-heavy API, you can work through how their classes are organized so that you can easily use wrapping to get the behavior you’re after.
+
+** Points
+
+*Good points:*
+- add flexibility to designs, it can add new behaviours on runtime.
+- you can usually insert decorators transparently and the client never has to know it’s dealing with a decorator.
+- stays true to the Open-Closed Principle
+
+*Bad points:*
+- increase the complexity of the code needed to instantiate the component. Once you've got decorators, you've got to not only instantiate the component, but also wrap it with who knows how many decorators.
+- add a lot of small classes to a design, and this occasionally results in a design that’s less than straightforward for others to understand.
+- have to be careful when inserting decorators
