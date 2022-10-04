@@ -97,3 +97,84 @@ The connection is not encrypted.
 * Protect against security threats on Azure
 
 [[file:az900.org_imgs/20220826_143049_UnjaY6.png]]
+* Secure network connectivity on azure
+** What is defense in depth?
+- The objective of defense in depth is to protect information and prevent it from being stolen.
+- A defense-in-depth strategy uses a series of mechanisms to slow the advance of an attack that aims at acquiring unauthorized access to data.
+
+
+[[file:az900.org_imgs/20220929_135212_B9yKgY.png]]
+
+
+** Security posture
+The common principles used to define a security posture are confidentiality, integrity, and availability, known collectively as CIA.
+
+[[file:az900.org_imgs/20220929_141320_A89NTu.png]]
+
+** Protect virtual networks by using Azure Firewall
+A =firewall= is a network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules.
+
+You typically deploy Azure Firewall on a central virtual network to control general network access.
+
+With Azure Firewall, you can configure:
+- Application rules that define fully qualified domain names (FQDNs) that can be accessed from a subnet.
+- Network rules that define source address, protocol, destination port, and destination address.
+- Network Address Translation (NAT) rules that define destination IP addresses and ports to translate inbound requests.
+
+
+** Protect from DDoS attacks by using Azure DDoS Protection
+A distributed denial of service attack attempts to overwhelm and exhaust an application's resources, making the application slow or unresponsive to legitimate users. DDoS attacks can target any resource that's publicly reachable through the internet, including websites.
+
+[[file:az900.org_imgs/20220929_142833_Jj3bCB.png]]
+
+[[file:az900.org_imgs/20220929_143158_ljNQjB.png]]
+
+** Filter network traffic by using network security groups
+
+A network security group enables you to filter network traffic to and from Azure resources within an Azure virtual network. You can think of NSGs like an internal firewall.
+
+
+- Use Azure DDoS Protection to filter large-scale attacks before they can cause a denial of service for users.
+- Use perimeter firewalls with Azure Firewall to identify and alert on malicious attacks against your network.
+
+* Secure access to your applications by using Azure identity services
+
+ 
+** Compare Authentication and Authorization
+
+*** What is Authentication?
+It establishes whether the user is who they say they are.
+
+*** What is Authorization?
+Authentication establishes the user's identity, but authorization is the process of establishing what level of access an authenticated person or service has. It specifies what data they're allowed to access and what they can do with it.
+
+*** How are Authentication and Authorization related?
+[[file:az900.org_imgs/20220930_150943_zcTLtH.png]]
+
+
+
+** What services does Azure AD provide?
+- Authentication
+  This includes verifying identity to access applications and resources. It also includes providing functionality such as self-service password reset, multifactor authentication, a custom list of banned passwords, and smart lockout services.
+- Single sign-on
+  SSO enables you to remember only one username and one password to access multiple applications.
+- Application management
+- Device management
+
+** What's multifactor authentication?
+Multifactor authentication is a process where a user is prompted during the sign-in process for an additional form of identification. Examples include a code on their mobile phone or a fingerprint scan.
+
+Multifactor authentication provides additional security for your identities by requiring two or more elements to fully authenticate.
+
+These elements fall into three categories:
+
+- Something the user knows
+  This might be an email address and password.
+- Something the user has
+  This might be a code that's sent to the user's mobile phone.
+- Something the user is
+  This is typically some sort of biometric property, such as a fingerprint or face scan that's used on many mobile devices.
+
+** Summary
+https://learn.microsoft.com/en-us/training/modules/secure-access-azure-identity-services/6-summary
+
