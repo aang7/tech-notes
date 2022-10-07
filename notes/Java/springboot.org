@@ -13,6 +13,10 @@
 #+creator: Emacs 28.1 (Org mode 9.5.2)
 #+cite_export:
 
+* Intro
+
+This is my attempt for taking notes regarding the java spring boot framework. This a super brief summary. These notes are based on the [[https://www.amazon.com.mx/Spring-Boot-Practice-Somnath-Musib/dp/1617298816/ref=asc_df_1617298816/?tag=gledskshopmx-20&linkCode=df0&hvadid=547351403446&hvpos=&hvnetw=g&hvrand=4536659818656149531&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1010186&hvtargid=pla-1467763045355&psc=1][Spring Boot in Practice]] book, but I also referenced another useful links from articles on the internet (thank to those people who give free good information).
+
 * General Concepts
 
 ** What is a bean?
@@ -318,7 +322,7 @@ INSERT INTO AUTHORS_COURSES(AUTHOR_ID, COURSE_ID) VALUES(2, 3);
 
 
 * Extras
-If we would like to connect to a database such as Postgresql, we can look at the repository I created and uploaded on GitHub here.
+If we would like to connect to a database such as Postgresql, we can look at the repository I created and uploaded on GitHub [[https://github.com/aang7/sample-spring-boot][here]].
 Also [[https://www.postgresql.org/ftp/projects/pgFoundry/dbsamples/world/dbsamples-0.1/][here is a file]] that contains a sample of an sql file to create a database and tables on it and insert sample data from the Postgresql website.
 
 
