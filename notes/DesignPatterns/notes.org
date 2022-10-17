@@ -51,18 +51,18 @@ the =Java.io= package is one example of many where the Decorator Pattern is larg
 
 [[file:notes.org_imgs/20221004_144956_Hxvl16.png]]
 
-Java I/O also points out one of the downsides of the Decorator Pattern: designs using this pattern often result in a large number of small classes that can be overwhelming to a developer trying to use the Decorator-based API. But now that you know how Decorator works, you can keep things in perspective and when you’re using someone else’s Decorator-heavy API, you can work through how their classes are organized so that you can easily use wrapping to get the behavior you’re after.
+Java I/O also points out one of the downsides of the Decorator Pattern: designs using this pattern often result in a large number of small classes that can be overwhelming to a developer trying to use the Decorator-based API. But now that you know how Decorator works, you can keep things in perspective and when you're using someone else's Decorator-heavy API, you can work through how their classes are organized so that you can easily use wrapping to get the behavior you're after.
 
 ** Points
 
 *Good points:*
 - add flexibility to designs, it can add new behaviours on runtime.
-- you can usually insert decorators transparently and the client never has to know it’s dealing with a decorator.
+- you can usually insert decorators transparently and the client never has to know it's dealing with a decorator.
 - stays true to the Open-Closed Principle
 
 *Bad points:*
 - increase the complexity of the code needed to instantiate the component. Once you've got decorators, you've got to not only instantiate the component, but also wrap it with who knows how many decorators.
-- add a lot of small classes to a design, and this occasionally results in a design that’s less than straightforward for others to understand.
+- add a lot of small classes to a design, and this occasionally results in a design that's less than straightforward for others to understand.
 - have to be careful when inserting decorators
 
 * Chapter 4
@@ -116,6 +116,30 @@ So the we have the creator classes and the product classes.
 - The intent of Abstract Factory is to create families of related objects without having to depend on their concrete classes.
 - The Dependency Inversion Principle guides us to avoid dependencies on concrete types and to strive for abstractions.
 
+* Chapter 5
+
+** The Singleton Pattern
+This is easily the shortest pattern so far in the book.
+The singleton pattern basically handle the creation of only one instance of a determined class.
+
+In java, depending on the version will be the implementation to use.
+There are basically two ways of implement this pattern
+
+1. Creating a private constructor with a private field on the class and an static method called =getInstance= which basically handles the creation and return of the only once instantiated object.
+2. Using an Enum type class.
+
+For more details please refer to [[https://dzone.com/articles/java-singletons-using-enum][this article]].
+
+** Points
+
+- The Singleton Pattern ensures you have at most one instance of a class in your application.
+- The Singleton Pattern also provides a global access point to that instance.
+- Java's implementation of the Singleton Pattern makes use of a private constructor, a static method combined with a static variable.
+- Examine your performance and resource constraints and carefully choose an appropriate Singleton implementation for multithreaded applications (and we should consider all applications multithreaded!).
+- Beware of the double-checked locking implementation; it isn't thread safe in versions before Java 5.
+- Be careful if you are using multiple class loaders; this could defeat the Singleton implementation and result in multiple instances.
+- You can use Java's enums to simplify your Singleton implementation.
+  
 * Footnotes
 
 [fn:1]https://github.com/aang7/DesignPatternsExamples 

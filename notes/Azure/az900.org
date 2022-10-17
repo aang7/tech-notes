@@ -178,3 +178,66 @@ These elements fall into three categories:
 ** Summary
 https://learn.microsoft.com/en-us/training/modules/secure-access-azure-identity-services/6-summary
 
+* Build a cloud governance strategy on Azure
+
+The term =governance= describes the general process of establishing rules and policies and ensuring that those rules and policies are enforced.
+
+** Control access to cloud resources by using Azure role-based access control
+
+Role-based access control is applied to a scope, which is a resource or set of resources that this access applies to.
+
+=Resource Manager= is a management service that provides a way to organize and secure your cloud resources.
+
+
+Who does Azure RBAC (role-based access control) apply to?
+- individuals (users or resources)
+- groups
+- special identity types such as "service principals" and "managed indentities"
+
+To manage the RBAC you can go to the IAM section on the Azure portal.
+
+** Prevent accidental changes by using resource locks
+A =resource lock= prevents resources from being accidentally deleted or changed.
+
+
+
+** What levels of locking are available?
+
+- CanNotDelete: user can view and modify the resource.
+- ReadOnly: user can only view the resource, he can't delete nor modify.
+
+Resource locks apply regardless of RBAC permissions. Even if you're an owner of the resource, you must still remove the lock before you can perform the blocked activity.
+
+** Combine resource lock with Azure Blueprints
+What if a cloud administrator accidentally deletes a resource lock? If the resource lock is removed, its associated resources can be changed or deleted.
+
+To make the protection process more robust, you can combine resource locks with Azure Blueprints. Azure Blueprints enables you to define the set of standard Azure resources that your organization requires. For example, you can define a blueprint that specifies that a certain resource lock must exist. Azure Blueprints can automatically replace the resource lock if that lock is removed.
+
+** Organize your resources by using tags
+
+Interestingly we can use Azure DevOps and process resources with certain tag.
+We can also use tags for creating cost managament, security and governance and regulatory compliance.
+
+** How do I manage resource tags?
+- PowerShell
+- Azure CLI
+- Azure Resource Manager templates
+- REST API or
+- Azure Portal
+
+You can also use Azure Policy to enforce tagging rules and conventions.
+
+
+A tag consist of a name and value.
+
+** Azure Policy
+Website: [[https://azure.microsoft.com/es-mx/products/azure-policy/#getting-started][Azure Policy - Getting started]]
+
+Control and audit your resources by using Azure Policy.
+Azure Policy enables you to define both individual policies and =groups of related policies, known as initiatives=. Azure Policy evaluates your resources and highlights resources that aren't compliant with the policies you've created. Azure Policy can also prevent noncompliant resources from being created.
+
+A policiy consists of a
+1. definition
+2. resource of which the definition will be applied.
+
+
