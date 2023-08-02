@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Oct 17, 2022 -->
+<!-- Aug 02, 2023 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Random Notes</title>
@@ -14,7 +14,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -68,27 +68,122 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8fcb2a8">1. Intro</a></li>
-<li><a href="#org59ea6d6">2. How to debug a nodejs program?</a></li>
+<li><a href="#org61bf3a8">1. Intro</a></li>
+<li><a href="#orgf1b26ee">2. Honw to debug a nodejs program?</a></li>
+<li><a href="#orgb095422">3. Literate programming in org mode</a>
+<ul>
+<li><a href="#org9e28def">3.1. What is literate programming?</a></li>
+<li><a href="#org1a0097e">3.2. Show me</a></li>
+<li><a href="#org5ce7b1c">3.3. lsp within code blocks</a></li>
+<li><a href="#org8814557">3.4. Grep in emacs</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
 
-<section id="outline-container-org8fcb2a8" class="outline-2">
-<h2 id="org8fcb2a8"><span class="section-number-2">1</span> Intro</h2>
+<section id="outline-container-org61bf3a8" class="outline-2">
+<h2 id="org61bf3a8"><span class="section-number-2">1</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Under construction.
+This entry has random notes that I consider useful for my emacs experience.
+Hope this will be useful for you too.
 </p>
 </div>
 </section>
 
-<section id="outline-container-org59ea6d6" class="outline-2">
-<h2 id="org59ea6d6"><span class="section-number-2">2</span> How to debug a nodejs program?</h2>
+<section id="outline-container-orgf1b26ee" class="outline-2">
+<h2 id="orgf1b26ee"><span class="section-number-2">2</span> Honw to debug a nodejs program?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://github.com/emacs-lsp/dap-mode/issues/554#issuecomment-1171256089">This is</a> the helpful comment on GitHub thread.
+Look at the <a href="https://www.youtube.com/watch?v=bGkLuO7KTTY">video</a> I uploaded on YouTube.
 </p>
+</div>
+</section>
+
+<section id="outline-container-orgb095422" class="outline-2">
+<h2 id="orgb095422"><span class="section-number-2">3</span> Literate programming in org mode</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org9e28def" class="outline-3">
+<h3 id="org9e28def"><span class="section-number-3">3.1</span> What is literate programming?</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+It's basically the way we explain/describe and show the source of a program and (optionally) its result on a document.
+For details check out this <a href="https://en.wikipedia.org/wiki/Literate_programming">wikipedia entry</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1a0097e" class="outline-3">
+<h3 id="org1a0097e"><span class="section-number-3">3.2</span> Show me</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+To do literate programming in emacs, we use org-mode in conjunction with <a href="https://orgmode.org/worg/org-contrib/babel/how-to-use-Org-Babel-for-R.html#:~:text=Emacs%20Org%2DBabel%20mode%20is,can%20embed%20only%20R%20code">org-babel</a>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cpp"><span class="linenr">1: </span><span class="org-preprocessor">#include</span><span class="org-string">&lt;stdio.h&gt;</span>
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
+<span class="linenr">4: </span>{
+<span class="linenr">5: </span>  printf(<span class="org-string">"%s\n"</span>, <span class="org-string">"Hello World"</span>);
+<span class="linenr">6: </span>  printf(<span class="org-string">"Another Hello world"</span>);
+<span class="linenr">7: </span>  <span class="org-keyword">return</span> 0;
+<span class="linenr">8: </span>}
+</pre>
+</div>
+
+<pre class="example">
+Hello World
+Another Hello world
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5ce7b1c" class="outline-3">
+<h3 id="org5ce7b1c"><span class="section-number-3">3.3</span> lsp within code blocks</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+If you want to know what about the top line. Look at this references
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/emacs-lsp/lsp-mode/issues/2842">reference 1</a></li>
+<li><a href="https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions">reference 2</a></li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">const</span> <span class="org-variable-name">fun</span> = (a, b) =&gt; {
+    <span class="org-keyword">return</span> a + b
+}
+
+<span class="org-keyword">const</span> <span class="org-variable-name">a</span> = 7, <span class="org-variable-name">b</span> = 3;
+console.log(fun(a, b))
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div id="outline-container-org8814557" class="outline-3">
+<h3 id="org8814557"><span class="section-number-3">3.4</span> Grep in emacs</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+We can grep in emacs, grep is a tool for looking for some text or regex inside a file or directory.
+Sometime when we are searching for some string that has a character like <code>{ } [ ] $, etc.</code>
+To do that we need to escape them with a <code>$</code> as prefix.
+</p>
+
+<p>
+So for example if I want to search to some string that contains the following text <code>{SOME_VARIABLE}</code>,
+I can't just write it like that, emacs will not recognize that special character, so we need to escape it with a cash symbol <code>$</code>.
+</p>
+</div>
 </div>
 </section>
 </nil>
@@ -96,7 +191,7 @@ Under construction.
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 17, 2022 using Emacs 28.1 (Org mode 9.5.2) <br>
+Last updated on Aug 02, 2023 using Emacs 28.1 (Org mode 9.5.2) <br>
 </div>
 </footer>
 </body>

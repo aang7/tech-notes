@@ -4,9 +4,9 @@
 <!-- Aug 02, 2023 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Data Structures and C/C++ Graphs basics</title>
+<title>Graphs basics</title>
 <meta name="generator" content="Org mode">
-<meta name="author" content="Abel Abner Abel Abner">
+<meta name="author" content="Abel Abner">
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
 <script type="text/javascript">
@@ -85,254 +85,25 @@ for the JavaScript code in this tag.
  <a accesskey="H" href="../"> HOME </a>
 </div><nil id="nil">
 <header>
-<h1 class="title">Data Structures and C/C++ Graphs basics</h1>
+<h1 class="title">Graphs basics</h1>
 </header><nav id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9768471">1. Introduction</a></li>
-<li><a href="#orga760206">2. Let's started</a>
-<ul>
-<li><a href="#org9478419">2.1. Pointers</a></li>
-<li><a href="#org65499c2">2.2. Allocating dynamic memory</a></li>
-</ul>
-</li>
-<li><a href="#org7ec9433">3. Graphs</a>
-<ul>
-<li><a href="#orgec76236">3.1. The basics</a></li>
-<li><a href="#orgfee79e7">3.2. traversing a non cyclic graph with bfs</a></li>
-<li><a href="#orgd03ba14">3.3. <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</a></li>
-<li><a href="#org9c85f8f">3.4. Spanning trees</a></li>
-<li><a href="#orgd11adf5">3.5. References</a></li>
-</ul>
-</li>
+<li><a href="#orgd88d77b">1. The basics</a></li>
+<li><a href="#org3d326de">2. traversing a non cyclic graph with bfs</a></li>
+<li><a href="#orgd08dd73">3. <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</a></li>
+<li><a href="#org35dbc45">4. Spanning trees</a></li>
+<li><a href="#orgf8b9526">5. References</a></li>
 </ul>
 </div>
 </nav>
 
-<section id="outline-container-org9768471" class="outline-2">
-<h2 id="org9768471"><span class="section-number-2">1</span> Introduction</h2>
+
+
+<section id="outline-container-orgd88d77b" class="outline-2">
+<h2 id="orgd88d77b"><span class="section-number-2">1</span> The basics</h2>
 <div class="outline-text-2" id="text-1">
-<p>
-I am trying to practicing again the main concepts in programming with the help of one course about the main of data structures and algorithms. This course can be found in <a href="https://www.udemy.com/course/datastructurescncpp/">udemy</a>.
-</p>
-
-<p>
-So this file will be and is my playground for taking notes.
-</p>
-</div>
-</section>
-
-<section id="outline-container-orga760206" class="outline-2">
-<h2 id="orga760206"><span class="section-number-2">2</span> Let's started</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-All chapters will be in <b>C</b> or <b>C++</b>. This because, I am trying to remember the fundamentals, and C and C++ are almost the same, considered as low programming languages. We can look at conceptos like pointers, memory allocation, etc. Concepts that may not be to close for the end user on other programming languges of high level.
-</p>
-</div>
-
-<div id="outline-container-org9478419" class="outline-3">
-<h3 id="org9478419"><span class="section-number-3">2.1</span> Pointers</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-So a pointer is simply a variable of 8 bytes (on 64 bit computer) or 4 bytes (on a 32 bit computer) that points to a memory address.
-For instance, all beginner programmer will know a primitive type like <code>int</code>, which referers to <code>integer</code>. Usually an <code>int</code> type consists of 4 bytes (that means, 8 bits), in memory terms this means that to represent a integer value, the computer must reserve 4 bytes of memory on the main memory of the computer for the program on execution be able to run, use or represent an integer value.
-</p>
-
-<p>
-That spot of reserved memory contains an address as a house contains an address. That means we can look for the address, to later get whatever the address holds.
-</p>
-
-<p>
-Below there is a little C program that uses pointers.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">size</span> 5
-<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
-
-<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
-{
-  <span class="org-comment-delimiter">// </span><span class="org-comment">declare an array of 5 integers</span>
-  <span class="org-type">int</span> <span class="org-variable-name">array</span>[size] = {1, 2, 3, 4, 5};
-  <span class="org-comment-delimiter">// </span><span class="org-comment">declare pointer that points to an integer data type</span>
-  <span class="org-type">int</span> *<span class="org-variable-name">p</span>;
-
-  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; size; ++i)
-    cout &lt;&lt; array[i] &lt;&lt; <span class="org-string">" "</span>;
-  cout &lt;&lt; endl;
-
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">point to the above array</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">this can be done, because an array is a data structure</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">that reserves contiguous memory on the process/program timeline execution.</span>
-  p = array;
-
-
-  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; size; ++i)
-    cout &lt;&lt; <span class="org-string">"value:"</span> &lt;&lt; p[i] &lt;&lt; <span class="org-string">" memory address: "</span> &lt;&lt; &amp;p[i] &lt;&lt; endl;
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">same output . different way</span>
-  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; size; ++i)
-    cout &lt;&lt; <span class="org-string">"value:"</span> &lt;&lt; (*(p + i)) &lt;&lt; <span class="org-string">" memory address: "</span> &lt;&lt; (p + i) &lt;&lt; endl;
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">now lets change the value of an integer getting its reference and modifying the value</span>
-  <span class="org-type">int</span> <span class="org-variable-name">valuex</span> = 10;
-  cout &lt;&lt; <span class="org-string">"valuex before: "</span> &lt;&lt; valuex &lt;&lt; endl;
-  <span class="org-type">int</span>* <span class="org-variable-name">xptr</span> = &amp;valuex; <span class="org-comment-delimiter">// </span><span class="org-comment">the amperson indicates: "give me the memory adress of this variable"</span>
-  *xptr = 7;
-  cout &lt;&lt; <span class="org-string">"valuex after: "</span> &lt;&lt; valuex &lt;&lt; endl;
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Notes:</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">all the pointers occupy the same amount of memory.</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">the size of the pointer will depend on the system architecture target compile.</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">we can point to any existing type of data, that includes "structs".</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">pointers are used everywhere, in all programming languages, implicitly or explicitly but everywhere.</span>
-
-  <span class="org-keyword">return</span> 0;
-}
-
-</pre>
-</div>
-
-<pre class="example">
-1 2 3 4 5 
-value:1 memory address: 0x16efab4f0
-value:2 memory address: 0x16efab4f4
-value:3 memory address: 0x16efab4f8
-value:4 memory address: 0x16efab4fc
-value:5 memory address: 0x16efab500
-value:1 memory address: 0x16efab4f0
-value:2 memory address: 0x16efab4f4
-value:3 memory address: 0x16efab4f8
-value:4 memory address: 0x16efab4fc
-value:5 memory address: 0x16efab500
-valuex before: 10
-valuex after: 7
-</pre>
-
-
-<div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
-
-<span class="org-keyword">struct</span> <span class="org-type">Book</span> {
-  <span class="org-type">float</span> <span class="org-variable-name">price</span>;
-  <span class="org-type">char</span> <span class="org-variable-name">name</span>[50];
-};
-
-<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
-{
-  <span class="org-type">Book</span> <span class="org-variable-name">bookx</span>;
-  <span class="org-comment-delimiter">// </span><span class="org-comment">set up some random values</span>
-  strcpy(bookx.name, <span class="org-string">"C Programming"</span>);
-  bookx.price = 77;
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">declare a pointer to an struct</span>
-  <span class="org-keyword">struct</span> <span class="org-type">Book</span> * <span class="org-variable-name">bookPtr</span>;
-  bookPtr = &amp;bookx;
-
-  <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"Book Name: "</span> &lt;&lt; bookPtr-&gt;name &lt;&lt;
-    <span class="org-string">" Book price($dlls): "</span> &lt;&lt; bookPtr-&gt;price &lt;&lt; <span class="org-constant">std</span>::endl;
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">changing the value by reference</span>
-  strcpy(bookPtr-&gt;name, <span class="org-string">"C++ Programming"</span>);
-  bookPtr-&gt;price = 87;
-
-  <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-string">"Book Name: "</span> &lt;&lt; bookPtr-&gt;name &lt;&lt;
-    <span class="org-string">" Book price($dlls): "</span> &lt;&lt; bookPtr-&gt;price &lt;&lt; <span class="org-constant">std</span>::endl;
-  <span class="org-keyword">return</span> 0;
-}
-
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org65499c2" class="outline-3">
-<h3 id="org65499c2"><span class="section-number-3">2.2</span> Allocating dynamic memory</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-To a program be able to start, it needs to be attached to a process, which the operating system needs to handle. This <b>process</b> asks the operating system for an amount of memory to be used by the program itself. One concept to know here is the <b><a href="https://www.scaler.com/topics/java/heap-memory-and-stack-memory-in-java/">stack memory*</a>, and the <a href="https://www.techtarget.com/whatis/definition/heap#:~:text=In%20certain%20programming%20languages%20including,until%20the%20program%20is%20running.">*heap</a></b>.
-</p>
-
-<p>
-Below there is a simply sample of allocating dinamyc memory in <b>C</b> and <b>C++</b>.
-</p>
-
-<div class="org-src-container">
-<pre class="src src-C"><span class="org-preprocessor">#include</span><span class="org-string">&lt;stdlib.h&gt;</span>
-<span class="org-preprocessor">#include</span><span class="org-string">&lt;stdio.h&gt;</span>
-
-<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
-{
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">allocating memory using malloc helper function</span>
-  <span class="org-type">int</span>* <span class="org-variable-name">array</span> = malloc(<span class="org-keyword">sizeof</span>(<span class="org-type">int</span>) * 5);
-  array[0] = 7;
-  printf(<span class="org-string">"%d"</span>, array[0]);
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Note: be aware that in C and C++ always you do memory allocation</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">you must free or release it when you finish to use it,</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">otherwise you can have memory leak problems.</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">In C we use the free function to release the allocated memory.</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">In C++ we use the delete keyword. (Look at the next c++ example snippet)</span>
-  free(array);
-  <span class="org-keyword">return</span> 0;
-}
-
-</pre>
-</div>
-
-<pre class="example">
-7
-</pre>
-
-
-<div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;ostream&gt;</span>
-
-<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
-{
-
-  <span class="org-type">int</span> *<span class="org-variable-name">array</span> = <span class="org-keyword">new</span> <span class="org-type">int</span>[5];
-  array[0] = 7;
-
-  <span class="org-constant">std</span>::cout &lt;&lt; array[0] &lt;&lt; <span class="org-constant">std</span>::endl;
-  <span class="org-comment-delimiter">// </span><span class="org-comment">Notes:</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">instead of using malloc function as in C, we can use the 'new' keyword.</span>
-
-  <span class="org-comment-delimiter">// </span><span class="org-comment">here we use the 'delete' keyword followed by the brackets to indicate that</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">we cant to release the allocated memory.</span>
-
-  <span class="org-keyword">delete</span> [] array;
-  <span class="org-keyword">return</span> 0;
-}
-
-</pre>
-</div>
-
-<pre class="example">
-7
-</pre>
-</div>
-</div>
-</section>
-
-
-
-
-<section id="outline-container-org7ec9433" class="outline-2">
-<h2 id="org7ec9433"><span class="section-number-2">3</span> Graphs</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-
-
-
-<div id="outline-container-orgec76236" class="outline-3">
-<h3 id="orgec76236"><span class="section-number-3">3.1</span> The basics</h3>
-<div class="outline-text-3" id="text-3-1">
 <p>
 Some concepts related to graphs:
 </p>
@@ -369,11 +140,11 @@ Time complexity for traversing a graph depends on the method you use.
 In this case it is O(n<sup>2</sup>) because we are representing the graph on a matrix. If we would use a linked list to represent it, it would take O(n).
 </p>
 </div>
-</div>
+</section>
 
-<div id="outline-container-orgfee79e7" class="outline-3">
-<h3 id="orgfee79e7"><span class="section-number-3">3.2</span> traversing a non cyclic graph with bfs</h3>
-<div class="outline-text-3" id="text-3-2">
+<section id="outline-container-org3d326de" class="outline-2">
+<h2 id="org3d326de"><span class="section-number-2">2</span> traversing a non cyclic graph with bfs</h2>
+<div class="outline-text-2" id="text-2">
 <ol class="org-ol">
 <li>Visiting
 Visiting in this case means print the value.</li>
@@ -392,7 +163,7 @@ Below we have a simple undirected graph with its adjacent matrix table represent
 </figure>
 
 
-<table id="orgad1ff22">
+<table id="org4d47917">
 <caption class="t-above"><span class="table-number">Table 1:</span> adjacent matrix: represents "am" variable on the snippets below.</caption>
 
 <colgroup>
@@ -595,12 +366,12 @@ bfs with node:
 7 -&gt; 7 5 3 4 6 1 2 
 </pre>
 </div>
-</div>
+</section>
 
 
-<div id="outline-container-orgd03ba14" class="outline-3">
-<h3 id="orgd03ba14"><span class="section-number-3">3.3</span> <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</h3>
-<div class="outline-text-3" id="text-3-3">
+<section id="outline-container-orgd08dd73" class="outline-2">
+<h2 id="orgd08dd73"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</h2>
+<div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
 <span class="org-preprocessor">#include</span><span class="org-string">&lt;stdio.h&gt;</span>
@@ -683,16 +454,16 @@ dfs for node:  6 -&gt; 6 5 3 1 2 4 7
 dfs for node:  7 -&gt; 7 5 3 1 2 4 6 
 </pre>
 </div>
-</div>
+</section>
 
-<div id="outline-container-org9c85f8f" class="outline-3">
-<h3 id="org9c85f8f"><span class="section-number-3">3.4</span> Spanning trees</h3>
-</div>
+<section id="outline-container-org35dbc45" class="outline-2">
+<h2 id="org35dbc45"><span class="section-number-2">4</span> Spanning trees</h2>
+</section>
 
 
-<div id="outline-container-orgd11adf5" class="outline-3">
-<h3 id="orgd11adf5"><span class="section-number-3">3.5</span> References</h3>
-<div class="outline-text-3" id="text-3-5">
+<section id="outline-container-orgf8b9526" class="outline-2">
+<h2 id="orgf8b9526"><span class="section-number-2">5</span> References</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Some useful links that I used to build this entry.
 </p>
@@ -704,14 +475,13 @@ Some useful links that I used to build this entry.
 <li><a href="https://www.r-bloggers.com/2014/03/going-viral-with-rs-igraph-package/">https://www.r-bloggers.com/2014/03/going-viral-with-rs-igraph-package/</a></li>
 </ul>
 </div>
-</div>
 </section>
 </nil>
 <footer id="postamble" class="status">
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Aug 02, 2023 using Emacs 28.1 (Org mode 9.5.2) <br>
+Last updated on Aug 02, 2023 using Emacs 28.2 (Org mode 9.5.5) <br>
 </div>
 </footer>
 </body>

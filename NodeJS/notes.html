@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Aug 02, 2023 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>&lrm;</title>
+<title>notes</title>
 <meta name="generator" content="Org mode">
+<meta name="author" content="Abel Abner">
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
 <script type="text/javascript">
@@ -12,7 +14,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -60,9 +62,115 @@ for the JavaScript code in this tag.
  |
  <a accesskey="H" href="../"> HOME </a>
 </div><nil id="nil">
-<section id="outline-container-orgec87dc6" class="outline-2">
-<h2 id="orgec87dc6">TDD</h2>
-<div class="outline-text-2" id="text-orgec87dc6">
+<header>
+<h1 class="title">notes</h1>
+</header><nav id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3d545b7">1. bind, apply and call</a></li>
+<li><a href="#org6fa7c99">2. TDD</a></li>
+<li><a href="#orge8da963">3. Tests</a>
+<ul>
+<li><a href="#org9116bd1">3.1. Types of tests</a>
+<ul>
+<li><a href="#orge7142c1">3.1.1. Unit tests</a></li>
+<li><a href="#org9f7120a">3.1.2. Integrations tests</a></li>
+<li><a href="#orge26971b">3.1.3. End-to-end tests</a></li>
+</ul>
+</li>
+<li><a href="#orgc72404f">3.2. Tooling for tests</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+
+<section id="outline-container-org3d545b7" class="outline-2">
+<h2 id="org3d545b7"><span class="section-number-2">1</span> bind, apply and call</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-js"><span class="org-keyword">const</span> <span class="org-variable-name">name</span> = <span class="org-string">"Name 0"</span>
+
+<span class="org-keyword">const</span> <span class="org-variable-name">obj1</span> = {
+    name: <span class="org-string">'Name 1'</span>,
+    <span class="org-function-name">getName</span>: <span class="org-keyword">function</span>() {
+        <span class="org-keyword">return</span> <span class="org-constant">this</span>.name
+    }
+}
+
+<span class="org-keyword">const</span> <span class="org-variable-name">obj2</span> = {
+    name: <span class="org-string">'Name 2'</span>,
+    <span class="org-function-name">getName</span>: <span class="org-keyword">function</span>() {
+        <span class="org-keyword">return</span> <span class="org-constant">this</span>.name
+    }
+}
+
+<span class="org-keyword">const</span> <span class="org-variable-name">obj3</span> = {
+    name: <span class="org-string">'Name 3'</span>,
+    other: {
+        xname: <span class="org-string">'xd'</span>,
+        <span class="org-function-name">getName</span>: <span class="org-keyword">function</span>(){
+            <span class="org-keyword">return</span> <span class="org-constant">this</span>
+        }
+    },
+    getName: () =&gt; {
+        <span class="org-keyword">return</span> <span class="org-constant">this</span>
+    }
+}
+
+
+console.log(obj1.getName()) <span class="org-comment-delimiter">// </span><span class="org-comment">normal call</span>
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">this creates a new function, a copy of the referenced one (in this case obj2)</span>
+<span class="org-keyword">const</span> <span class="org-variable-name">bindWithBind</span> = obj1.getName.bind(obj2)
+<span class="org-comment-delimiter">// </span><span class="org-comment">on the other hand, apply and call methods doesn't create a copy but just call a function</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">with the specified scope/context or 'this' reference.</span>
+<span class="org-keyword">const</span> <span class="org-variable-name">obj2ResultWithApply</span> = obj2.getName.apply(obj1) <span class="org-comment-delimiter">// </span><span class="org-comment">call function with obj1 context</span>
+<span class="org-keyword">const</span> <span class="org-variable-name">obj2ResultWithCall</span> = obj1.getName.call(obj2) <span class="org-comment-delimiter">// </span><span class="org-comment">call function with obj2 context</span>
+
+console.log(bindWithBind())
+console.log(obj2ResultWithCall)
+console.log(obj2ResultWithApply)
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">on obj3 we are showing that an anonymous function will get the context of the object that wraps</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">the function we are calling (in this case the global context)</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">and an arrow '=&gt;' will not get any context at all</span>
+console.log(obj3.other.getName())
+console.log(obj3.getName())
+
+
+<span class="org-comment-delimiter">// </span><span class="org-comment">the only difference between apply and call is how we pass in arguments</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">apply expects and array of all the required parameters</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">and call expects parameters to be passed in inline</span>
+<span class="org-keyword">const</span> <span class="org-variable-name">obj4</span> = {
+    name: <span class="org-string">'Abel Abner'</span>,
+    <span class="org-function-name">salute</span>: <span class="org-keyword">function</span>(<span class="org-variable-name">greeting</span>) {
+        <span class="org-keyword">return</span> <span class="org-string">`${greeting} ${this.name}`</span>
+    }
+}
+<span class="org-keyword">const</span> <span class="org-variable-name">result4Apply</span> = obj4.salute.apply(obj3, [<span class="org-string">'Hi'</span>])
+<span class="org-keyword">const</span> <span class="org-variable-name">result4Call</span> = obj4.salute.call(obj3, <span class="org-string">'Hello'</span>)
+console.log(result4Apply)
+console.log(result4Call)
+</pre>
+</div>
+
+
+<p>
+Useful references:
+</p>
+<ul class="org-ul">
+<li><a href="https://medium.com/@omergoldberg/javascript-call-apply-and-bind-e5c27301f7bb">medium.com/@omergoldberg</a></li>
+<li><a href="https://stackoverflow.com/a/8670919">'this' value inside anonymous functions</a></li>
+<li><a href="https://stackoverflow.com/a/1981556">more about 'this' in functions</a></li>
+<li><a href="https://www.linkedin.com/pulse/javascript-named-vs-anonymous-functions-chris-ng/">Named vs Anonymous functions in Javascript</a></li>
+</ul>
+</div>
+</section>
+<section id="outline-container-org6fa7c99" class="outline-2">
+<h2 id="org6fa7c99"><span class="section-number-2">2</span> TDD</h2>
+<div class="outline-text-2" id="text-2">
 
 <figure>
 <img src="nodejs.org_imgs/20220924_190154_aPeAz0.png" alt="20220924_190154_aPeAz0.png">
@@ -72,13 +180,13 @@ for the JavaScript code in this tag.
 </section>
 
 
-<section id="outline-container-orga8b67c8" class="outline-2">
-<h2 id="orga8b67c8">Tests</h2>
-<div class="outline-text-2" id="text-orga8b67c8">
+<section id="outline-container-orge8da963" class="outline-2">
+<h2 id="orge8da963"><span class="section-number-2">3</span> Tests</h2>
+<div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org0b2fcf8" class="outline-3">
-<h3 id="org0b2fcf8">Types of tests</h3>
-<div class="outline-text-3" id="text-org0b2fcf8">
+<div id="outline-container-org9116bd1" class="outline-3">
+<h3 id="org9116bd1"><span class="section-number-3">3.1</span> Types of tests</h3>
+<div class="outline-text-3" id="text-3-1">
 
 <figure>
 <img src="nodejs.org_imgs/20220531_103404_3xunju.png" alt="20220531_103404_3xunju.png">
@@ -86,9 +194,17 @@ for the JavaScript code in this tag.
 </figure>
 </div>
 
-<div id="outline-container-org8cec7d9" class="outline-4">
-<h4 id="org8cec7d9">Integrations tests</h4>
-<div class="outline-text-4" id="text-org8cec7d9">
+<div id="outline-container-orge7142c1" class="outline-4">
+<h4 id="orge7142c1"><span class="section-number-4">3.1.1</span> Unit tests</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+Make unit tests on functions that have 0 or minimal external dependecies (e.g. database or http interactions).
+</p>
+</div>
+</div>
+<div id="outline-container-org9f7120a" class="outline-4">
+<h4 id="org9f7120a"><span class="section-number-4">3.1.2</span> Integrations tests</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <p>
 Tests a class or component with its external dependencies.
 </p>
@@ -99,13 +215,12 @@ Tests a class or component with its external dependencies.
 </div>
 </div>
 
-<div id="outline-container-org5eb4001" class="outline-4">
-<h4 id="org5eb4001">End-to-end tests</h4>
-<div class="outline-text-4" id="text-org5eb4001">
+<div id="outline-container-orge26971b" class="outline-4">
+<h4 id="orge26971b"><span class="section-number-4">3.1.3</span> End-to-end tests</h4>
+<div class="outline-text-4" id="text-3-1-3">
 <p>
 Drives an application trough the UI.
 </p>
-
 <ul class="org-ul">
 <li>gives you great confidence</li>
 <li>But they are very slow.</li>
@@ -115,9 +230,9 @@ Drives an application trough the UI.
 </div>
 </div>
 
-<div id="outline-container-org569ad8c" class="outline-3">
-<h3 id="org569ad8c">Tooling for tests</h3>
-<div class="outline-text-3" id="text-org569ad8c">
+<div id="outline-container-orgc72404f" class="outline-3">
+<h3 id="orgc72404f"><span class="section-number-3">3.2</span> Tooling for tests</h3>
+<div class="outline-text-3" id="text-3-2">
 
 <figure>
 <img src="nodejs.org_imgs/20220531_104113_H01DDK.png" alt="20220531_104113_H01DDK.png">
@@ -131,7 +246,7 @@ Drives an application trough the UI.
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 17, 2022 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9) <br>
+Last updated on Aug 02, 2023 using Emacs 29.0.60 (Org mode 9.6) <br>
 </div>
 </footer>
 </body>
