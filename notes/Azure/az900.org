@@ -17,6 +17,14 @@
 
 Notes of azure az-900 training
 
+Tree:
+
+- Azure AD tenant
+  - Management groups
+    - Suscriptions
+      - Resource Groups
+        - Resources
+
 * Describe core Azure services
 
 Each service provides different options depending on your requirements. Some of the most prominent services are:

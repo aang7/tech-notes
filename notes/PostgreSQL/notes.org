@@ -1,0 +1,300 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not
+ "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: PostgreSQL
+#+date: <2023-04-11 Tue>
+#+author: Abel Abner
+#+email: aang.drummer@gmail.com
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 28.2 (Org mode 9.5.5)
+#+cite_export:
+
+#+PROPERTY: header-args:sql :engine postgresql :dbuser postgres :dbpassword secret :database mydb :dir /docker:root@mydb:/ :results output :exports both :eval never-export
+# to know why the above line, see [[https://emacs.stackexchange.com/questions/3785/how-to-specify-default-header-arguments-in-orgmode-code-blocks][this link]].
+* What is an schema 
+
+An schema is basically a logical segmentation that holds database objects like views, indexes, data types, functions, store procedures and operators.
+[[https://www.postgresqltutorial.com/postgresql-administration/postgresql-schema/#:~:text=In%20PostgreSQL%2C%20a%20schema%20is,functions%2C%20stored%20procedures%20and%20operators.&text=A%20database%20can%20contain%20one,belongs%20to%20only%20one%20database.][here is a good post]] about this in detail.
+
+
+* Indexes
+
+B-Tree is the default that you get when you do CREATE INDEX. Virtually all databases have some B-tree indexes.
+B-tree indexes are optimized for when a row has a single key value.
+
+* Foreign keys
+
+More about foreign keys:
+
+- postgres official [[https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-FK][page]]
+
+
+
+* Postgraphile Notes
+
+- PostGraphile detects and exposes one-to-one, one-to-many and many-to-one relations automatically. Many-to-many relationships can be handled with the many-to-many relations plugin.
+- https://www.graphile.org/postgraphile/relations/ 
+
+
+* Data types
+
+Check out this *[[https://www.geeksforgeeks.org/postgresql-data-types/article][post.]]*
+
+JSON data type stackoverflow overview [[https://stackoverflow.com/a/10560761][comment]].
+
+raw JSON vs JSON Binary:
+
+If you know before hand that you will not be performing JSON querying operations, then use the JSON data type. For all other cases, use JSONB. More [[http://www.silota.com/docs/recipes/sql-postgres-json-data-types.html][here]].
+
+
+* Database design process
+
+1. What kind of thing are we storing?
+2. what properties does this thing have?
+3. what type of data does each of those properties contain?
+
+* Notes from PostgreSQL official manual
+- Tables are grouped into databases, and a collection of databases managed by a single PostgreSQL server
+  instance constitutes a database cluster
+- 
+
+* Common Table Expressions
+Abbreviated as *CTE* is a one-time result set that only exists for the duration of the query. It allows us to refer to data within a single SELECT, INSERT, UPDATE, DELETE, CREATE VIEW, or MERGE statement's execution scope.
+
+* Recursive queries in SQL
+To write a recursive query in SQL we need to use a CTE.
+The syntax is the following:
+
+[[file:notes.org_imgs/20230410_153812_UAEctx.png]]
+
+So for instance if we like to print a sequence of numbers using this recursive approach we could write the following
+sql:
+
+#+BEGIN_SRC sql 
+  with recursive numbers AS (
+          select 1 as n
+            union all
+          select n + 1 from numbers where n < 5
+  )
+
+  select * from numbers;
+#+END_SRC
+
+
+#+caption: results
+#+RESULTS:
+: n
+: 1
+: 2
+: 3
+: 4
+: 5
+
+* Snippets Examples
+
+#+caption: Insert operation
+#+begin_src sql 
+    insert into cities(name, location) values ('Rio bravo', point(100, 100));
+#+end_src
+
+#+RESULTS:
+: INSERT 0 1
+
+#+caption: Update operation
+#+begin_src sql
+  update cities
+    set location = point(200, 200)
+    where name = 'Rio bravo'
+    returning *; -- returns updated rows
+#+end_src
+
+#+RESULTS:
+: name	location
+: Rio bravo	(200,200)
+: UPDATE 1
+
+#+name: Delete operation
+#+begin_src sql 
+  delete from cities
+  where name ilike 'Rio Bravo'; -- case insensitive
+#+end_src
+
+#+RESULTS
+: DELETE 2
+
+#+name: Select operation
+#+begin_src sql
+  select * from cities;
+#+end_src
+
+#+CAPTION: query results
+#+RESULTS:
+: name	location
+: reynosa	(129,120)
+: monterrey	(102,30)
+: Rio bravo	(200,200)
+
+#+caption: transaction syntax example
+#+begin_src sql 
+  BEGIN;
+  UPDATE accounts SET balance = balance - 100.00
+   WHERE name = 'Alice';
+  -- etc etc
+  COMMIT;
+  -- If, partway through the transaction, we decide we do not want to commit (perhaps we just noticed that
+  -- Alice's balance went negative), we can issue the command ROLLBACK instead of COMMIT, and all our
+  -- updates so far will be canceled.
+
+
+
+
+
+  -- It's possible to control the statements in a transaction in a more granular fashion through the use of save-
+  -- points. Savepoints allow you to selectively discard parts of the transaction, while committing the rest. After
+  -- defining a savepoint with SAVEPOINT, you can if needed roll back to the savepoint with ROLLBACK TO.
+  -- All the transaction's database changes between defining the savepoint and rolling back to it are discarded,
+  -- but changes earlier than the savepoint are kept.
+  -- Remembering the bank database, suppose we debit $100.00 from Alice's account, and credit Bob's account,
+  -- only to find later that we should have credited Wally's account. We could do it using savepoints like this:
+  BEGIN;
+  UPDATE accounts SET balance = balance - 100.00
+   WHERE name = 'Alice';
+  SAVEPOINT my_savepoint;
+  UPDATE accounts SET balance = balance + 100.00
+   WHERE name = 'Bob';
+  -- oops ... forget that and use Wally's account
+  ROLLBACK TO my_savepoint;
+  UPDATE accounts SET balance = balance + 100.00
+   WHERE name = 'Wally';
+  COMMIT;
+
+#+end_src
+
+#+caption: view creation and use of it example
+#+begin_src sql 
+  create view myView as
+         select * from weather where city = 'reynosa';
+
+  select * from myView;
+#+end_src
+
+#+caption: setting role and getting current_role
+#+begin_src sql
+  -- default role in this session is 'postgres'
+  create role role_x; -- creating role with name role_x
+  select current_role; -- this outputs 'postgres'
+  set role role_x; -- set role x as the current role
+  select current_role; -- outputs 'role_x'
+#+end_src
+
+#+RESULTS:
+: CREATE ROLE
+: current_role
+: postgres
+: SET
+: current_role
+: role_x
+
+#+caption: creating a function
+#+begin_src sql 
+  -- this below function just returns a text 
+  create or replace function public.some_function()
+   returns text
+      language plpgsql
+  as $$
+      begin
+          return 'Hello World';
+      end;
+  $$;
+
+
+  -- executing the function
+  select some_function(); -- this returns 'Hello World'
+#+end_src
+
+#+RESULTS:
+: CREATE FUNCTION
+: some_function
+: Hello World
+
+
+#+begin_src sql 
+  -- Now lets restrict the execution of 'some_function' function to an specific roke
+  -- in this case, we will prevent 'role_x' to execute 'some_function' function.
+
+  -- let's change the role
+  set role role_x;
+
+  -- now let's execute the function
+  select some_function(); -- this will output 'Hello World'
+
+  -- let's revoke the permission of execution to role x
+  -- to achieve this, first let's change the role to a role that
+  -- has enough permissions to do this, like a superuser role, like 'postgres'
+  -- which is the default role in PostgreSQL
+  -- @Note: postgres role is a superuser role created by default during the
+  -- installation of PostgreSQL. The postgres role has full privileges over
+  -- the entire database system and can perform any operation, including granting
+  -- and revoking privileges for other roles. It's similar to the root user in a Unix system.
+  set role postgres;
+  revoke execute on function some_function() from role_x;
+
+  -- lets verify trying to execute the function from role_x
+  set role role_x;
+  select some_function(); -- this still not prevents the execution because this role inherits from 'public' role
+  -- so let's revoke really the function.
+  set role postgres;
+  revoke execute on function some_function() from public;
+  set role role_x;
+
+  DO $$
+  DECLARE
+    result text;
+  BEGIN
+      BEGIN
+          result := select some_function();
+          RAISE NOTICE 'Function returned: %', result;
+      EXCEPTION WHEN INSUFFICIENT_PRIVILEGE THEN
+          RAISE WARNING 'An error occurred: %', SQLERRM;
+      END;
+  END;
+  $$ LANGUAGE plpgsql;
+
+#+end_src
+
+#+RESULTS:
+: SET
+
+
+* Course notes
+
+- [[https://www.postgresql.org/docs/9.5/functions-math.html][Math operators in SQL]]
+
+
+** Migrations
+
+Big Lessons:
+1. Changes to the DB structure and changes to clients need to be made at precisely the same time.
+2. When working with other engineers, we need a really easy way to tie the structure of our database to our code.
+
+** Foreign keys
+#+begin_src sql
+#+end_src
+
+
+* Random notes
+
+- [[https://medium.com/miro-engineering/sql-migrations-in-postgresql-part-1-bc38ec1cbe75][some common operations in postgresql migrations]]
+- [[https://stackoverflow.com/questions/38388423/what-does-on-delete-do-on-django-models][Good not about on delete actions on a django/sql]]
+- https://www.skypack.dev/view/graphile-worker-rewired
+  
+
+
+
+esto creo que es lo que usariamos para subir a s3.
+https://github.com/graphile-contrib/postgraphile-plugin-derived-field

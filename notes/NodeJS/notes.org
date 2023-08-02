@@ -1,3 +1,103 @@
+# -*- eval: (progn  (defun org-babel-edit-prep:js (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO."  (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp))) -*-
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: notes
+#+date: <2022-12-13 Tue>
+#+author: Abel Abner
+#+email: aang@Abels-MacBook-Pro.local
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 29.0.60 (Org mode 9.6)
+#+cite_export:
+
+* bind, apply and call
+
+#+begin_src js  :results output :tangle __.js 
+  const name = "Name 0"
+
+  const obj1 = {
+      name: 'Name 1',
+      getName: function() {
+          return this.name
+      }
+  }
+
+  const obj2 = {
+      name: 'Name 2',
+      getName: function() {
+          return this.name
+      }
+  }
+
+  const obj3 = {
+      name: 'Name 3',
+      other: {
+          xname: 'xd',
+          getName: function(){
+              return this
+          }
+      },
+      getName: () => {
+          return this
+      }
+  }
+
+
+  console.log(obj1.getName()) // normal call
+
+  // this creates a new function, a copy of the referenced one (in this case obj2)
+  const bindWithBind = obj1.getName.bind(obj2)
+  // on the other hand, apply and call methods doesn't create a copy but just call a function
+  // with the specified scope/context or 'this' reference.
+  const obj2ResultWithApply = obj2.getName.apply(obj1) // call function with obj1 context
+  const obj2ResultWithCall = obj1.getName.call(obj2) // call function with obj2 context
+
+  console.log(bindWithBind())
+  console.log(obj2ResultWithCall)
+  console.log(obj2ResultWithApply)
+
+  // on obj3 we are showing that an anonymous function will get the context of the object that wraps
+  // the function we are calling (in this case the global context)
+  // and an arrow '=>' will not get any context at all
+  console.log(obj3.other.getName())
+  console.log(obj3.getName())
+
+
+  // the only difference between apply and call is how we pass in arguments
+  // apply expects and array of all the required parameters
+  // and call expects parameters to be passed in inline
+  const obj4 = {
+      name: 'Abel Abner',
+      salute: function(greeting) {
+          return `${greeting} ${this.name}`
+      }
+  }
+  const result4Apply = obj4.salute.apply(obj3, ['Hi'])
+  const result4Call = obj4.salute.call(obj3, 'Hello')
+  console.log(result4Apply)
+  console.log(result4Call)
+#+end_src
+
+#+RESULTS:
+: Name 1
+: Name 2
+: Name 2
+: Name 1
+: { xname: 'xd', getName: [Function: getName] }
+: {}
+: Hi Name 3
+: Hello Name 3
+
+
+Useful references:
+ - [[https://medium.com/@omergoldberg/javascript-call-apply-and-bind-e5c27301f7bb][medium.com/@omergoldberg]]
+ - [[https://stackoverflow.com/a/8670919]['this' value inside anonymous functions]]
+ - [[https://stackoverflow.com/a/1981556][more about 'this' in functions]]
+ - [[https://www.linkedin.com/pulse/javascript-named-vs-anonymous-functions-chris-ng/][Named vs Anonymous functions in Javascript]]
 * TDD
 [[file:nodejs.org_imgs/20220924_190154_aPeAz0.png]]
 
@@ -8,6 +108,8 @@
 
 [[file:nodejs.org_imgs/20220531_103404_3xunju.png]]
 
+*** Unit tests
+Make unit tests on functions that have 0 or minimal external dependecies (e.g. database or http interactions).
 *** Integrations tests
 Tests a class or component with its external dependencies.
 - Take longer to execute
@@ -15,7 +117,6 @@ Tests a class or component with its external dependencies.
 
 *** End-to-end tests
 Drives an application trough the UI.
-
 - gives you great confidence
 - But they are very slow.
 - An example of a program used to do this kind of tests, is selenium.

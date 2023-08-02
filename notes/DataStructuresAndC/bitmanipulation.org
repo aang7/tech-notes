@@ -1,0 +1,88 @@
+* Check if number is power of 2
+
+#+begin_src python :results output 
+  def check_pow_2(num: int) -> int:
+      if num == 0:
+          return 0
+
+      if num & (num - 1):
+          return 1;
+
+      return -1;
+
+  switch = {
+      0: "number is 0",
+      1: "number is power of 2",
+      -1: "number is not power of 2 nor 0"
+  }
+
+  case = check_pow_2(7)
+  print(switch[case])
+#+end_src
+
+#+RESULTS:
+: number is power of 2
+
+
+#+BEGIN_COMMENT
+
+
+#+END_COMMENT
+
+
+#+begin_src python :results output 
+
+
+  import time
+
+  def count_bits_tobe_flipped(a: int, b: int) -> int:
+      x = a ^ b
+      counter = 0
+      while x != 0:        
+          if x & 1:
+              counter += 1        
+          x >>= 1
+        
+      return counter
+
+
+  # get the start time
+  st = time.time()
+
+  print(count_bits_tobe_flipped(63, 20))
+
+  # get the end time
+  et = time.time()
+
+  # get the execution time
+  elapsed_time = (et - st) * 1000
+  print('Execution time:', elapsed_time, 'milliseconds')
+
+
+
+
+  def count_bits_flip(a, b):
+      # XOR a and b to get 1 on opposite value bit position
+      c = a ^ b
+
+      # initialise the counter for 1
+      count = 0
+      # count the number of 1s while there is 1 in a ^ b
+      while c != 0:
+          count += 1
+          c &= (c-1)
+
+      # return the count of 1s
+      return count
+
+
+  # get the start time
+  st = time.time()
+
+  print(count_bits_flip(63, 20))
+
+  # get the end time
+  et = time.time()
+  elapsed_time = (et - st) * 1000
+  print('Execution time:', elapsed_time, 'milliseconds')
+#+end_src

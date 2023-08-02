@@ -1,3 +1,4 @@
+# -*- eval: (progn (defun org-babel-edit-prep:cpp (babel-info) (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp))  (defun org-babel-edit-prep:js (babel-info) (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp))) -*-
 #+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+options: author:t broken-links:nil c:nil creator:nil
 #+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
@@ -15,9 +16,69 @@
 
 * Intro
 
-Under construction.
+This entry has random notes that I consider useful for my emacs experience.
+Hope this will be useful for you too.
 
-* How to debug a nodejs program?
+* Honw to debug a nodejs program?
 
 [[https://github.com/emacs-lsp/dap-mode/issues/554#issuecomment-1171256089][This is]] the helpful comment on GitHub thread.
+Look at the [[https://www.youtube.com/watch?v=bGkLuO7KTTY][video]] I uploaded on YouTube.
+
+* Literate programming in org mode
+
+** What is literate programming?
+It's basically the way we explain/describe and show the source of a program and (optionally) its result on a document.
+For details check out this [[https://en.wikipedia.org/wiki/Literate_programming][wikipedia entry]].
+
+** Show me
+
+To do literate programming in emacs, we use org-mode in conjunction with [[https://orgmode.org/worg/org-contrib/babel/how-to-use-Org-Babel-for-R.html#:~:text=Emacs%20Org%2DBabel%20mode%20is,can%20embed%20only%20R%20code][org-babel]].
+
+#+begin_src cpp -n :tangle file1.cpp :exports both :results output
+  #include<stdio.h>
+
+  int main(int argc, char *argv[])
+  {
+    printf("%s\n", "Hello World");
+    printf("Another Hello world");
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: Hello World
+: Another Hello world
+
+** lsp within code blocks
+
+If you want to know what about the top line. Look at this references
+- [[https://github.com/emacs-lsp/lsp-mode/issues/2842][reference 1]]
+- [[https://stackoverflow.com/questions/23154306/org-mode-file-specific-functions][reference 2]]
+
+
+#+begin_src js :tangle __.js :results output 
+  const fun = (a, b) => {
+      return a + b
+  }
+
+  const a = 7, b = 3;
+  console.log(fun(a, b))
+#+end_src
+
+#+RESULTS:
+: Hola
+: 10
+
+
+
+
+
+** Grep in emacs
+We can grep in emacs, grep is a tool for looking for some text or regex inside a file or directory.
+Sometime when we are searching for some string that has a character like ={ } [ ] $, etc.=
+To do that we need to escape them with a =$= as prefix.
+
+So for example if I want to search to some string that contains the following text ={SOME_VARIABLE}=,
+I can't just write it like that, emacs will not recognize that special character, so we need to escape it with a cash symbol =$=.
+
 

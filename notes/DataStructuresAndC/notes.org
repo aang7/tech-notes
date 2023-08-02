@@ -1,3 +1,4 @@
+# -*- eval: (progn  (defun org-babel-edit-prep:cpp (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO."  (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp)) (defun org-babel-edit-prep:C (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO." (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp))) -*-
 #+options: ':t *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t
 #+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK")
 #+options: date:t e:t email:nil f:t inline:t num:nil p:nil pri:nil
@@ -13,7 +14,9 @@
 #+creator: Emacs 28.1 (Org mode 9.5.2)
 #+cite_export:
 
+#+BEGIN_COMMENT
 # -*- eval: (progn  (defun org-babel-edit-prep:cpp (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO." (setq-local default-directory (->> babel-info caddr (alist-get :dir))) (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp)) (defun org-babel-edit-prep:C (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO." (setq-local default-directory (->> babel-info caddr (alist-get :dir))) (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp))) -*-
+#+END_COMMENT
 #+BEGIN_COMMENT
 If you want to know what about the top line. Look at this references
 - [[https://github.com/emacs-lsp/lsp-mode/issues/2842][reference 1]]
@@ -103,7 +106,7 @@ valuex after: 7
 #+end_example
 
 
-#+begin_src cpp :tangle pointers2.cpp :dir /Users/aang/Documents/aang/studynotes/DataStructuresAndC/ :results output
+#+begin_src cpp :tangle pointers2.cpp  :results output
   #include <iostream>
 
   struct Book {
@@ -146,7 +149,7 @@ To a program be able to start, it needs to be attached to a process, which the o
 
 Below there is a simply sample of allocating dinamyc memory in *C* and *C++*.
 
-#+begin_src C :tangle dynmem1.c :dir /Users/aang/Documents/aang/studynotes/DataStructuresAndC/ :results output :exports both
+#+begin_src C :tangle dynmem1.c  :results output :exports both
   #include<stdlib.h>
   #include<stdio.h>
 
@@ -172,7 +175,7 @@ Below there is a simply sample of allocating dinamyc memory in *C* and *C++*.
 #+RESULTS:
 : 7
 
-#+begin_src cpp :tangle dynmem1.cpp :dir /Users/aang/Documents/aang/studynotes/DataStructuresAndC/ :results output :exports both
+#+begin_src cpp :tangle dynmem1.cpp  :results output :exports both
   #include <iostream>
   #include <ostream>
 
@@ -199,3 +202,8 @@ Below there is a simply sample of allocating dinamyc memory in *C* and *C++*.
 : 7
 
 
+
+
+* Graphs
+
+#+include: "./graphs.org"
