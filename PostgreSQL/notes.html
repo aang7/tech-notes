@@ -68,28 +68,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7e60131">1. What is an schema</a></li>
-<li><a href="#orgb5c46f0">2. Indexes</a></li>
-<li><a href="#orgb4f66e7">3. Foreign keys</a></li>
-<li><a href="#org6fef14e">4. Postgraphile Notes</a></li>
-<li><a href="#org7077ead">5. Data types</a></li>
-<li><a href="#orgf027938">6. Database design process</a></li>
-<li><a href="#orgf6a27ab">7. Notes from PostgreSQL official manual</a></li>
-<li><a href="#org1738a4b">8. Common Table Expressions</a></li>
-<li><a href="#orgc0d286a">9. Recursive queries in SQL</a></li>
-<li><a href="#org8cea8d9">10. Snippets Examples</a></li>
-<li><a href="#orgc0913a8">11. Course notes</a>
+<li><a href="#orgeda7093">1. What is an schema</a></li>
+<li><a href="#org26caf43">2. Indexes</a></li>
+<li><a href="#org4a4667a">3. Foreign keys</a></li>
+<li><a href="#orgf4b98c2">4. Postgraphile Notes</a></li>
+<li><a href="#org44eee23">5. Data types</a></li>
+<li><a href="#org686f477">6. Database design process</a></li>
+<li><a href="#orgb04c62f">7. Notes from PostgreSQL official manual</a></li>
+<li><a href="#org7075ffb">8. Common Table Expressions</a></li>
+<li><a href="#orga16ce51">9. Recursive queries in SQL</a></li>
+<li><a href="#org93c2337">10. Snippets Examples</a></li>
+<li><a href="#org25cb1be">11. Course notes</a>
 <ul>
-<li><a href="#org08ee2ac">11.1. Migrations</a></li>
-<li><a href="#orga7cb79d">11.2. Foreign keys</a></li>
+<li><a href="#org59333d2">11.1. Migrations</a></li>
+<li><a href="#org2ccb8ba">11.2. Foreign keys</a></li>
 </ul>
 </li>
-<li><a href="#org7dd47d3">12. Random notes</a></li>
+<li><a href="#org3c21cc5">12. Random notes</a></li>
 </ul>
 </div>
 </nav>
-<section id="outline-container-org7e60131" class="outline-2">
-<h2 id="org7e60131"><span class="section-number-2">1</span> What is an schema</h2>
+<section id="outline-container-orgeda7093" class="outline-2">
+<h2 id="orgeda7093"><span class="section-number-2">1</span> What is an schema</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 An schema is basically a logical segmentation that holds database objects like views, indexes, data types, functions, store procedures and operators.
@@ -99,8 +99,8 @@ An schema is basically a logical segmentation that holds database objects like v
 </section>
 
 
-<section id="outline-container-orgb5c46f0" class="outline-2">
-<h2 id="orgb5c46f0"><span class="section-number-2">2</span> Indexes</h2>
+<section id="outline-container-org26caf43" class="outline-2">
+<h2 id="org26caf43"><span class="section-number-2">2</span> Indexes</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 B-Tree is the default that you get when you do CREATE INDEX. Virtually all databases have some B-tree indexes.
@@ -109,8 +109,8 @@ B-tree indexes are optimized for when a row has a single key value.
 </div>
 </section>
 
-<section id="outline-container-orgb4f66e7" class="outline-2">
-<h2 id="orgb4f66e7"><span class="section-number-2">3</span> Foreign keys</h2>
+<section id="outline-container-org4a4667a" class="outline-2">
+<h2 id="org4a4667a"><span class="section-number-2">3</span> Foreign keys</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 More about foreign keys:
@@ -124,8 +124,8 @@ More about foreign keys:
 
 
 
-<section id="outline-container-org6fef14e" class="outline-2">
-<h2 id="org6fef14e"><span class="section-number-2">4</span> Postgraphile Notes</h2>
+<section id="outline-container-orgf4b98c2" class="outline-2">
+<h2 id="orgf4b98c2"><span class="section-number-2">4</span> Postgraphile Notes</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>PostGraphile detects and exposes one-to-one, one-to-many and many-to-one relations automatically. Many-to-many relationships can be handled with the many-to-many relations plugin.</li>
@@ -135,8 +135,8 @@ More about foreign keys:
 </section>
 
 
-<section id="outline-container-org7077ead" class="outline-2">
-<h2 id="org7077ead"><span class="section-number-2">5</span> Data types</h2>
+<section id="outline-container-org44eee23" class="outline-2">
+<h2 id="org44eee23"><span class="section-number-2">5</span> Data types</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Check out this <b><a href="https://www.geeksforgeeks.org/postgresql-data-types/article">post.</a></b>
@@ -157,8 +157,8 @@ If you know before hand that you will not be performing JSON querying operations
 </section>
 
 
-<section id="outline-container-orgf027938" class="outline-2">
-<h2 id="orgf027938"><span class="section-number-2">6</span> Database design process</h2>
+<section id="outline-container-org686f477" class="outline-2">
+<h2 id="org686f477"><span class="section-number-2">6</span> Database design process</h2>
 <div class="outline-text-2" id="text-6">
 <ol class="org-ol">
 <li>What kind of thing are we storing?</li>
@@ -168,8 +168,8 @@ If you know before hand that you will not be performing JSON querying operations
 </div>
 </section>
 
-<section id="outline-container-orgf6a27ab" class="outline-2">
-<h2 id="orgf6a27ab"><span class="section-number-2">7</span> Notes from PostgreSQL official manual</h2>
+<section id="outline-container-orgb04c62f" class="outline-2">
+<h2 id="orgb04c62f"><span class="section-number-2">7</span> Notes from PostgreSQL official manual</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Tables are grouped into databases, and a collection of databases managed by a single PostgreSQL server
@@ -179,8 +179,8 @@ instance constitutes a database cluster</li>
 </div>
 </section>
 
-<section id="outline-container-org1738a4b" class="outline-2">
-<h2 id="org1738a4b"><span class="section-number-2">8</span> Common Table Expressions</h2>
+<section id="outline-container-org7075ffb" class="outline-2">
+<h2 id="org7075ffb"><span class="section-number-2">8</span> Common Table Expressions</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Abbreviated as <b>CTE</b> is a one-time result set that only exists for the duration of the query. It allows us to refer to data within a single SELECT, INSERT, UPDATE, DELETE, CREATE VIEW, or MERGE statement's execution scope.
@@ -188,8 +188,8 @@ Abbreviated as <b>CTE</b> is a one-time result set that only exists for the dura
 </div>
 </section>
 
-<section id="outline-container-orgc0d286a" class="outline-2">
-<h2 id="orgc0d286a"><span class="section-number-2">9</span> Recursive queries in SQL</h2>
+<section id="outline-container-orga16ce51" class="outline-2">
+<h2 id="orga16ce51"><span class="section-number-2">9</span> Recursive queries in SQL</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 To write a recursive query in SQL we need to use a CTE.
@@ -230,8 +230,8 @@ n
 </div>
 </section>
 
-<section id="outline-container-org8cea8d9" class="outline-2">
-<h2 id="org8cea8d9"><span class="section-number-2">10</span> Snippets Examples</h2>
+<section id="outline-container-org93c2337" class="outline-2">
+<h2 id="org93c2337"><span class="section-number-2">10</span> Snippets Examples</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <label class="org-src-name"><span class="listing-number">Listing 1: </span>Insert operation</label><pre class="src src-sql"><span class="org-keyword">insert</span> <span class="org-keyword">into</span> cities(<span class="org-keyword">name</span>, location) <span class="org-keyword">values</span> (<span class="org-string">'Rio bravo'</span>, point(100, 100));
@@ -259,7 +259,7 @@ UPDATE 1
 
 
 <div class="org-src-container">
-<pre class="src src-sql" id="org18b3b28"><span class="org-keyword">delete</span> <span class="org-keyword">from</span> cities
+<pre class="src src-sql" id="org288e2fe"><span class="org-keyword">delete</span> <span class="org-keyword">from</span> cities
 <span class="org-keyword">where</span> <span class="org-keyword">name</span> ilike <span class="org-string">'Rio Bravo'</span>; <span class="org-comment">-- case insensitive</span>
 </pre>
 </div>
@@ -273,7 +273,7 @@ DELETE 2
 
 
 <div class="org-src-container">
-<pre class="src src-sql" id="org58b85dc"><span class="org-keyword">select</span> * <span class="org-keyword">from</span> cities;
+<pre class="src src-sql" id="org374c454"><span class="org-keyword">select</span> * <span class="org-keyword">from</span> cities;
 </pre>
 </div>
 
@@ -425,8 +425,8 @@ SET
 </section>
 
 
-<section id="outline-container-orgc0913a8" class="outline-2">
-<h2 id="orgc0913a8"><span class="section-number-2">11</span> Course notes</h2>
+<section id="outline-container-org25cb1be" class="outline-2">
+<h2 id="org25cb1be"><span class="section-number-2">11</span> Course notes</h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li><a href="https://www.postgresql.org/docs/9.5/functions-math.html">Math operators in SQL</a></li>
@@ -434,8 +434,8 @@ SET
 </div>
 
 
-<div id="outline-container-org08ee2ac" class="outline-3">
-<h3 id="org08ee2ac"><span class="section-number-3">11.1</span> Migrations</h3>
+<div id="outline-container-org59333d2" class="outline-3">
+<h3 id="org59333d2"><span class="section-number-3">11.1</span> Migrations</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 Big Lessons:
@@ -447,8 +447,8 @@ Big Lessons:
 </div>
 </div>
 
-<div id="outline-container-orga7cb79d" class="outline-3">
-<h3 id="orga7cb79d"><span class="section-number-3">11.2</span> Foreign keys</h3>
+<div id="outline-container-org2ccb8ba" class="outline-3">
+<h3 id="org2ccb8ba"><span class="section-number-3">11.2</span> Foreign keys</h3>
 <div class="outline-text-3" id="text-11-2">
 <div class="org-src-container">
 <pre class="src src-sql">
@@ -459,8 +459,8 @@ Big Lessons:
 </section>
 
 
-<section id="outline-container-org7dd47d3" class="outline-2">
-<h2 id="org7dd47d3"><span class="section-number-2">12</span> Random notes</h2>
+<section id="outline-container-org3c21cc5" class="outline-2">
+<h2 id="org3c21cc5"><span class="section-number-2">12</span> Random notes</h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li><a href="https://medium.com/miro-engineering/sql-migrations-in-postgresql-part-1-bc38ec1cbe75">some common operations in postgresql migrations</a></li>
