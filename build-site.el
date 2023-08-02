@@ -105,7 +105,7 @@ PROJECT: `posts in this case."
 	     :html-postamble aang-website-html-postamble
 	     :html-preamble 'aang-website-html-preamble
 	     :html-head aang-website-html-head
-	     :auto-sitemap nil
+	     :auto-sitemap t
 	     :sitemap-filename "index.org"
 	     :sitemap-title "Abel's notes"
 	     :sitemap-format-entry 'aang/org-sitemap-format-entry
