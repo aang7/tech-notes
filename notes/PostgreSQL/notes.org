@@ -26,6 +26,50 @@ An schema is basically a logical segmentation that holds database objects like v
 B-Tree is the default that you get when you do CREATE INDEX. Virtually all databases have some B-tree indexes.
 B-tree indexes are optimized for when a row has a single key value.
 
+
+More on database indexing:
+
+
+Indexing is a database optimization technique used to speed up data retrieval operations on tables. In PostgreSQL, indexes are created on one or more columns of a table to improve query performance. They work like a table of contents in a book, allowing the database to quickly locate rows based on the indexed columns.
+
+Here are some common types of indexes in PostgreSQL:
+
+- B-tree Index: Suitable for equality and range queries.
+- Unique Index: Ensures that the indexed column(s) contain unique values.
+- Partial Index: Indexes a subset of rows based on a condition.
+- GIN (Generalized Inverted Index): Used for full-text search and array types.
+- GiST (Generalized Search Tree): Used for complex data types like geometric or text search.
+- SP-GiST (Space-Partitioned Generalized Search Tree): Suitable for multidimensional data.
+- BRIN (Block Range INdex): Efficient for large tables with sorted data.
+
+
+How do we create an index in PostgreSQL:
+
+#+begin_src sql
+  -- stat.rfq_products table:
+  -- If you frequently query this table based on the rfq_id column, which references the stat.request_for_quotes table, you can create an index on this column for faster lookups.
+  CREATE INDEX idx_rfq_products_rfq_id ON stat.rfq_products (rfq_id);
+#+end_src
+
+
++ Postgres automatically creates an index for the primary key of every table.
++ Postgres automatically creates an index for any 'unique' constraint.
+_These don't get listed under indexes in PGAdmin!_
+
+
+We can list all the existing indexes in a postgres database with this query:
+#+begin_src sql 
+  SELECT relname, relkind FROM pg_class -- pg_class lists all the kind of objects in the database
+         WHERE relkind = 'i'; -- this tells to retrieve only the kind of 'i' which stands for _index_
+
+#+end_src
+
+** Downsides of Indexes
+
+- Can be large! Stores data from at least one column of the real table
+- Slows down insert/update/delete - the index has to be updated!
+- Index might not actually get used!
+
 * Foreign keys
 
 More about foreign keys:
@@ -269,6 +313,13 @@ sql:
 #+RESULTS:
 : SET
 
+* Data Access Control with RLS
+RLS stands for Row Level Security.
+
+This pdf contains a good summary about row level security access in PostgreSQL.
+Check out: https://learn.graphile.org/docs/PostgreSQL_Row_Level_Security_Infosheet.pdf
+
+
 
 * Course notes
 
@@ -285,13 +336,25 @@ Big Lessons:
 #+begin_src sql
 #+end_src
 
+** Some util queries
+
+#+begin_src sql 
+  -- Get size in kb of certain table
+  SELECT pg_size_pretty(pg_relation_size('TABLE_NAME or INDEX_NAME'))
+
+
+  -- Explain analyze
+  -- if we add this two words before an sql statement we can see the planning and metrics (time in ms) that a postgreSQL operation took.
+  EXPLAIN ANALYZE select * from users;
+#+end_src
+
 
 * Random notes
 
 - [[https://medium.com/miro-engineering/sql-migrations-in-postgresql-part-1-bc38ec1cbe75][some common operations in postgresql migrations]]
 - [[https://stackoverflow.com/questions/38388423/what-does-on-delete-do-on-django-models][Good not about on delete actions on a django/sql]]
 - https://www.skypack.dev/view/graphile-worker-rewired
-  
+- https://semaphoreci.com/blog/database-management
 
 
 

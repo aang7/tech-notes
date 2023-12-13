@@ -82,3 +82,5 @@ So for example if I want to search to some string that contains the following te
 I can't just write it like that, emacs will not recognize that special character, so we need to escape it with a cash symbol =$=.
 
 
+** Magit
+- https://emacs.stackexchange.com/questions/40847/magit-how-do-i-sync-my-feature-branch-with-the-latest-master-without-checking?rq=1

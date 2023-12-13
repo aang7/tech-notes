@@ -1,0 +1,68 @@
+
+* What are Large Language Models (LLMs)
+Large, general-purpose language models can be pre-trained and then fine-tuned
+for specific purposes.
+
+Source: [[https://www.youtube.com/watch?v=zizonToFXDs][Introduction to Large Language Models by Goodle]].
+
+
+* Marqo.ai
+
+*What is tensor search?*
+
+Tensor search uses deep-learning to transform documents, images and other data into collections of vectors called “tensors”. Representing data as tensors allows us to match queries against documents with human-like understanding of the query and document’s content. Tensor search can power a variety of use cases such as:
+
+- end user search and recommendations
+- multi-modal search (image-to-image, text-to-image, image-to-text)
+- chat bots and question and answer systems
+- text and image classification
+
+
+* LLM-150
+
+** Some References
+- https://raffaeu.medium.com/generate-an-amazon-s3-pre-signed-url-with-aws-lambda-and-amazon-api-gateway-4ffbea99207d
+
+** CANCELED Create cdk project
+CLOSED: [2023-11-21 Tue 14:59]
+https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/rekognition-lambda-s3-trigger/lib/rekognition-lambda-s3-trigger-stack.ts
+
+** DONE Create an s3 bucket
+CLOSED: [2023-12-04 Mon 10:21]
+Create a lambda that triggers on s3 bucket creation
+
+** DONE Create Lambda with Python
+CLOSED: [2023-12-04 Mon 10:21]
+
+** DONE Receive document from s3 bucket
+CLOSED: [2023-12-04 Mon 10:21]
+
+** DONE Get chunks of document
+CLOSED: [2023-12-04 Mon 10:21]
+
+** INPROGRESS integrate marqo
+
+** INPROGRESS upload document chunks to marqo
+:LOGBOOK:
+CLOCK: [2023-12-04 Mon 10:46]--[2023-12-04 Mon 10:50] =>  0:04
+:END:
+
+For the indexing I thought I can get the folder path of the file where we can have somo sort of hierarchy like:
+
+- =businnes_unit/group-id[user-id]/*=
+
+  translated that would be something like:
+- =stat/organization[user or domain or group?])/file.pdf=
+
+  So I need to create the name of the index taking into account those params.
+
+  - bussiness unit
+  - group
+  
+
+Constraints:
+
+- filename must not have '=+=' chars, because if the file has blanks, S3 changes it to =+= chars.
+
+
+=Josue1:9BeBrave=

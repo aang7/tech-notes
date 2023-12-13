@@ -1,4 +1,4 @@
-# -*- eval: (progn  (defun org-babel-edit-prep:js (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO."  (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp))) -*-
+# -*- eval: (progn  (defun org-babel-edit-prep:js (babel-info) "Setup for lsp-mode in Org Src buffer using BABEL-INFO."  (setq-local buffer-file-name (->> babel-info caddr (alist-get :tangle))) (lsp)) (setenv "NODE_PATH" (concat default-directory "node_modules" ":" (getenv "NODE_PATH")))) -*-
 #+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+options: author:t broken-links:nil c:nil creator:nil
 #+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
@@ -125,3 +125,42 @@ Drives an application trough the UI.
 
 [[file:nodejs.org_imgs/20220531_104113_H01DDK.png]]
 
+
+
+** Unit testing
+For unit testing universally we would have the following structure:
+
+1. arrange
+2. act
+3. assert
+
+Look at the following unit test for details:
+
+
+#+begin_src js :tangle __tests__/__test__.js :results output
+
+
+  const toUpperCase = (str) => str.toUpperCase();
+
+  describe("some test", () => {
+      it('has to blalala', () => {
+          // arrange
+          const sut = toUpperCase;
+          const expected = "HOLA";
+          // act
+          const actual = sut("hola");
+          // asserts
+          expect(actual).toBe(expected);
+      })
+  })
+#+end_src
+
+#+RESULTS:
+
+
+
+#+begin_src sh :results output
+  npx jest
+#+end_src
+
+#+RESULTS:
