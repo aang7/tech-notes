@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Aug 02, 2023 -->
+<!-- Dec 13, 2023 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spring Boot - Web framework</title>
@@ -65,24 +65,24 @@ for the JavaScript code in this tag.
 <header>
 <h1 class="title">Spring Boot - Web framework</h1>
 </header>
-<section id="outline-container-org4dad643" class="outline-2">
-<h2 id="org4dad643">Intro</h2>
-<div class="outline-text-2" id="text-org4dad643">
+<section id="outline-container-orgd8a908c" class="outline-2">
+<h2 id="orgd8a908c">Intro</h2>
+<div class="outline-text-2" id="text-orgd8a908c">
 <p>
 This is my attempt for taking notes regarding the java spring boot framework. This a super brief summary. These notes are based on the <a href="https://www.amazon.com.mx/Spring-Boot-Practice-Somnath-Musib/dp/1617298816/ref=asc_df_1617298816/?tag=gledskshopmx-20&amp;linkCode=df0&amp;hvadid=547351403446&amp;hvpos=&amp;hvnetw=g&amp;hvrand=4536659818656149531&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1010186&amp;hvtargid=pla-1467763045355&amp;psc=1">Spring Boot in Practice</a> book, but I also referenced another useful links from articles on the internet (thank to those people who give free good information).
 </p>
 </div>
 </section>
 
-<section id="outline-container-org3aa0fc4" class="outline-2">
-<h2 id="org3aa0fc4">General Concepts</h2>
-<div class="outline-text-2" id="text-org3aa0fc4">
+<section id="outline-container-org1f19167" class="outline-2">
+<h2 id="org1f19167">General Concepts</h2>
+<div class="outline-text-2" id="text-org1f19167">
 </div>
-<div id="outline-container-orgc710300" class="outline-3">
-<h3 id="orgc710300">What is a bean?</h3>
-<div class="outline-text-3" id="text-orgc710300">
+<div id="outline-container-orgf59611f" class="outline-3">
+<h3 id="orgf59611f">What is a bean?</h3>
+<div class="outline-text-3" id="text-orgf59611f">
 <p>
-In Spring, the objects that form the backbone of your application and that are managed by the Spring IoC container are called beans. A bean is an object that is instantiated, assembled, and managed by a Spring <a href="#org013b7d4">IoC</a> container (IoC means &ldquo;Inversion of Control&rdquo;) . Otherwise, a bean is simply one of many objects in your application. Beans, and the dependencies among them, are reflected in the configuration metadata used by a container.
+In Spring, the objects that form the backbone of your application and that are managed by the Spring IoC container are called beans. A bean is an object that is instantiated, assembled, and managed by a Spring <a href="#orga94dc54">IoC</a> container (IoC means &ldquo;Inversion of Control&rdquo;) . Otherwise, a bean is simply one of many objects in your application. Beans, and the dependencies among them, are reflected in the configuration metadata used by a container.
 </p>
 
 
@@ -104,18 +104,18 @@ For a more practical way to understand this please visit <a href="https://www.ba
 </div>
 </div>
 
-<div id="outline-container-org013b7d4" class="outline-3">
-<h3 id="org013b7d4">What is Inversion of Control?</h3>
-<div class="outline-text-3" id="text-org013b7d4">
+<div id="outline-container-orga94dc54" class="outline-3">
+<h3 id="orga94dc54">What is Inversion of Control?</h3>
+<div class="outline-text-3" id="text-orga94dc54">
 <p>
 Simply put, Inversion of Control (IoC) is a process in which an object defines its dependencies without creating them. This object delegates the job of constructing such dependencies to an IoC container.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org45ecec4" class="outline-3">
-<h3 id="org45ecec4">My own conclusion</h3>
-<div class="outline-text-3" id="text-org45ecec4">
+<div id="outline-container-org76507dc" class="outline-3">
+<h3 id="org76507dc">My own conclusion</h3>
+<div class="outline-text-3" id="text-org76507dc">
 <p>
 Spring usa Algo que se llama aplication context para poder hacer la configuracion y la creacion de todo el seteo necesario para poder correr un proyecto de forma &ldquo;automatizada&rdquo; automatizada entre comillas porque pues tambien tienes que hacer uso de sus standares.
 En java un Bean no es mas que una clase que sigue un determinado standard, entre esos standares esta el usar variables privadas con sus respectivos getters and setters, un constructor vacio, etc. Pero tambien están los SpringBeans que siguen la misma que un Java Bean solo que necesita otras reglas o standards para poder considerarse SpringBean. De esa manera con el application context de Spring, Springboot sabe que beans existen y que dependencias tienen y así puede instanciar de manera automatica y tener un registro de las dependencias de la aplicacion de Spring. Obviamente esto es muy por encimita pero es lo que entendí hasta el momento. Pero en general para poder correr una aplicacion de SpringBoot se necesitan:
@@ -131,18 +131,18 @@ En java un Bean no es mas que una clase que sigue un determinado standard, entre
 </section>
 
 
-<section id="outline-container-orgb1144ef" class="outline-2">
-<h2 id="orgb1144ef">Managing configuration</h2>
-<div class="outline-text-2" id="text-orgb1144ef">
+<section id="outline-container-org9f7ce13" class="outline-2">
+<h2 id="org9f7ce13">Managing configuration</h2>
+<div class="outline-text-2" id="text-org9f7ce13">
 <p>
 In Spring boot we can use several approaches to define the configuration of the program, we can set multiple environments(development, stage, uat, production, etc).
 The various approaches include property files, YAML files, environment variables, and command-line arguments.
 </p>
 </div>
 
-<div id="outline-container-orga696939" class="outline-3">
-<h3 id="orga696939">Using the SpringApplication class</h3>
-<div class="outline-text-3" id="text-orga696939">
+<div id="outline-container-org20634b0" class="outline-3">
+<h3 id="org20634b0">Using the SpringApplication class</h3>
+<div class="outline-text-3" id="text-org20634b0">
 <p>
 We can use a property file, <a href="https://github.com/spring-boot-in-practice/repo/blob/main/ch02/spring-application/src/main/java/com/manning/sbip/ch02/SpringBootAppDemoApplication.java">look at this example</a>, you will find a file called &ldquo;properties&rdquo; over <code>resources</code> folder.
 So we are loading the properties instantiating the <b>Properties</b> class and then passing over the <code>SpringApplication</code> instance.
@@ -150,9 +150,9 @@ So we are loading the properties instantiating the <b>Properties</b> class and t
 </div>
 </div>
 
-<div id="outline-container-org1da59a9" class="outline-3">
-<h3 id="org1da59a9">Using @PropertySource</h3>
-<div class="outline-text-3" id="text-org1da59a9">
+<div id="outline-container-orgf6f82ec" class="outline-3">
+<h3 id="orgf6f82ec">Using @PropertySource</h3>
+<div class="outline-text-3" id="text-orgf6f82ec">
 <p>
 We can also use an annotation called <code>@PropertySource</code> with an <b>Environment</b> object instance as you can see <a href="https://github.com/spring-boot-in-practice/repo/blob/main/ch02/property-sources/src/main/java/com/manning/sbip/ch02/DbConfiguration.java">here</a>.
 Here we need to use the <code>@Autowired</code> annotation under the Environment instance variable and <code>@Configuration</code> to automatically make an instance of the <b>Environment</b> class and pass the path of the file that contains the environment variables as you can see the in the following snippet.
@@ -217,9 +217,9 @@ then we will be able to get the configuration as the following snippet shows on 
 </div>
 </div>
 
-<div id="outline-container-org900fa4c" class="outline-3">
-<h3 id="org900fa4c">Config data file</h3>
-<div class="outline-text-3" id="text-org900fa4c">
+<div id="outline-container-org72d42b3" class="outline-3">
+<h3 id="org72d42b3">Config data file</h3>
+<div class="outline-text-3" id="text-org72d42b3">
 <p>
 Spring Boot lets you specify the application configuration properties in the application.properties or application.yml file. This is the most widely used approach to provide a configuration in a Spring Boot application. By default, the Spring Initializr-generated Spring Boot project includes an empty application.properties file.
 </p>
@@ -244,9 +244,9 @@ instance as we saw an above snippet on line <a href="#coderef-AutoEnvInstance" c
 </div>
 </div>
 
-<div id="outline-container-orgcea03b2" class="outline-3">
-<h3 id="orgcea03b2">OS Environment Variables</h3>
-<div class="outline-text-3" id="text-orgcea03b2">
+<div id="outline-container-org9ee1d5e" class="outline-3">
+<h3 id="org9ee1d5e">OS Environment Variables</h3>
+<div class="outline-text-3" id="text-org9ee1d5e">
 <p>
 We can also refer to the operating system environment variables. Look at the below sample to know how to do it.
 </p>
@@ -290,9 +290,9 @@ Then to get the values of the defined OS environment variables you can do the fo
 
 
 
-<div id="outline-container-org1623ef3" class="outline-3">
-<h3 id="org1623ef3">Creating custom properties with @ConfigurationProperties</h3>
-<div class="outline-text-3" id="text-org1623ef3">
+<div id="outline-container-org882be6b" class="outline-3">
+<h3 id="org882be6b">Creating custom properties with @ConfigurationProperties</h3>
+<div class="outline-text-3" id="text-org882be6b">
 <p>
 There are two categories of spring boot properties or environment variables:
 </p>
@@ -310,9 +310,9 @@ You can see a sample of this technique looking at <a href="http://mng.bz/7Wr9">t
 </div>
 </section>
 
-<section id="outline-container-orgd0289ea" class="outline-2">
-<h2 id="orgd0289ea">Executing code on Spring Boot app startup</h2>
-<div class="outline-text-2" id="text-orgd0289ea">
+<section id="outline-container-org75d1797" class="outline-2">
+<h2 id="org75d1797">Executing code on Spring Boot app startup</h2>
+<div class="outline-text-2" id="text-org75d1797">
 <p>
 At times, you&rsquo;ll need to execute custom code at Spring Boot application startup. For instance, you may want to execute a database initialization script before the application finishes its initialization or consume a REST service to load data for your application.
 </p>
@@ -354,18 +354,18 @@ For example, in the upcoming techniques when you&rsquo;ll learn the Spring Data 
 </div>
 </section>
 
-<section id="outline-container-org95b9971" class="outline-2">
-<h2 id="org95b9971">Configuring Logging</h2>
-<div class="outline-text-2" id="text-org95b9971">
+<section id="outline-container-orgc85b36f" class="outline-2">
+<h2 id="orgc85b36f">Configuring Logging</h2>
+<div class="outline-text-2" id="text-orgc85b36f">
 <p>
 This subject will not have its resume at the moment. For more information please look at the book.
 </p>
 </div>
 </section>
 
-<section id="outline-container-orgcde0110" class="outline-2">
-<h2 id="orgcde0110">Using built-in Bean Validation annotations to validate business entity in a Spring Boot app</h2>
-<div class="outline-text-2" id="text-orgcde0110">
+<section id="outline-container-org9578114" class="outline-2">
+<h2 id="org9578114">Using built-in Bean Validation annotations to validate business entity in a Spring Boot app</h2>
+<div class="outline-text-2" id="text-org9578114">
 
 <figure>
 <img src="springboot.org_imgs/20220906_150011_f2IW0t.png" alt="20220906_150011_f2IW0t.png">
@@ -385,13 +385,13 @@ Please refer to the project sample <a href="https://github.com/spring-boot-in-pr
 </section>
 
 
-<section id="outline-container-org3c39dd9" class="outline-2">
-<h2 id="org3c39dd9">Chapter 3</h2>
-<div class="outline-text-2" id="text-org3c39dd9">
+<section id="outline-container-org43158f0" class="outline-2">
+<h2 id="org43158f0">Chapter 3</h2>
+<div class="outline-text-2" id="text-org43158f0">
 </div>
-<div id="outline-container-org073af6a" class="outline-3">
-<h3 id="org073af6a">Defining query methods</h3>
-<div class="outline-text-3" id="text-org073af6a">
+<div id="outline-container-orgcecdc4f" class="outline-3">
+<h3 id="orgcecdc4f">Defining query methods</h3>
+<div class="outline-text-3" id="text-orgcecdc4f">
 <p>
 Spring Data JPA provides two ways to define custom query methods that can meet most of these custom requirements:
 </p>
@@ -423,9 +423,9 @@ If you want to see sample project please refer to <a href="http://mng.bz/dogO">t
 </div>
 </div>
 
-<div id="outline-container-org5b8649e" class="outline-3">
-<h3 id="org5b8649e">Criteria API vs QueryDSL</h3>
-<div class="outline-text-3" id="text-org5b8649e">
+<div id="outline-container-org4c86855" class="outline-3">
+<h3 id="org4c86855">Criteria API vs QueryDSL</h3>
+<div class="outline-text-3" id="text-org4c86855">
 <p>
 <b>In conclusion is better to use QueryDSL.</b>
 These two different tools can be used as techniques to programmatically define queries in a type-safe manner. This because when using the @Query annotation we don&rsquo;t have any type validation on queries, so if we have an error on any query definition the error will be throw on execution time, causing undesired results.
@@ -450,9 +450,9 @@ A sample project of the use QueryDSL can be found here: <a href="http://mng.bz/7
 </div>
 </div>
 
-<div id="outline-container-orgb3739b2" class="outline-3">
-<h3 id="orgb3739b2">Managing domain object relationships</h3>
-<div class="outline-text-3" id="text-orgb3739b2">
+<div id="outline-container-orgc752df2" class="outline-3">
+<h3 id="orgc752df2">Managing domain object relationships</h3>
+<div class="outline-text-3" id="text-orgc752df2">
 <p>
 In the relational database nomenclature, retrieving the required columns from different tables is known as <b>projection</b>.
 Spring Data lets you use projections either through interface-based projection or class-based projection.
@@ -523,9 +523,9 @@ For more details please refer to the project.
 
 
 
-<section id="outline-container-orgde7b586" class="outline-2">
-<h2 id="orgde7b586">Containerizing an Spring Boot app</h2>
-<div class="outline-text-2" id="text-orgde7b586">
+<section id="outline-container-org55a4626" class="outline-2">
+<h2 id="org55a4626">Containerizing an Spring Boot app</h2>
+<div class="outline-text-2" id="text-org55a4626">
 <p>
 <a href="https://www.docker.com/blog/9-tips-for-containerizing-your-spring-boot-code/#:~:text=Containerizing%20a%20Spring%20Boot%20application,it%20as%20a%20Docker%20image.">This article on the docker official website</a> is really helpful to get the better tips to containerize an Spring Boot code.
 </p>
@@ -533,9 +533,9 @@ For more details please refer to the project.
 </section>
 
 
-<section id="outline-container-org1d9b34b" class="outline-2">
-<h2 id="org1d9b34b">Extras</h2>
-<div class="outline-text-2" id="text-org1d9b34b">
+<section id="outline-container-org76b9ae8" class="outline-2">
+<h2 id="org76b9ae8">Extras</h2>
+<div class="outline-text-2" id="text-org76b9ae8">
 <p>
 If we would like to connect to a database such as Postgresql, we can look at the repository I created and uploaded on GitHub <a href="https://github.com/aang7/sample-spring-boot">here</a>.
 Also <a href="https://www.postgresql.org/ftp/projects/pgFoundry/dbsamples/world/dbsamples-0.1/">here is a file</a> that contains a sample of an sql file to create a database and tables on it and insert sample data from the Postgresql website.
@@ -555,7 +555,7 @@ Some informal videos I recorded for reference.
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Aug 02, 2023 using Emacs 28.1 (Org mode 9.5.2) <br>
+Last updated on Dec 13, 2023 using Emacs 28.1 (Org mode 9.5.2) <br>
 </div>
 </footer>
 </body>

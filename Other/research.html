@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>&lrm;</title>
+<meta name="generator" content="Org mode">
+<link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
+   <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><nil id="nil">
+<section id="outline-container-orga1ba4a5" class="outline-2">
+<h2 id="orga1ba4a5">What are Large Language Models (LLMs)</h2>
+<div class="outline-text-2" id="text-orga1ba4a5">
+<p>
+Large, general-purpose language models can be pre-trained and then fine-tuned
+for specific purposes.
+</p>
+
+<p>
+Source: <a href="https://www.youtube.com/watch?v=zizonToFXDs">Introduction to Large Language Models by Goodle</a>.
+</p>
+</div>
+</section>
+
+
+<section id="outline-container-org7e779b8" class="outline-2">
+<h2 id="org7e779b8">Marqo.ai</h2>
+<div class="outline-text-2" id="text-org7e779b8">
+<p>
+<b>What is tensor search?</b>
+</p>
+
+<p>
+Tensor search uses deep-learning to transform documents, images and other data into collections of vectors called “tensors”. Representing data as tensors allows us to match queries against documents with human-like understanding of the query and document’s content. Tensor search can power a variety of use cases such as:
+</p>
+
+<ul class="org-ul">
+<li>end user search and recommendations</li>
+<li>multi-modal search (image-to-image, text-to-image, image-to-text)</li>
+<li>chat bots and question and answer systems</li>
+<li>text and image classification</li>
+</ul>
+</div>
+</section>
+
+
+<section id="outline-container-org9604048" class="outline-2">
+<h2 id="org9604048">LLM-150</h2>
+<div class="outline-text-2" id="text-org9604048">
+</div>
+<div id="outline-container-org7e2e1b0" class="outline-3">
+<h3 id="org7e2e1b0">Some References</h3>
+<div class="outline-text-3" id="text-org7e2e1b0">
+<ul class="org-ul">
+<li><a href="https://raffaeu.medium.com/generate-an-amazon-s3-pre-signed-url-with-aws-lambda-and-amazon-api-gateway-4ffbea99207d">https://raffaeu.medium.com/generate-an-amazon-s3-pre-signed-url-with-aws-lambda-and-amazon-api-gateway-4ffbea99207d</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4058391" class="outline-3">
+<h3 id="org4058391">CANCELED Create cdk project</h3>
+<div class="outline-text-3" id="text-org4058391">
+<p>
+<a href="https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/rekognition-lambda-s3-trigger/lib/rekognition-lambda-s3-trigger-stack.ts">https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/rekognition-lambda-s3-trigger/lib/rekognition-lambda-s3-trigger-stack.ts</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga2f4295" class="outline-3">
+<h3 id="orga2f4295"><span class="done DONE">DONE</span> Create an s3 bucket</h3>
+<div class="outline-text-3" id="text-orga2f4295">
+<p>
+Create a lambda that triggers on s3 bucket creation
+</p>
+</div>
+</div>
+
+<div id="outline-container-org958f370" class="outline-3">
+<h3 id="org958f370"><span class="done DONE">DONE</span> Create Lambda with Python</h3>
+<div class="outline-text-3" id="text-org958f370">
+</div>
+</div>
+
+<div id="outline-container-orga933b97" class="outline-3">
+<h3 id="orga933b97"><span class="done DONE">DONE</span> Receive document from s3 bucket</h3>
+<div class="outline-text-3" id="text-orga933b97">
+</div>
+</div>
+
+<div id="outline-container-orgf286dfc" class="outline-3">
+<h3 id="orgf286dfc"><span class="done DONE">DONE</span> Get chunks of document</h3>
+<div class="outline-text-3" id="text-orgf286dfc">
+</div>
+</div>
+
+<div id="outline-container-org716a100" class="outline-3">
+<h3 id="org716a100">INPROGRESS integrate marqo</h3>
+</div>
+
+<div id="outline-container-orgffce897" class="outline-3">
+<h3 id="orgffce897">INPROGRESS upload document chunks to marqo</h3>
+<div class="outline-text-3" id="text-orgffce897">
+<p>
+For the indexing I thought I can get the folder path of the file where we can have somo sort of hierarchy like:
+</p>
+
+<ul class="org-ul">
+<li><p>
+<code>businnes_unit/group-id[user-id]/*</code>
+</p>
+
+<p>
+translated that would be something like:
+</p></li>
+<li><p>
+<code>stat/organization[user or domain or group?])/file.pdf</code>
+</p>
+
+<p>
+So I need to create the name of the index taking into account those params.
+</p>
+
+<ul class="org-ul">
+<li>bussiness unit</li>
+<li>group</li>
+</ul></li>
+</ul>
+
+
+<p>
+Constraints:
+</p>
+
+<ul class="org-ul">
+<li>filename must not have &rsquo;<code>+</code>&rsquo; chars, because if the file has blanks, S3 changes it to <code>+</code> chars.</li>
+</ul>
+
+
+<p>
+<code>Josue1:9BeBrave</code>
+</p>
+</div>
+</div>
+</section>
+</nil>
+<footer id="postamble" class="status">
+
+<div class='footer'>
+Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
+Last updated on Dec 13, 2023 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3) <br>
+</div>
+</footer>
+</body>
+</html>

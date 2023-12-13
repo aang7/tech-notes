@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Aug 02, 2023 -->
+<!-- Dec 13, 2023 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PostgreSQL</title>
@@ -68,28 +68,34 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga31b297">1. What is an schema</a></li>
-<li><a href="#org7986bd0">2. Indexes</a></li>
-<li><a href="#org52d6e94">3. Foreign keys</a></li>
-<li><a href="#orge086dfc">4. Postgraphile Notes</a></li>
-<li><a href="#orgcb98dc1">5. Data types</a></li>
-<li><a href="#org0e3bb1f">6. Database design process</a></li>
-<li><a href="#orgefa4f09">7. Notes from PostgreSQL official manual</a></li>
-<li><a href="#orga6a9bcc">8. Common Table Expressions</a></li>
-<li><a href="#org6c56e55">9. Recursive queries in SQL</a></li>
-<li><a href="#org9558fae">10. Snippets Examples</a></li>
-<li><a href="#orgcc9ec4a">11. Course notes</a>
+<li><a href="#org8712c6a">1. What is an schema</a></li>
+<li><a href="#orgb4a32aa">2. Indexes</a>
 <ul>
-<li><a href="#org7137e0c">11.1. Migrations</a></li>
-<li><a href="#org7f02386">11.2. Foreign keys</a></li>
+<li><a href="#orgb564a47">2.1. Downsides of Indexes</a></li>
 </ul>
 </li>
-<li><a href="#org31f5bdb">12. Random notes</a></li>
+<li><a href="#orga3fce2e">3. Foreign keys</a></li>
+<li><a href="#org98316e2">4. Postgraphile Notes</a></li>
+<li><a href="#org189cb89">5. Data types</a></li>
+<li><a href="#orgf68648c">6. Database design process</a></li>
+<li><a href="#org096b86a">7. Notes from PostgreSQL official manual</a></li>
+<li><a href="#orgd2dae71">8. Common Table Expressions</a></li>
+<li><a href="#org0085160">9. Recursive queries in SQL</a></li>
+<li><a href="#org0202979">10. Snippets Examples</a></li>
+<li><a href="#org10c0d7f">11. Data Access Control with RLS</a></li>
+<li><a href="#orga753f93">12. Course notes</a>
+<ul>
+<li><a href="#orgdcf4957">12.1. Migrations</a></li>
+<li><a href="#orgbb47c50">12.2. Foreign keys</a></li>
+<li><a href="#orge37a9fd">12.3. Some util queries</a></li>
+</ul>
+</li>
+<li><a href="#orgc1a5a02">13. Random notes</a></li>
 </ul>
 </div>
 </nav>
-<section id="outline-container-orga31b297" class="outline-2">
-<h2 id="orga31b297"><span class="section-number-2">1</span> What is an schema</h2>
+<section id="outline-container-org8712c6a" class="outline-2">
+<h2 id="org8712c6a"><span class="section-number-2">1</span> What is an schema</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 An schema is basically a logical segmentation that holds database objects like views, indexes, data types, functions, store procedures and operators.
@@ -99,18 +105,85 @@ An schema is basically a logical segmentation that holds database objects like v
 </section>
 
 
-<section id="outline-container-org7986bd0" class="outline-2">
-<h2 id="org7986bd0"><span class="section-number-2">2</span> Indexes</h2>
+<section id="outline-container-orgb4a32aa" class="outline-2">
+<h2 id="orgb4a32aa"><span class="section-number-2">2</span> Indexes</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 B-Tree is the default that you get when you do CREATE INDEX. Virtually all databases have some B-tree indexes.
 B-tree indexes are optimized for when a row has a single key value.
 </p>
+
+
+<p>
+More on database indexing:
+</p>
+
+
+<p>
+Indexing is a database optimization technique used to speed up data retrieval operations on tables. In PostgreSQL, indexes are created on one or more columns of a table to improve query performance. They work like a table of contents in a book, allowing the database to quickly locate rows based on the indexed columns.
+</p>
+
+<p>
+Here are some common types of indexes in PostgreSQL:
+</p>
+
+<ul class="org-ul">
+<li>B-tree Index: Suitable for equality and range queries.</li>
+<li>Unique Index: Ensures that the indexed column(s) contain unique values.</li>
+<li>Partial Index: Indexes a subset of rows based on a condition.</li>
+<li>GIN (Generalized Inverted Index): Used for full-text search and array types.</li>
+<li>GiST (Generalized Search Tree): Used for complex data types like geometric or text search.</li>
+<li>SP-GiST (Space-Partitioned Generalized Search Tree): Suitable for multidimensional data.</li>
+<li>BRIN (Block Range INdex): Efficient for large tables with sorted data.</li>
+</ul>
+
+
+<p>
+How do we create an index in PostgreSQL:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span class="org-comment">-- stat.rfq_products table:</span>
+<span class="org-comment">-- If you frequently query this table based on the rfq_id column, which references the stat.request_for_quotes table, you can create an index on this column for faster lookups.</span>
+<span class="org-keyword">CREATE</span> INDEX idx_rfq_products_rfq_id <span class="org-keyword">ON</span> stat.rfq_products (rfq_id);
+</pre>
+</div>
+
+
+<ul class="org-ul">
+<li>Postgres automatically creates an index for the primary key of every table.</li>
+<li>Postgres automatically creates an index for any 'unique' constraint.</li>
+</ul>
+<p>
+<span class="underline">These don't get listed under indexes in PGAdmin!</span>
+</p>
+
+
+<p>
+We can list all the existing indexes in a postgres database with this query:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql"><span class="org-keyword">SELECT</span> relname, relkind <span class="org-keyword">FROM</span> pg_class <span class="org-comment">-- pg_class lists all the kind of objects in the database</span>
+       <span class="org-keyword">WHERE</span> relkind = <span class="org-string">'i'</span>; <span class="org-comment">-- this tells to retrieve only the kind of 'i' which stands for _index_</span>
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb564a47" class="outline-3">
+<h3 id="orgb564a47"><span class="section-number-3">2.1</span> Downsides of Indexes</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Can be large! Stores data from at least one column of the real table</li>
+<li>Slows down insert/update/delete - the index has to be updated!</li>
+<li>Index might not actually get used!</li>
+</ul>
+</div>
 </div>
 </section>
 
-<section id="outline-container-org52d6e94" class="outline-2">
-<h2 id="org52d6e94"><span class="section-number-2">3</span> Foreign keys</h2>
+<section id="outline-container-orga3fce2e" class="outline-2">
+<h2 id="orga3fce2e"><span class="section-number-2">3</span> Foreign keys</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 More about foreign keys:
@@ -124,8 +197,8 @@ More about foreign keys:
 
 
 
-<section id="outline-container-orge086dfc" class="outline-2">
-<h2 id="orge086dfc"><span class="section-number-2">4</span> Postgraphile Notes</h2>
+<section id="outline-container-org98316e2" class="outline-2">
+<h2 id="org98316e2"><span class="section-number-2">4</span> Postgraphile Notes</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>PostGraphile detects and exposes one-to-one, one-to-many and many-to-one relations automatically. Many-to-many relationships can be handled with the many-to-many relations plugin.</li>
@@ -135,8 +208,8 @@ More about foreign keys:
 </section>
 
 
-<section id="outline-container-orgcb98dc1" class="outline-2">
-<h2 id="orgcb98dc1"><span class="section-number-2">5</span> Data types</h2>
+<section id="outline-container-org189cb89" class="outline-2">
+<h2 id="org189cb89"><span class="section-number-2">5</span> Data types</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Check out this <b><a href="https://www.geeksforgeeks.org/postgresql-data-types/article">post.</a></b>
@@ -157,8 +230,8 @@ If you know before hand that you will not be performing JSON querying operations
 </section>
 
 
-<section id="outline-container-org0e3bb1f" class="outline-2">
-<h2 id="org0e3bb1f"><span class="section-number-2">6</span> Database design process</h2>
+<section id="outline-container-orgf68648c" class="outline-2">
+<h2 id="orgf68648c"><span class="section-number-2">6</span> Database design process</h2>
 <div class="outline-text-2" id="text-6">
 <ol class="org-ol">
 <li>What kind of thing are we storing?</li>
@@ -168,8 +241,8 @@ If you know before hand that you will not be performing JSON querying operations
 </div>
 </section>
 
-<section id="outline-container-orgefa4f09" class="outline-2">
-<h2 id="orgefa4f09"><span class="section-number-2">7</span> Notes from PostgreSQL official manual</h2>
+<section id="outline-container-org096b86a" class="outline-2">
+<h2 id="org096b86a"><span class="section-number-2">7</span> Notes from PostgreSQL official manual</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>Tables are grouped into databases, and a collection of databases managed by a single PostgreSQL server
@@ -179,8 +252,8 @@ instance constitutes a database cluster</li>
 </div>
 </section>
 
-<section id="outline-container-orga6a9bcc" class="outline-2">
-<h2 id="orga6a9bcc"><span class="section-number-2">8</span> Common Table Expressions</h2>
+<section id="outline-container-orgd2dae71" class="outline-2">
+<h2 id="orgd2dae71"><span class="section-number-2">8</span> Common Table Expressions</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Abbreviated as <b>CTE</b> is a one-time result set that only exists for the duration of the query. It allows us to refer to data within a single SELECT, INSERT, UPDATE, DELETE, CREATE VIEW, or MERGE statement's execution scope.
@@ -188,8 +261,8 @@ Abbreviated as <b>CTE</b> is a one-time result set that only exists for the dura
 </div>
 </section>
 
-<section id="outline-container-org6c56e55" class="outline-2">
-<h2 id="org6c56e55"><span class="section-number-2">9</span> Recursive queries in SQL</h2>
+<section id="outline-container-org0085160" class="outline-2">
+<h2 id="org0085160"><span class="section-number-2">9</span> Recursive queries in SQL</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 To write a recursive query in SQL we need to use a CTE.
@@ -230,8 +303,8 @@ n
 </div>
 </section>
 
-<section id="outline-container-org9558fae" class="outline-2">
-<h2 id="org9558fae"><span class="section-number-2">10</span> Snippets Examples</h2>
+<section id="outline-container-org0202979" class="outline-2">
+<h2 id="org0202979"><span class="section-number-2">10</span> Snippets Examples</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <label class="org-src-name"><span class="listing-number">Listing 1: </span>Insert operation</label><pre class="src src-sql"><span class="org-keyword">insert</span> <span class="org-keyword">into</span> cities(<span class="org-keyword">name</span>, location) <span class="org-keyword">values</span> (<span class="org-string">'Rio bravo'</span>, point(100, 100));
@@ -259,7 +332,7 @@ UPDATE 1
 
 
 <div class="org-src-container">
-<pre class="src src-sql" id="org92f49ab"><span class="org-keyword">delete</span> <span class="org-keyword">from</span> cities
+<pre class="src src-sql" id="orgd601b2a"><span class="org-keyword">delete</span> <span class="org-keyword">from</span> cities
 <span class="org-keyword">where</span> <span class="org-keyword">name</span> ilike <span class="org-string">'Rio Bravo'</span>; <span class="org-comment">-- case insensitive</span>
 </pre>
 </div>
@@ -273,7 +346,7 @@ DELETE 2
 
 
 <div class="org-src-container">
-<pre class="src src-sql" id="org02622da"><span class="org-keyword">select</span> * <span class="org-keyword">from</span> cities;
+<pre class="src src-sql" id="org417460e"><span class="org-keyword">select</span> * <span class="org-keyword">from</span> cities;
 </pre>
 </div>
 
@@ -424,19 +497,34 @@ SET
 </div>
 </section>
 
-
-<section id="outline-container-orgcc9ec4a" class="outline-2">
-<h2 id="orgcc9ec4a"><span class="section-number-2">11</span> Course notes</h2>
+<section id="outline-container-org10c0d7f" class="outline-2">
+<h2 id="org10c0d7f"><span class="section-number-2">11</span> Data Access Control with RLS</h2>
 <div class="outline-text-2" id="text-11">
+<p>
+RLS stands for Row Level Security.
+</p>
+
+<p>
+This pdf contains a good summary about row level security access in PostgreSQL.
+Check out: <a href="https://learn.graphile.org/docs/PostgreSQL_Row_Level_Security_Infosheet.pdf">https://learn.graphile.org/docs/PostgreSQL_Row_Level_Security_Infosheet.pdf</a>
+</p>
+</div>
+</section>
+
+
+
+<section id="outline-container-orga753f93" class="outline-2">
+<h2 id="orga753f93"><span class="section-number-2">12</span> Course notes</h2>
+<div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li><a href="https://www.postgresql.org/docs/9.5/functions-math.html">Math operators in SQL</a></li>
 </ul>
 </div>
 
 
-<div id="outline-container-org7137e0c" class="outline-3">
-<h3 id="org7137e0c"><span class="section-number-3">11.1</span> Migrations</h3>
-<div class="outline-text-3" id="text-11-1">
+<div id="outline-container-orgdcf4957" class="outline-3">
+<h3 id="orgdcf4957"><span class="section-number-3">12.1</span> Migrations</h3>
+<div class="outline-text-3" id="text-12-1">
 <p>
 Big Lessons:
 </p>
@@ -447,11 +535,27 @@ Big Lessons:
 </div>
 </div>
 
-<div id="outline-container-org7f02386" class="outline-3">
-<h3 id="org7f02386"><span class="section-number-3">11.2</span> Foreign keys</h3>
-<div class="outline-text-3" id="text-11-2">
+<div id="outline-container-orgbb47c50" class="outline-3">
+<h3 id="orgbb47c50"><span class="section-number-3">12.2</span> Foreign keys</h3>
+<div class="outline-text-3" id="text-12-2">
 <div class="org-src-container">
 <pre class="src src-sql">
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge37a9fd" class="outline-3">
+<h3 id="orge37a9fd"><span class="section-number-3">12.3</span> Some util queries</h3>
+<div class="outline-text-3" id="text-12-3">
+<div class="org-src-container">
+<pre class="src src-sql"><span class="org-comment">-- Get size in kb of certain table</span>
+<span class="org-keyword">SELECT</span> pg_size_pretty(pg_relation_size(<span class="org-string">'TABLE_NAME or INDEX_NAME'</span>))
+
+
+<span class="org-comment">-- Explain analyze</span>
+<span class="org-comment">-- if we add this two words before an sql statement we can see the planning and metrics (time in ms) that a postgreSQL operation took.</span>
+EXPLAIN ANALYZE <span class="org-keyword">select</span> * <span class="org-keyword">from</span> users;
 </pre>
 </div>
 </div>
@@ -459,15 +563,15 @@ Big Lessons:
 </section>
 
 
-<section id="outline-container-org31f5bdb" class="outline-2">
-<h2 id="org31f5bdb"><span class="section-number-2">12</span> Random notes</h2>
-<div class="outline-text-2" id="text-12">
+<section id="outline-container-orgc1a5a02" class="outline-2">
+<h2 id="orgc1a5a02"><span class="section-number-2">13</span> Random notes</h2>
+<div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li><a href="https://medium.com/miro-engineering/sql-migrations-in-postgresql-part-1-bc38ec1cbe75">some common operations in postgresql migrations</a></li>
 <li><a href="https://stackoverflow.com/questions/38388423/what-does-on-delete-do-on-django-models">Good not about on delete actions on a django/sql</a></li>
 <li><a href="https://www.skypack.dev/view/graphile-worker-rewired">https://www.skypack.dev/view/graphile-worker-rewired</a></li>
+<li><a href="https://semaphoreci.com/blog/database-management">https://semaphoreci.com/blog/database-management</a></li>
 </ul>
-
 
 
 
@@ -482,7 +586,7 @@ esto creo que es lo que usariamos para subir a s3.
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Aug 02, 2023 using Emacs 28.2 (Org mode 9.5.5) <br>
+Last updated on Dec 13, 2023 using Emacs 28.2 (Org mode 9.5.5) <br>
 </div>
 </footer>
 </body>

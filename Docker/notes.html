@@ -60,9 +60,9 @@ for the JavaScript code in this tag.
  |
  <a accesskey="H" href="../"> HOME </a>
 </div><nil id="nil">
-<section id="outline-container-org5f0e041" class="outline-2">
-<h2 id="org5f0e041">Docker</h2>
-<div class="outline-text-2" id="text-org5f0e041">
+<section id="outline-container-orgabd3906" class="outline-2">
+<h2 id="orgabd3906">Docker</h2>
+<div class="outline-text-2" id="text-orgabd3906">
 <p>
 I have to recreate my lost notes about docker.
 So in this entry will be the notes below.
@@ -140,9 +140,9 @@ docker build -t $<span class="org-variable-name">custom_image_name</span> .
 </div>
 </div>
 
-<div id="outline-container-orgf106216" class="outline-3">
-<h3 id="orgf106216">Volumes</h3>
-<div class="outline-text-3" id="text-orgf106216">
+<div id="outline-container-org54e9400" class="outline-3">
+<h3 id="org54e9400">Volumes</h3>
+<div class="outline-text-3" id="text-org54e9400">
 <p>
 Host: Where Docker is installed
 Bind Mount: storage the files in host machine in a persistent way (not secure).
@@ -158,9 +158,9 @@ TMPFS Mount: Storage the data temporarely. Data is deleted when container stop r
 </div>
 </div>
 
-<div id="outline-container-orga4321bf" class="outline-3">
-<h3 id="orga4321bf">Developing applications</h3>
-<div class="outline-text-3" id="text-orga4321bf">
+<div id="outline-container-org993358c" class="outline-3">
+<h3 id="org993358c">Developing applications</h3>
+<div class="outline-text-3" id="text-org993358c">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">this supposed you have an existing Dockerfile</span>
 <span class="org-comment-delimiter"># </span><span class="org-comment">on current working directory</span>
@@ -183,9 +183,9 @@ ENTRYPOINT <span class="org-variable-name">FLASK_APP</span>=/opt/source-code/app
 </div>
 
 
-<div id="outline-container-org5575bc2" class="outline-3">
-<h3 id="org5575bc2">Networking</h3>
-<div class="outline-text-3" id="text-org5575bc2">
+<div id="outline-container-orgf34539b" class="outline-3">
+<h3 id="orgf34539b">Networking</h3>
+<div class="outline-text-3" id="text-orgf34539b">
 <div class="org-src-container">
 <pre class="src src-shell">docker network ls
 </pre>
@@ -236,9 +236,9 @@ When we connect a container to a custom created network, we can then reference a
 </div>
 </div>
 
-<div id="outline-container-orge72ec8b" class="outline-3">
-<h3 id="orge72ec8b">Docker compose</h3>
-<div class="outline-text-3" id="text-orge72ec8b">
+<div id="outline-container-orge9db6e7" class="outline-3">
+<h3 id="orge9db6e7">Docker compose</h3>
+<div class="outline-text-3" id="text-orge9db6e7">
 <p>
 It&rsquo;s tedious to create manually each image and container and then create the network to later connect the desired containers. So for this, docker has something called <code>docker compose</code>, which is a tool to manage containers and their set up between them.
 instead of having a <code>Dockerfile</code> docker compose uses a file called <code>docker-compose.yml</code>, in it we declare/define all the services we use for our custom application.
@@ -410,7 +410,7 @@ For more details on Docker compose look <a href="https://www.educative.io/blog/d
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Aug 02, 2023 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3) <br>
+Last updated on Dec 13, 2023 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3) <br>
 </div>
 </footer>
 </body>

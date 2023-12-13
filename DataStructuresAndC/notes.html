@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Aug 02, 2023 -->
+<!-- Dec 13, 2023 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Data Structures and C/C++ Graphs basics</title>
@@ -90,28 +90,28 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8784d77">1. Introduction</a></li>
-<li><a href="#org0b0eea8">2. Let's started</a>
+<li><a href="#org702336a">1. Introduction</a></li>
+<li><a href="#orgc7f692c">2. Let's started</a>
 <ul>
-<li><a href="#org75ee6ce">2.1. Pointers</a></li>
-<li><a href="#orgdd5cbe1">2.2. Allocating dynamic memory</a></li>
+<li><a href="#org8288c1b">2.1. Pointers</a></li>
+<li><a href="#org57ac9d0">2.2. Allocating dynamic memory</a></li>
 </ul>
 </li>
-<li><a href="#org9909ba8">3. Graphs</a>
+<li><a href="#org27bb0f7">3. Graphs</a>
 <ul>
-<li><a href="#org21b1f59">3.1. The basics</a></li>
-<li><a href="#orgf3f18e7">3.2. traversing a non cyclic graph with bfs</a></li>
-<li><a href="#orgc52fa36">3.3. <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</a></li>
-<li><a href="#orgc3f2818">3.4. Spanning trees</a></li>
-<li><a href="#org0a276f6">3.5. References</a></li>
+<li><a href="#orgb1c2e76">3.1. The basics</a></li>
+<li><a href="#org1aff1ed">3.2. traversing a non cyclic graph with bfs</a></li>
+<li><a href="#org943e6b3">3.3. <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</a></li>
+<li><a href="#org94e2488">3.4. Spanning trees</a></li>
+<li><a href="#org1afd58f">3.5. References</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<section id="outline-container-org8784d77" class="outline-2">
-<h2 id="org8784d77"><span class="section-number-2">1</span> Introduction</h2>
+<section id="outline-container-org702336a" class="outline-2">
+<h2 id="org702336a"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 I am trying to practicing again the main concepts in programming with the help of one course about the main of data structures and algorithms. This course can be found in <a href="https://www.udemy.com/course/datastructurescncpp/">udemy</a>.
@@ -123,16 +123,16 @@ So this file will be and is my playground for taking notes.
 </div>
 </section>
 
-<section id="outline-container-org0b0eea8" class="outline-2">
-<h2 id="org0b0eea8"><span class="section-number-2">2</span> Let's started</h2>
+<section id="outline-container-orgc7f692c" class="outline-2">
+<h2 id="orgc7f692c"><span class="section-number-2">2</span> Let's started</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 All chapters will be in <b>C</b> or <b>C++</b>. This because, I am trying to remember the fundamentals, and C and C++ are almost the same, considered as low programming languages. We can look at conceptos like pointers, memory allocation, etc. Concepts that may not be to close for the end user on other programming languges of high level.
 </p>
 </div>
 
-<div id="outline-container-org75ee6ce" class="outline-3">
-<h3 id="org75ee6ce"><span class="section-number-3">2.1</span> Pointers</h3>
+<div id="outline-container-org8288c1b" class="outline-3">
+<h3 id="org8288c1b"><span class="section-number-3">2.1</span> Pointers</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 So a pointer is simply a variable of 8 bytes (on 64 bit computer) or 4 bytes (on a 32 bit computer) that points to a memory address.
@@ -249,8 +249,8 @@ valuex after: 7
 </div>
 </div>
 
-<div id="outline-container-orgdd5cbe1" class="outline-3">
-<h3 id="orgdd5cbe1"><span class="section-number-3">2.2</span> Allocating dynamic memory</h3>
+<div id="outline-container-org57ac9d0" class="outline-3">
+<h3 id="org57ac9d0"><span class="section-number-3">2.2</span> Allocating dynamic memory</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 To a program be able to start, it needs to be attached to a process, which the operating system needs to handle. This <b>process</b> asks the operating system for an amount of memory to be used by the program itself. One concept to know here is the <b><a href="https://www.scaler.com/topics/java/heap-memory-and-stack-memory-in-java/">stack memory*</a>, and the <a href="https://www.techtarget.com/whatis/definition/heap#:~:text=In%20certain%20programming%20languages%20including,until%20the%20program%20is%20running.">*heap</a></b>.
@@ -323,15 +323,15 @@ Below there is a simply sample of allocating dinamyc memory in <b>C</b> and <b>C
 
 
 
-<section id="outline-container-org9909ba8" class="outline-2">
-<h2 id="org9909ba8"><span class="section-number-2">3</span> Graphs</h2>
+<section id="outline-container-org27bb0f7" class="outline-2">
+<h2 id="org27bb0f7"><span class="section-number-2">3</span> Graphs</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 
 
 
-<div id="outline-container-org21b1f59" class="outline-3">
-<h3 id="org21b1f59"><span class="section-number-3">3.1</span> The basics</h3>
+<div id="outline-container-orgb1c2e76" class="outline-3">
+<h3 id="orgb1c2e76"><span class="section-number-3">3.1</span> The basics</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Some concepts related to graphs:
@@ -371,8 +371,8 @@ In this case it is O(n<sup>2</sup>) because we are representing the graph on a m
 </div>
 </div>
 
-<div id="outline-container-orgf3f18e7" class="outline-3">
-<h3 id="orgf3f18e7"><span class="section-number-3">3.2</span> traversing a non cyclic graph with bfs</h3>
+<div id="outline-container-org1aff1ed" class="outline-3">
+<h3 id="org1aff1ed"><span class="section-number-3">3.2</span> traversing a non cyclic graph with bfs</h3>
 <div class="outline-text-3" id="text-3-2">
 <ol class="org-ol">
 <li>Visiting
@@ -392,7 +392,7 @@ Below we have a simple undirected graph with its adjacent matrix table represent
 </figure>
 
 
-<table id="orgf85f6e8">
+<table id="orge3e4d04">
 <caption class="t-above"><span class="table-number">Table 1:</span> adjacent matrix: represents "am" variable on the snippets below.</caption>
 
 <colgroup>
@@ -598,8 +598,8 @@ bfs with node:
 </div>
 
 
-<div id="outline-container-orgc52fa36" class="outline-3">
-<h3 id="orgc52fa36"><span class="section-number-3">3.3</span> <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</h3>
+<div id="outline-container-org943e6b3" class="outline-3">
+<h3 id="org943e6b3"><span class="section-number-3">3.3</span> <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
@@ -685,13 +685,13 @@ dfs for node:  7 -&gt; 7 5 3 1 2 4 6
 </div>
 </div>
 
-<div id="outline-container-orgc3f2818" class="outline-3">
-<h3 id="orgc3f2818"><span class="section-number-3">3.4</span> Spanning trees</h3>
+<div id="outline-container-org94e2488" class="outline-3">
+<h3 id="org94e2488"><span class="section-number-3">3.4</span> Spanning trees</h3>
 </div>
 
 
-<div id="outline-container-org0a276f6" class="outline-3">
-<h3 id="org0a276f6"><span class="section-number-3">3.5</span> References</h3>
+<div id="outline-container-org1afd58f" class="outline-3">
+<h3 id="org1afd58f"><span class="section-number-3">3.5</span> References</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Some useful links that I used to build this entry.
@@ -711,7 +711,7 @@ Some useful links that I used to build this entry.
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Aug 02, 2023 using Emacs 28.1 (Org mode 9.5.2) <br>
+Last updated on Dec 13, 2023 using Emacs 28.1 (Org mode 9.5.2) <br>
 </div>
 </footer>
 </body>
