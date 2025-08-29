@@ -360,3 +360,57 @@ Big Lessons:
 
 esto creo que es lo que usariamos para subir a s3.
 https://github.com/graphile-contrib/postgraphile-plugin-derived-field
+
+** Updating DB Data after a migration
+
+Instead of updating user data inside a migration, what we can do is build an sql script with the statements wrapped inside a transaction.
+Doing it so, we can prevent having unsync or corrupted data.
+
+We can run the script to update the data with psql like so:
+
+#+begin_src sh 
+   psql -U postgres -h localhost -p 5433 -d e2e -v ON_ERROR_STOP=1 <<EOF
+BEGIN;
+\i migration_163_rbac_updates.sql
+COMMIT;
+EOF
+#+end_src
+
+e.g. =migration_163_rbac_updates.sql=:
+
+#+begin_src sql :eval no :exports code 
+  -- set stat_admin (employee) users default admin_role permission
+  DO $$
+  DECLARE
+      v_admin_role_id integer;
+  BEGIN
+      SELECT id INTO v_admin_role_id FROM stat.roles WHERE internal_name = 'admin_role';
+      UPDATE stat.users
+      SET assigned_role_id = v_admin_role_id
+      WHERE role = 'stat_admin' or role = 'stat_super_admin';
+  END $$;
+
+
+  -- puedes forzar un error para confirmar que si ocurre algún error entonces se hace un rolllback automatico.
+  -- Mira mas detalles de la variable que pasamos al comando de psql: -v ON_ERROR_STOP=1
+  -- DO $$
+  -- BEGIN
+  --   RAISE EXCEPTION 'Error forzado para pruebas';
+  -- END $$;
+
+  -- set stat_user (client) users default client role permission
+  DO $$
+  DECLARE
+      v_client_role_id integer;
+  BEGIN
+      SELECT id INTO v_client_role_id FROM stat.roles WHERE internal_name = 'client_role';
+      UPDATE stat.users
+      SET assigned_role_id = v_client_role_id
+      WHERE role = 'stat_user';
+  END $$;
+
+  -- update to super admin the required users for e2e and integration tests
+  update stat.users u
+  set role = 'stat_super_admin' where u.email = 'e2eadminkbi@e2e.com' or u.email = 'e2eadminkbi@kbibiopharma.com';
+
+#+end_src
