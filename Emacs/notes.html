@@ -1,59 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Oct 18, 2024 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Aug 29, 2025 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Random Notes</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Abel Abner">
+<meta name="author" content="Abel Abner" />
+<meta name="generator" content="Org Mode" />
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
 </script>
 </head>
 <body>
@@ -61,30 +35,30 @@ for the JavaScript code in this tag.
  <a accesskey="h" href="../"> UP </a>
  |
  <a accesskey="H" href="../"> HOME </a>
-</div><nil id="nil">
+</div><nil id="nil" class="content">
 <header>
 <h1 class="title">Random Notes</h1>
-</header><nav id="table-of-contents">
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org99d6f78">1. Intro</a></li>
-<li><a href="#orgb605b07">2. Honw to debug a nodejs program?</a></li>
-<li><a href="#org2ca7f0c">3. Literate programming in org mode</a>
+<li><a href="#orgff1cc28">1. Intro</a></li>
+<li><a href="#org2d9ac84">2. Honw to debug a nodejs program?</a></li>
+<li><a href="#orgfdf2e15">3. Literate programming in org mode</a>
 <ul>
-<li><a href="#org3db8d1e">3.1. What is literate programming?</a></li>
-<li><a href="#orge0bb535">3.2. Show me</a></li>
-<li><a href="#org3755811">3.3. lsp within code blocks</a></li>
-<li><a href="#org40ce116">3.4. Grep in emacs</a></li>
-<li><a href="#org44e9bc5">3.5. Magit</a></li>
+<li><a href="#org5d82819">3.1. What is literate programming?</a></li>
+<li><a href="#org58bfcdb">3.2. Show me</a></li>
+<li><a href="#org0eddeb6">3.3. lsp within code blocks</a></li>
+<li><a href="#org1d8e44d">3.4. Grep in emacs</a></li>
+<li><a href="#org4c6cfc1">3.5. Magit</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<section id="outline-container-org99d6f78" class="outline-2">
-<h2 id="org99d6f78"><span class="section-number-2">1</span> Intro</h2>
+<section id="outline-container-orgff1cc28" class="outline-2">
+<h2 id="orgff1cc28"><span class="section-number-2">1.</span> Intro</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 This entry has random notes that I consider useful for my emacs experience.
@@ -93,8 +67,8 @@ Hope this will be useful for you too.
 </div>
 </section>
 
-<section id="outline-container-orgb605b07" class="outline-2">
-<h2 id="orgb605b07"><span class="section-number-2">2</span> Honw to debug a nodejs program?</h2>
+<section id="outline-container-org2d9ac84" class="outline-2">
+<h2 id="org2d9ac84"><span class="section-number-2">2.</span> Honw to debug a nodejs program?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://github.com/emacs-lsp/dap-mode/issues/554#issuecomment-1171256089">This is</a> the helpful comment on GitHub thread.
@@ -103,12 +77,12 @@ Look at the <a href="https://www.youtube.com/watch?v=bGkLuO7KTTY">video</a> I up
 </div>
 </section>
 
-<section id="outline-container-org2ca7f0c" class="outline-2">
-<h2 id="org2ca7f0c"><span class="section-number-2">3</span> Literate programming in org mode</h2>
+<section id="outline-container-orgfdf2e15" class="outline-2">
+<h2 id="orgfdf2e15"><span class="section-number-2">3.</span> Literate programming in org mode</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org3db8d1e" class="outline-3">
-<h3 id="org3db8d1e"><span class="section-number-3">3.1</span> What is literate programming?</h3>
+<div id="outline-container-org5d82819" class="outline-3">
+<h3 id="org5d82819"><span class="section-number-3">3.1.</span> What is literate programming?</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 It's basically the way we explain/describe and show the source of a program and (optionally) its result on a document.
@@ -117,8 +91,8 @@ For details check out this <a href="https://en.wikipedia.org/wiki/Literate_progr
 </div>
 </div>
 
-<div id="outline-container-orge0bb535" class="outline-3">
-<h3 id="orge0bb535"><span class="section-number-3">3.2</span> Show me</h3>
+<div id="outline-container-org58bfcdb" class="outline-3">
+<h3 id="org58bfcdb"><span class="section-number-3">3.2.</span> Show me</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 To do literate programming in emacs, we use org-mode in conjunction with <a href="https://orgmode.org/worg/org-contrib/babel/how-to-use-Org-Babel-for-R.html#:~:text=Emacs%20Org%2DBabel%20mode%20is,can%20embed%20only%20R%20code">org-babel</a>.
@@ -143,8 +117,8 @@ Another Hello world
 </div>
 </div>
 
-<div id="outline-container-org3755811" class="outline-3">
-<h3 id="org3755811"><span class="section-number-3">3.3</span> lsp within code blocks</h3>
+<div id="outline-container-org0eddeb6" class="outline-3">
+<h3 id="org0eddeb6"><span class="section-number-3">3.3.</span> lsp within code blocks</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 If you want to know what about the top line. Look at this references
@@ -171,8 +145,8 @@ console.log(fun(a, b))
 
 
 
-<div id="outline-container-org40ce116" class="outline-3">
-<h3 id="org40ce116"><span class="section-number-3">3.4</span> Grep in emacs</h3>
+<div id="outline-container-org1d8e44d" class="outline-3">
+<h3 id="org1d8e44d"><span class="section-number-3">3.4.</span> Grep in emacs</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 We can grep in emacs, grep is a tool for looking for some text or regex inside a file or directory.
@@ -188,8 +162,8 @@ I can't just write it like that, emacs will not recognize that special character
 </div>
 
 
-<div id="outline-container-org44e9bc5" class="outline-3">
-<h3 id="org44e9bc5"><span class="section-number-3">3.5</span> Magit</h3>
+<div id="outline-container-org4c6cfc1" class="outline-3">
+<h3 id="org4c6cfc1"><span class="section-number-3">3.5.</span> Magit</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li><a href="https://emacs.stackexchange.com/questions/40847/magit-how-do-i-sync-my-feature-branch-with-the-latest-master-without-checking?rq=1">https://emacs.stackexchange.com/questions/40847/magit-how-do-i-sync-my-feature-branch-with-the-latest-master-without-checking?rq=1</a></li>
@@ -202,7 +176,7 @@ I can't just write it like that, emacs will not recognize that special character
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 18, 2024 using Emacs 28.1 (Org mode 9.5.2) <br>
+Last updated on Aug 29, 2025 using Emacs 28.1 (Org mode 9.5.2) <br>
 </div>
 </footer>
 </body>

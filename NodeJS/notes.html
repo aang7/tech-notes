@@ -1,59 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Oct 18, 2024 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Aug 29, 2025 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>notes</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Abel Abner">
+<meta name="author" content="Abel Abner" />
+<meta name="generator" content="Org Mode" />
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
 </script>
 </head>
 <body>
@@ -61,34 +35,34 @@ for the JavaScript code in this tag.
  <a accesskey="h" href="../"> UP </a>
  |
  <a accesskey="H" href="../"> HOME </a>
-</div><nil id="nil">
+</div><nil id="nil" class="content">
 <header>
 <h1 class="title">notes</h1>
-</header><nav id="table-of-contents">
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga23f300">1. bind, apply and call</a></li>
-<li><a href="#orgb8bfbf2">2. TDD</a></li>
-<li><a href="#org282cafd">3. Tests</a>
+<li><a href="#orgbf8d7d4">1. bind, apply and call</a></li>
+<li><a href="#org5820dd2">2. TDD</a></li>
+<li><a href="#org7066057">3. Tests</a>
 <ul>
-<li><a href="#org45cf6fd">3.1. Types of tests</a>
+<li><a href="#orgbd77997">3.1. Types of tests</a>
 <ul>
-<li><a href="#org7bcc385">3.1.1. Unit tests</a></li>
-<li><a href="#org59614be">3.1.2. Integrations tests</a></li>
-<li><a href="#orgd05fca8">3.1.3. End-to-end tests</a></li>
+<li><a href="#orgc988e1c">3.1.1. Unit tests</a></li>
+<li><a href="#org73e02a5">3.1.2. Integrations tests</a></li>
+<li><a href="#orgaa7bc2f">3.1.3. End-to-end tests</a></li>
 </ul>
 </li>
-<li><a href="#org72779dc">3.2. Tooling for tests</a></li>
-<li><a href="#orgd0d34ea">3.3. Unit testing</a></li>
+<li><a href="#org1ee4b06">3.2. Tooling for tests</a></li>
+<li><a href="#org9308bbd">3.3. Unit testing</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </nav>
 
-<section id="outline-container-orga23f300" class="outline-2">
-<h2 id="orga23f300"><span class="section-number-2">1</span> bind, apply and call</h2>
+<section id="outline-container-orgbf8d7d4" class="outline-2">
+<h2 id="orgbf8d7d4"><span class="section-number-2">1.</span> bind, apply and call</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-js"><span class="org-keyword">const</span> <span class="org-variable-name">name</span> = <span class="org-string">"Name 0"</span>
@@ -121,30 +95,30 @@ for the JavaScript code in this tag.
 }
 
 
-console.log(obj1.getName()) <span class="org-comment-delimiter">// </span><span class="org-comment">normal call</span>
-
-<span class="org-comment-delimiter">// </span><span class="org-comment">this creates a new function, a copy of the referenced one (in this case obj2)</span>
-<span class="org-keyword">const</span> <span class="org-variable-name">bindWithBind</span> = obj1.getName.bind(obj2)
-<span class="org-comment-delimiter">// </span><span class="org-comment">on the other hand, apply and call methods doesn't create a copy but just call a function</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">with the specified scope/context or 'this' reference.</span>
-<span class="org-keyword">const</span> <span class="org-variable-name">obj2ResultWithApply</span> = obj2.getName.apply(obj1) <span class="org-comment-delimiter">// </span><span class="org-comment">call function with obj1 context</span>
-<span class="org-keyword">const</span> <span class="org-variable-name">obj2ResultWithCall</span> = obj1.getName.call(obj2) <span class="org-comment-delimiter">// </span><span class="org-comment">call function with obj2 context</span>
-
+console.log(obj1.getName()) <span class="org-comment-delimiter">// </span><span class="org-comment">normal call
+</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">this creates a new function, a copy of the referenced one (in this case obj2)
+</span><span class="org-keyword">const</span> <span class="org-variable-name">bindWithBind</span> = obj1.getName.bind(obj2)
+<span class="org-comment-delimiter">// </span><span class="org-comment">on the other hand, apply and call methods doesn't create a copy but just call a function
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">with the specified scope/context or 'this' reference.
+</span><span class="org-keyword">const</span> <span class="org-variable-name">obj2ResultWithApply</span> = obj2.getName.apply(obj1) <span class="org-comment-delimiter">// </span><span class="org-comment">call function with obj1 context
+</span><span class="org-keyword">const</span> <span class="org-variable-name">obj2ResultWithCall</span> = obj1.getName.call(obj2) <span class="org-comment-delimiter">// </span><span class="org-comment">call function with obj2 context
+</span>
 console.log(bindWithBind())
 console.log(obj2ResultWithCall)
 console.log(obj2ResultWithApply)
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">on obj3 we are showing that an anonymous function will get the context of the object that wraps</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">the function we are calling (in this case the global context)</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">and an arrow '=&gt;' will not get any context at all</span>
-console.log(obj3.other.getName())
+<span class="org-comment-delimiter">// </span><span class="org-comment">on obj3 we are showing that an anonymous function will get the context of the object that wraps
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">the function we are calling (in this case the global context)
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">and an arrow '=&gt;' will not get any context at all
+</span>console.log(obj3.other.getName())
 console.log(obj3.getName())
 
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">the only difference between apply and call is how we pass in arguments</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">apply expects and array of all the required parameters</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">and call expects parameters to be passed in inline</span>
-<span class="org-keyword">const</span> <span class="org-variable-name">obj4</span> = {
+<span class="org-comment-delimiter">// </span><span class="org-comment">the only difference between apply and call is how we pass in arguments
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">apply expects and array of all the required parameters
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">and call expects parameters to be passed in inline
+</span><span class="org-keyword">const</span> <span class="org-variable-name">obj4</span> = {
     name: <span class="org-string">'Abel Abner'</span>,
     <span class="org-function-name">salute</span>: <span class="org-keyword">function</span>(<span class="org-variable-name">greeting</span>) {
         <span class="org-keyword">return</span> <span class="org-string">`${greeting} ${this.name}`</span>
@@ -169,11 +143,11 @@ Useful references:
 </ul>
 </div>
 </section>
-<section id="outline-container-orgb8bfbf2" class="outline-2">
-<h2 id="orgb8bfbf2"><span class="section-number-2">2</span> TDD</h2>
+<section id="outline-container-org5820dd2" class="outline-2">
+<h2 id="org5820dd2"><span class="section-number-2">2.</span> TDD</h2>
 <div class="outline-text-2" id="text-2">
 
-<figure>
+<figure id="org470a6c9">
 <img src="nodejs.org_imgs/20220924_190154_aPeAz0.png" alt="20220924_190154_aPeAz0.png">
 
 </figure>
@@ -181,30 +155,30 @@ Useful references:
 </section>
 
 
-<section id="outline-container-org282cafd" class="outline-2">
-<h2 id="org282cafd"><span class="section-number-2">3</span> Tests</h2>
+<section id="outline-container-org7066057" class="outline-2">
+<h2 id="org7066057"><span class="section-number-2">3.</span> Tests</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org45cf6fd" class="outline-3">
-<h3 id="org45cf6fd"><span class="section-number-3">3.1</span> Types of tests</h3>
+<div id="outline-container-orgbd77997" class="outline-3">
+<h3 id="orgbd77997"><span class="section-number-3">3.1.</span> Types of tests</h3>
 <div class="outline-text-3" id="text-3-1">
 
-<figure>
+<figure id="org60c1182">
 <img src="nodejs.org_imgs/20220531_103404_3xunju.png" alt="20220531_103404_3xunju.png">
 
 </figure>
 </div>
 
-<div id="outline-container-org7bcc385" class="outline-4">
-<h4 id="org7bcc385"><span class="section-number-4">3.1.1</span> Unit tests</h4>
+<div id="outline-container-orgc988e1c" class="outline-4">
+<h4 id="orgc988e1c"><span class="section-number-4">3.1.1.</span> Unit tests</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 Make unit tests on functions that have 0 or minimal external dependecies (e.g. database or http interactions).
 </p>
 </div>
 </div>
-<div id="outline-container-org59614be" class="outline-4">
-<h4 id="org59614be"><span class="section-number-4">3.1.2</span> Integrations tests</h4>
+<div id="outline-container-org73e02a5" class="outline-4">
+<h4 id="org73e02a5"><span class="section-number-4">3.1.2.</span> Integrations tests</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 Tests a class or component with its external dependencies.
@@ -216,8 +190,8 @@ Tests a class or component with its external dependencies.
 </div>
 </div>
 
-<div id="outline-container-orgd05fca8" class="outline-4">
-<h4 id="orgd05fca8"><span class="section-number-4">3.1.3</span> End-to-end tests</h4>
+<div id="outline-container-orgaa7bc2f" class="outline-4">
+<h4 id="orgaa7bc2f"><span class="section-number-4">3.1.3.</span> End-to-end tests</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <p>
 Drives an application trough the UI.
@@ -231,11 +205,11 @@ Drives an application trough the UI.
 </div>
 </div>
 
-<div id="outline-container-org72779dc" class="outline-3">
-<h3 id="org72779dc"><span class="section-number-3">3.2</span> Tooling for tests</h3>
+<div id="outline-container-org1ee4b06" class="outline-3">
+<h3 id="org1ee4b06"><span class="section-number-3">3.2.</span> Tooling for tests</h3>
 <div class="outline-text-3" id="text-3-2">
 
-<figure>
+<figure id="org8447c7e">
 <img src="nodejs.org_imgs/20220531_104113_H01DDK.png" alt="20220531_104113_H01DDK.png">
 
 </figure>
@@ -244,8 +218,8 @@ Drives an application trough the UI.
 
 
 
-<div id="outline-container-orgd0d34ea" class="outline-3">
-<h3 id="orgd0d34ea"><span class="section-number-3">3.3</span> Unit testing</h3>
+<div id="outline-container-org9308bbd" class="outline-3">
+<h3 id="org9308bbd"><span class="section-number-3">3.3.</span> Unit testing</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 For unit testing universally we would have the following structure:
@@ -269,13 +243,13 @@ Look at the following unit test for details:
 
 describe(<span class="org-string">"some test"</span>, () =&gt; {
     it(<span class="org-string">'has to blalala'</span>, () =&gt; {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">arrange</span>
-        <span class="org-keyword">const</span> <span class="org-variable-name">sut</span> = toUpperCase;
+        <span class="org-comment-delimiter">// </span><span class="org-comment">arrange
+</span>        <span class="org-keyword">const</span> <span class="org-variable-name">sut</span> = toUpperCase;
         <span class="org-keyword">const</span> <span class="org-variable-name">expected</span> = <span class="org-string">"HOLA"</span>;
-        <span class="org-comment-delimiter">// </span><span class="org-comment">act</span>
-        <span class="org-keyword">const</span> <span class="org-variable-name">actual</span> = sut(<span class="org-string">"hola"</span>);
-        <span class="org-comment-delimiter">// </span><span class="org-comment">asserts</span>
-        expect(actual).toBe(expected);
+        <span class="org-comment-delimiter">// </span><span class="org-comment">act
+</span>        <span class="org-keyword">const</span> <span class="org-variable-name">actual</span> = sut(<span class="org-string">"hola"</span>);
+        <span class="org-comment-delimiter">// </span><span class="org-comment">asserts
+</span>        expect(actual).toBe(expected);
     })
 })
 </pre>
@@ -295,7 +269,7 @@ describe(<span class="org-string">"some test"</span>, () =&gt; {
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 18, 2024 using Emacs 29.0.60 (Org mode 9.6) <br>
+Last updated on Aug 29, 2025 using Emacs 29.0.60 (Org mode 9.6) <br>
 </div>
 </footer>
 </body>

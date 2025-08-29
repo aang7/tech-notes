@@ -1,108 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Oct 18, 2024 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Aug 29, 2025 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Graphs basics</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Abel Abner">
+<meta name="author" content="Abel Abner" />
+<meta name="generator" content="Org Mode" />
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="org-div-home-and-up">
  <a accesskey="h" href="../"> UP </a>
  |
  <a accesskey="H" href="../"> HOME </a>
-</div><nil id="nil">
+</div><nil id="nil" class="content">
 <header>
 <h1 class="title">Graphs basics</h1>
-</header><nav id="table-of-contents">
+</header><nav id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
-<div id="text-table-of-contents">
+<div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgea0c788">1. The basics</a></li>
-<li><a href="#orga730e61">2. traversing a non cyclic graph with bfs</a></li>
-<li><a href="#org15e8276">3. <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</a></li>
-<li><a href="#orga76862d">4. Spanning trees</a></li>
-<li><a href="#org3e749d6">5. References</a></li>
+<li><a href="#org42f6907">1. The basics</a></li>
+<li><a href="#orgb851ac3">2. traversing a non cyclic graph with bfs</a></li>
+<li><a href="#org0f2d499">3. <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</a></li>
+<li><a href="#orged5b803">4. Spanning trees</a></li>
+<li><a href="#org3bbe2cb">5. References</a></li>
 </ul>
 </div>
 </nav>
 
 
 
-<section id="outline-container-orgea0c788" class="outline-2">
-<h2 id="orgea0c788"><span class="section-number-2">1</span> The basics</h2>
+<section id="outline-container-org42f6907" class="outline-2">
+<h2 id="org42f6907"><span class="section-number-2">1.</span> The basics</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Some concepts related to graphs:
@@ -142,8 +126,8 @@ In this case it is O(n<sup>2</sup>) because we are representing the graph on a m
 </div>
 </section>
 
-<section id="outline-container-orga730e61" class="outline-2">
-<h2 id="orga730e61"><span class="section-number-2">2</span> traversing a non cyclic graph with bfs</h2>
+<section id="outline-container-orgb851ac3" class="outline-2">
+<h2 id="orgb851ac3"><span class="section-number-2">2.</span> traversing a non cyclic graph with bfs</h2>
 <div class="outline-text-2" id="text-2">
 <ol class="org-ol">
 <li>Visiting
@@ -157,13 +141,13 @@ Below we have a simple undirected graph with its adjacent matrix table represent
 </p>
 
 
-<figure>
+<figure id="orgebcc5d5">
 <img src="Rgraphics/graph-1.png" alt="graph-1.png">
 
 </figure>
 
 
-<table id="orgdb78667">
+<table id="orgc8e1462">
 <caption class="t-above"><span class="table-number">Table 1:</span> adjacent matrix: represents "am" variable on the snippets below.</caption>
 
 <colgroup>
@@ -323,20 +307,20 @@ Below we have a simple undirected graph with its adjacent matrix table represent
   <span class="org-type">int</span> * <span class="org-variable-name">visited</span> = (<span class="org-type">int</span> *) malloc(<span class="org-keyword">sizeof</span>(<span class="org-type">int</span>) * N);
   <span class="org-type">queue</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">q</span>;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">initialize visited array</span>
-  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; N; i++)
+  <span class="org-comment-delimiter">// </span><span class="org-comment">initialize visited array
+</span>  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; N; i++)
     visited[i] = 0;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">visit </span>
-  printf(<span class="org-string">"%d "</span>, firstElement);
+  <span class="org-comment-delimiter">// </span><span class="org-comment">visit 
+</span>  printf(<span class="org-string">"%d "</span>, firstElement);
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">mark as visited</span>
-  visited[firstElement] = 1;
-  <span class="org-comment-delimiter">// </span><span class="org-comment">push to the queue</span>
-  q.push(firstElement);
+  <span class="org-comment-delimiter">// </span><span class="org-comment">mark as visited
+</span>  visited[firstElement] = 1;
+  <span class="org-comment-delimiter">// </span><span class="org-comment">push to the queue
+</span>  q.push(firstElement);
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">repeat above process</span>
-  <span class="org-keyword">while</span> (<span class="org-negation-char">!</span>q.empty()) {
+  <span class="org-comment-delimiter">// </span><span class="org-comment">repeat above process
+</span>  <span class="org-keyword">while</span> (<span class="org-negation-char">!</span>q.empty()) {
     <span class="org-type">int</span> <span class="org-variable-name">r</span> = q.front(); q.pop();
 
     <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">c</span> = 1; c &lt; N; c++)
@@ -350,8 +334,8 @@ Below we have a simple undirected graph with its adjacent matrix table represent
   free(visited);
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Note: gam is the graph-adjacent-matrix</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">the variable is loaded from the table displayed above</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">Note: gam is the graph-adjacent-matrix
+</span><span class="org-comment-delimiter">// </span><span class="org-comment">the variable is loaded from the table displayed above</span>
 </pre>
 </div>
 
@@ -369,8 +353,8 @@ bfs with node:
 </section>
 
 
-<section id="outline-container-org15e8276" class="outline-2">
-<h2 id="org15e8276"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</h2>
+<section id="outline-container-org0f2d499" class="outline-2">
+<h2 id="org0f2d499"><span class="section-number-2">3.</span> <span class="done DONE">DONE</span> traversing non cyclic graph with dfs</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
@@ -387,8 +371,8 @@ bfs with node:
 <span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>, <span class="org-type">char</span> *<span class="org-variable-name">argv</span>[])
 {
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">initialize global array</span>
-  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; N; ++i)
+  <span class="org-comment-delimiter">// </span><span class="org-comment">initialize global array
+</span>  <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; N; ++i)
     visited_nodes[i] = 0;
 
   <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 1; i &lt; N; ++i) {
@@ -407,16 +391,16 @@ bfs with node:
 }
 
 <span class="org-type">void</span> <span class="org-function-name">dfs</span>(<span class="org-type">int</span> <span class="org-variable-name">firstElement</span>) {
-  <span class="org-comment-delimiter">// </span><span class="org-comment">visit</span>
-  <span class="org-comment-delimiter">// </span><span class="org-comment">explore</span>
-  <span class="org-type">int</span> * <span class="org-variable-name">visited</span> = (<span class="org-type">int</span> *) malloc(<span class="org-keyword">sizeof</span>(<span class="org-type">int</span>) * N);
+  <span class="org-comment-delimiter">// </span><span class="org-comment">visit
+</span>  <span class="org-comment-delimiter">// </span><span class="org-comment">explore
+</span>  <span class="org-type">int</span> * <span class="org-variable-name">visited</span> = (<span class="org-type">int</span> *) malloc(<span class="org-keyword">sizeof</span>(<span class="org-type">int</span>) * N);
   <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; N; ++i)
     visited[i] = 0;
 
   <span class="org-constant">std</span>::<span class="org-type">stack</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">stack</span>;
 
-  <span class="org-comment-delimiter">// </span><span class="org-comment">exploring</span>
-  stack.push(firstElement);
+  <span class="org-comment-delimiter">// </span><span class="org-comment">exploring
+</span>  stack.push(firstElement);
 
   <span class="org-keyword">while</span> (<span class="org-negation-char">!</span>stack.empty()) {
     <span class="org-type">int</span> <span class="org-variable-name">e</span> = stack.top(); stack.pop();
@@ -456,13 +440,13 @@ dfs for node:  7 -&gt; 7 5 3 1 2 4 6
 </div>
 </section>
 
-<section id="outline-container-orga76862d" class="outline-2">
-<h2 id="orga76862d"><span class="section-number-2">4</span> Spanning trees</h2>
+<section id="outline-container-orged5b803" class="outline-2">
+<h2 id="orged5b803"><span class="section-number-2">4.</span> Spanning trees</h2>
 </section>
 
 
-<section id="outline-container-org3e749d6" class="outline-2">
-<h2 id="org3e749d6"><span class="section-number-2">5</span> References</h2>
+<section id="outline-container-org3bbe2cb" class="outline-2">
+<h2 id="org3bbe2cb"><span class="section-number-2">5.</span> References</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Some useful links that I used to build this entry.
@@ -481,7 +465,7 @@ Some useful links that I used to build this entry.
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 18, 2024 using Emacs 28.2 (Org mode 9.5.5) <br>
+Last updated on Aug 29, 2025 using Emacs 28.2 (Org mode 9.5.5) <br>
 </div>
 </footer>
 </body>

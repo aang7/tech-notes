@@ -1,57 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
-<meta name="generator" content="Org mode">
+<meta name="generator" content="Org Mode" />
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
 </script>
 </head>
 <body>
@@ -59,10 +33,10 @@ for the JavaScript code in this tag.
  <a accesskey="h" href="../"> UP </a>
  |
  <a accesskey="H" href="../"> HOME </a>
-</div><nil id="nil">
-<section id="outline-container-orgb30d368" class="outline-2">
-<h2 id="orgb30d368">Docker</h2>
-<div class="outline-text-2" id="text-orgb30d368">
+</div><nil id="nil" class="content">
+<section id="outline-container-org84a65bc" class="outline-2">
+<h2 id="org84a65bc">Docker</h2>
+<div class="outline-text-2" id="text-org84a65bc">
 <p>
 I have to recreate my lost notes about docker.
 So in this entry will be the notes below.
@@ -70,8 +44,8 @@ The notes are from two courses one from udemy (that I didn&rsquo;t finish) and t
 </p>
 <div class="org-src-container">
 <pre class="src src-shell">
-<span class="org-comment-delimiter"># </span><span class="org-comment">helper shell variables</span>
-<span class="org-variable-name">WORKING_DIR</span>=$(<span class="org-builtin">pwd</span>)
+<span class="org-comment-delimiter"># </span><span class="org-comment">helper shell variables
+</span><span class="org-variable-name">WORKING_DIR</span>=$(<span class="org-sh-quoted-exec">pwd</span>)
 <span class="org-variable-name">NOTES_EXEC_FOLDER</span>=<span class="org-string">"DockerOut"</span>
 <span class="org-variable-name">image_name</span>=postgres
 <span class="org-variable-name">volume_name</span>=myvolume
@@ -80,69 +54,69 @@ The notes are from two courses one from udemy (that I didn&rsquo;t finish) and t
 <span class="org-variable-name">custom_image_name</span>=myimage
 
 mkdir $<span class="org-variable-name">NOTES_EXEC_FOLDER</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">BEGIN COMMAND EXAMPLES</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">--list containers processes</span>
-docker ps
+<span class="org-comment-delimiter"># </span><span class="org-comment">BEGIN COMMAND EXAMPLES
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">--list containers processes
+</span>docker ps
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">--list all containers (even if they are shutdown)</span>
-docker ps -a
+<span class="org-comment-delimiter"># </span><span class="org-comment">--list all containers (even if they are shutdown)
+</span>docker ps -a
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">--pull an image from central hub repository</span>
-docker pull $<span class="org-variable-name">image_name</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">--pull an image from central hub repository
+</span>docker pull $<span class="org-variable-name">image_name</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">--run an image</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">in this case postgres is the &lt;image_name&gt;</span>
-docker run $<span class="org-variable-name">image_name</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">--run an image
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">in this case postgres is the &lt;image_name&gt;
+</span>docker run $<span class="org-variable-name">image_name</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">--run an image binding ports</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">where 3000 is the port of the container and 3002 is the port of the host</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">this will create a container with an unique id</span>
-docker run -p 3002:3000 $<span class="org-variable-name">image_name</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">--run an image binding ports
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">where 3000 is the port of the container and 3002 is the port of the host
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">this will create a container with an unique id
+</span>docker run -p 3002:3000 $<span class="org-variable-name">image_name</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">--run an image with an alias or tag name</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">on this way we can refer to the container not only by its id...</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">but the specied tag name.</span>
-docker run --name mydatabase postgres
+<span class="org-comment-delimiter"># </span><span class="org-comment">--run an image with an alias or tag name
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">on this way we can refer to the container not only by its id...
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">but the specied tag name.
+</span>docker run --name mydatabase postgres
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">--Volumes</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">--Volumes
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">creating a volume
+</span>docker volume create $<span class="org-variable-name">volume_name</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">creating a volume</span>
-docker volume create $<span class="org-variable-name">volume_name</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">if we want to persist data from directory in our host from the container
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">we can use two approaches
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">1. -v for bind-mounts
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">2. --mount to let docker handle a little bit more of security
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">bind-mounts approach example
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">this will reflect all changes in $path_in_container over $path_in_host
+</span>docker run -v $<span class="org-variable-name">path_in_host</span>:$<span class="org-variable-name">path_in_container</span> $<span class="org-variable-name">image_name</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">if we want to persist data from directory in our host from the container</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">we can use two approaches</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">1. -v for bind-mounts</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">2. --mount to let docker handle a little bit more of security</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">volumes approach example
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">###note: for this you first have to have an existing volume
+</span>docker run --name db --mount <span class="org-variable-name">src</span>=$<span class="org-variable-name">volume_name</span>,<span class="org-variable-name">dst</span>=$<span class="org-variable-name">path_in_container</span> $<span class="org-variable-name">image_name</span>
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">bind-mounts approach example</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">this will reflect all changes in $path_in_container over $path_in_host</span>
-docker run -v $<span class="org-variable-name">path_in_host</span>:$<span class="org-variable-name">path_in_container</span> $<span class="org-variable-name">image_name</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">volumes approach example</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">###note: for this you first have to have an existing volume</span>
-docker run --name db --mount <span class="org-variable-name">src</span>=$<span class="org-variable-name">volume_name</span>,<span class="org-variable-name">dst</span>=$<span class="org-variable-name">path_in_container</span> $<span class="org-variable-name">image_name</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">--copying files or dirs between host and container</span>
-touch prueba.txt <span class="org-comment-delimiter"># </span><span class="org-comment">create file on host workind directory</span>
-docker run -d --name copytest postgres tail -f /dev/null <span class="org-comment-delimiter"># </span><span class="org-comment">run a postgres container and add a tail for the container keep running until Ctrl-c</span>
-docker exec -it copytest bash <span class="org-comment-delimiter"># </span><span class="org-comment">enter to container</span>
-mkdir testing <span class="org-comment-delimiter"># </span><span class="org-comment">create directory in container</span>
-docker cp prueba.txt copytest:/testing/test.txt <span class="org-comment-delimiter"># </span><span class="org-comment">copy host file into the container</span>
-docker cp copytest:/testing localtesting <span class="org-comment-delimiter"># </span><span class="org-comment">copy directory inside the container to my host</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">###note: with "docker cp" we doesn't need the container to be running.</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">--creating applications</span>
-
-<span class="org-comment-delimiter"># </span><span class="org-comment">build a custom image</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">###note: for this you will need to have a DockerFile on the working directory</span>
-docker build -t $<span class="org-variable-name">custom_image_name</span> .
+<span class="org-comment-delimiter"># </span><span class="org-comment">--copying files or dirs between host and container
+</span>touch prueba.txt <span class="org-comment-delimiter"># </span><span class="org-comment">create file on host workind directory
+</span>docker run -d --name copytest postgres tail -f /dev/null <span class="org-comment-delimiter"># </span><span class="org-comment">run a postgres container and add a tail for the container keep running until Ctrl-c
+</span>docker exec -it copytest bash <span class="org-comment-delimiter"># </span><span class="org-comment">enter to container
+</span>mkdir testing <span class="org-comment-delimiter"># </span><span class="org-comment">create directory in container
+</span>docker cp prueba.txt copytest:/testing/test.txt <span class="org-comment-delimiter"># </span><span class="org-comment">copy host file into the container
+</span>docker cp copytest:/testing localtesting <span class="org-comment-delimiter"># </span><span class="org-comment">copy directory inside the container to my host
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">###note: with "docker cp" we doesn't need the container to be running.
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">--creating applications
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">build a custom image
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">###note: for this you will need to have a DockerFile on the working directory
+</span>docker build -t $<span class="org-variable-name">custom_image_name</span> .
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgcd959c6" class="outline-3">
-<h3 id="orgcd959c6">Volumes</h3>
-<div class="outline-text-3" id="text-orgcd959c6">
+<div id="outline-container-orgcca819a" class="outline-3">
+<h3 id="orgcca819a">Volumes</h3>
+<div class="outline-text-3" id="text-orgcca819a">
 <p>
 Host: Where Docker is installed
 Bind Mount: storage the files in host machine in a persistent way (not secure).
@@ -151,20 +125,20 @@ TMPFS Mount: Storage the data temporarely. Data is deleted when container stop r
 </p>
 
 
-<figure>
+<figure id="org8469e98">
 <img src="notes.org_imgs/20220915_152926_RMpoRs.png" alt="20220915_152926_RMpoRs.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org162346a" class="outline-3">
-<h3 id="org162346a">Developing applications</h3>
-<div class="outline-text-3" id="text-org162346a">
+<div id="outline-container-orga5df816" class="outline-3">
+<h3 id="orga5df816">Developing applications</h3>
+<div class="outline-text-3" id="text-orga5df816">
 <div class="org-src-container">
-<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">this supposed you have an existing Dockerfile</span>
-<span class="org-comment-delimiter"># </span><span class="org-comment">on current working directory</span>
-docker build -t &lt;image_name&gt; .
+<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">this supposed you have an existing Dockerfile
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">on current working directory
+</span>docker build -t &lt;image_name&gt; .
 </pre>
 </div>
 
@@ -183,9 +157,9 @@ ENTRYPOINT <span class="org-variable-name">FLASK_APP</span>=/opt/source-code/app
 </div>
 
 
-<div id="outline-container-org37c9a35" class="outline-3">
-<h3 id="org37c9a35">Networking</h3>
-<div class="outline-text-3" id="text-org37c9a35">
+<div id="outline-container-orgdf538e9" class="outline-3">
+<h3 id="orgdf538e9">Networking</h3>
+<div class="outline-text-3" id="text-orgdf538e9">
 <div class="org-src-container">
 <pre class="src src-shell">docker network ls
 </pre>
@@ -236,9 +210,9 @@ When we connect a container to a custom created network, we can then reference a
 </div>
 </div>
 
-<div id="outline-container-org52d5c0e" class="outline-3">
-<h3 id="org52d5c0e">Docker compose</h3>
-<div class="outline-text-3" id="text-org52d5c0e">
+<div id="outline-container-org3541d9c" class="outline-3">
+<h3 id="org3541d9c">Docker compose</h3>
+<div class="outline-text-3" id="text-org3541d9c">
 <p>
 It&rsquo;s tedious to create manually each image and container and then create the network to later connect the desired containers. So for this, docker has something called <code>docker compose</code>, which is a tool to manage containers and their set up between them.
 instead of having a <code>Dockerfile</code> docker compose uses a file called <code>docker-compose.yml</code>, in it we declare/define all the services we use for our custom application.
@@ -287,25 +261,25 @@ We can also use the ps command under docker compose and other utilities like sho
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">list all processes</span>
-docker-compose ps
+<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">list all processes
+</span>docker-compose ps
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">show logs</span>
-docker-compose logs
+<span class="org-comment-delimiter"># </span><span class="org-comment">show logs
+</span>docker-compose logs
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">show logs of an speciic service</span>
-docker-compose logs &lt;service_name&gt;
+<span class="org-comment-delimiter"># </span><span class="org-comment">show logs of an speciic service
+</span>docker-compose logs &lt;service_name&gt;
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">execute command on a container or service</span>
-docker-compose exec &lt;container_name&gt; &lt;command&gt;
+<span class="org-comment-delimiter"># </span><span class="org-comment">execute command on a container or service
+</span>docker-compose exec &lt;container_name&gt; &lt;command&gt;
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">delete all generated resources of docker-compose</span>
-docker-compose down
+<span class="org-comment-delimiter"># </span><span class="org-comment">delete all generated resources of docker-compose
+</span>docker-compose down
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">to build the services defined on the docker-compose.yml file</span>
-docker-compose build
-<span class="org-comment-delimiter"># </span><span class="org-comment">or you can also build an specific service</span>
-docker-compose build &lt;service-name&gt;
+<span class="org-comment-delimiter"># </span><span class="org-comment">to build the services defined on the docker-compose.yml file
+</span>docker-compose build
+<span class="org-comment-delimiter"># </span><span class="org-comment">or you can also build an specific service
+</span>docker-compose build &lt;service-name&gt;
 </pre>
 </div>
 
@@ -331,16 +305,16 @@ services:
 some random notes:
 </p>
 <div class="org-src-container">
-<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">some random commands</span>
-docker container prune <span class="org-comment-delimiter"># </span><span class="org-comment">delete all inactive containers</span>
-docker rm -f $(docker ps -aq) <span class="org-comment-delimiter"># </span><span class="org-comment">delete all inactive containers</span>
-docker network ls <span class="org-comment-delimiter"># </span><span class="org-comment">list networks</span>
-docker volume ls <span class="org-comment-delimiter"># </span><span class="org-comment">list volumes</span>
-docker image ls <span class="org-comment-delimiter"># </span><span class="org-comment">list images</span>
-docker system prune <span class="org-comment-delimiter"># </span><span class="org-comment">delete everything that is not being used</span>
-docker run -d --name app --memory 1g platziapp <span class="org-comment-delimiter"># </span><span class="org-comment">limit memory</span>
-docker stats <span class="org-comment-delimiter"># </span><span class="org-comment">see how much resources docker uses in the host machine</span>
-docker inspect app <span class="org-comment-delimiter"># </span><span class="org-comment">see details about a container, e.g. I can see if the container died due to lack of memory, etc.</span>
+<pre class="src src-shell"><span class="org-comment-delimiter"># </span><span class="org-comment">some random commands
+</span>docker container prune <span class="org-comment-delimiter"># </span><span class="org-comment">delete all inactive containers
+</span>docker rm -f $(<span class="org-sh-quoted-exec">docker ps -aq</span>) <span class="org-comment-delimiter"># </span><span class="org-comment">delete all inactive containers
+</span>docker network ls <span class="org-comment-delimiter"># </span><span class="org-comment">list networks
+</span>docker volume ls <span class="org-comment-delimiter"># </span><span class="org-comment">list volumes
+</span>docker image ls <span class="org-comment-delimiter"># </span><span class="org-comment">list images
+</span>docker system prune <span class="org-comment-delimiter"># </span><span class="org-comment">delete everything that is not being used
+</span>docker run -d --name app --memory 1g platziapp <span class="org-comment-delimiter"># </span><span class="org-comment">limit memory
+</span>docker stats <span class="org-comment-delimiter"># </span><span class="org-comment">see how much resources docker uses in the host machine
+</span>docker inspect app <span class="org-comment-delimiter"># </span><span class="org-comment">see details about a container, e.g. I can see if the container died due to lack of memory, etc.</span>
 </pre>
 </div>
 
@@ -355,8 +329,8 @@ some commands for <b>stop</b> and/or <b>kill</b> a container.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-shell">docker stop &lt;container&gt; <span class="org-comment-delimiter"># </span><span class="org-comment">this will senda SIGTERM signal to the main process of the container</span>
-docker kill &lt;container&gt; <span class="org-comment-delimiter"># </span><span class="org-comment">this will send a SIGKILL signal to the main process</span>
+<pre class="src src-shell">docker stop &lt;container&gt; <span class="org-comment-delimiter"># </span><span class="org-comment">this will senda SIGTERM signal to the main process of the container
+</span>docker kill &lt;container&gt; <span class="org-comment-delimiter"># </span><span class="org-comment">this will send a SIGKILL signal to the main process</span>
 </pre>
 </div>
 
@@ -410,7 +384,7 @@ For more details on Docker compose look <a href="https://www.educative.io/blog/d
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 18, 2024 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3) <br>
+Last updated on Aug 29, 2025 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.3 (<a href="https://orgmode.org">Org</a> mode 9.6.15) <br>
 </div>
 </footer>
 </body>

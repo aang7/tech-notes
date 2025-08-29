@@ -1,57 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
-<meta name="generator" content="Org mode">
+<meta name="generator" content="Org Mode" />
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
 </script>
 </head>
 <body>
@@ -59,10 +33,10 @@ for the JavaScript code in this tag.
  <a accesskey="h" href="../"> UP </a>
  |
  <a accesskey="H" href="../"> HOME </a>
-</div><nil id="nil">
-<section id="outline-container-orgfeadb12" class="outline-2">
-<h2 id="orgfeadb12">Intro</h2>
-<div class="outline-text-2" id="text-orgfeadb12">
+</div><nil id="nil" class="content">
+<section id="outline-container-orgbe30927" class="outline-2">
+<h2 id="orgbe30927">Intro</h2>
+<div class="outline-text-2" id="text-orgbe30927">
 <p>
 This file contains my personal annotations on the Design Patterns subjects
 that I will be reading on the &ldquo;<b>Head First: Design Patterns</b>&rdquo; book.
@@ -79,9 +53,9 @@ Source code of my study: <a href="https://github.com/aang7/DesignPatternsExample
 </section>
 
 
-<section id="outline-container-org34cc489" class="outline-2">
-<h2 id="org34cc489">Chapter 1</h2>
-<div class="outline-text-2" id="text-org34cc489">
+<section id="outline-container-org387fefd" class="outline-2">
+<h2 id="org387fefd">Chapter 1</h2>
+<div class="outline-text-2" id="text-org387fefd">
 <p>
 Design principles on <code>STRATEGY</code> pattern:
 </p>
@@ -94,9 +68,9 @@ Design principles on <code>STRATEGY</code> pattern:
 </div>
 
 
-<div id="outline-container-orge864013" class="outline-3">
-<h3 id="orge864013">Formal definition of Strategy pattern</h3>
-<div class="outline-text-3" id="text-orge864013">
+<div id="outline-container-org7980602" class="outline-3">
+<h3 id="org7980602">Formal definition of Strategy pattern</h3>
+<div class="outline-text-3" id="text-org7980602">
 <p>
 <code>The Strategy Pattern</code> defines a family of algorithms, encapsulates each one, and makes them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 </p>
@@ -104,38 +78,38 @@ Design principles on <code>STRATEGY</code> pattern:
 </div>
 </section>
 
-<section id="outline-container-org526cdb2" class="outline-2">
-<h2 id="org526cdb2">Chapter 2</h2>
-<div class="outline-text-2" id="text-org526cdb2">
+<section id="outline-container-org750076d" class="outline-2">
+<h2 id="org750076d">Chapter 2</h2>
+<div class="outline-text-2" id="text-org750076d">
 </div>
-<div id="outline-container-org4daabed" class="outline-3">
-<h3 id="org4daabed">The Observer Pattern</h3>
-<div class="outline-text-3" id="text-org4daabed">
+<div id="outline-container-orgceda747" class="outline-3">
+<h3 id="orgceda747">The Observer Pattern</h3>
+<div class="outline-text-3" id="text-orgceda747">
 <p>
 The Observer Pattern defines a one-to-many relationship between a set of objects.
 When the state of one object changes, all of its dependents are notified.
 </p>
 
 
-<figure>
+<figure id="org7a87389">
 <img src="notes.org_imgs/20221003_151046_6x2ivp.png" alt="20221003_151046_6x2ivp.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org2986d72" class="outline-3">
-<h3 id="org2986d72">The Power of Loose Coupling</h3>
-<div class="outline-text-3" id="text-org2986d72">
+<div id="outline-container-orgc427fea" class="outline-3">
+<h3 id="orgc427fea">The Power of Loose Coupling</h3>
+<div class="outline-text-3" id="text-orgc427fea">
 <p>
 When two objects are loosely coupled, they can interact, but they typically have very little knowledge of each other. Loosely coupled designs often give us a lot of flexibility.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc626b6d" class="outline-3">
-<h3 id="orgc626b6d">Design Principles</h3>
-<div class="outline-text-3" id="text-orgc626b6d">
+<div id="outline-container-orgd67964f" class="outline-3">
+<h3 id="orgd67964f">Design Principles</h3>
+<div class="outline-text-3" id="text-orgd67964f">
 <p>
 Design principles found in this chapter:
 </p>
@@ -146,22 +120,22 @@ Design principles found in this chapter:
 </div>
 </section>
 
-<section id="outline-container-org2955740" class="outline-2">
-<h2 id="org2955740">Chapter 3</h2>
-<div class="outline-text-2" id="text-org2955740">
+<section id="outline-container-org9688a99" class="outline-2">
+<h2 id="org9688a99">Chapter 3</h2>
+<div class="outline-text-2" id="text-org9688a99">
 </div>
-<div id="outline-container-orgc066966" class="outline-3">
-<h3 id="orgc066966">The Decorator Pattern</h3>
-<div class="outline-text-3" id="text-orgc066966">
+<div id="outline-container-org990b845" class="outline-3">
+<h3 id="org990b845">The Decorator Pattern</h3>
+<div class="outline-text-3" id="text-org990b845">
 <p>
 Decorators are meant to add behavior to the object they wrap.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgde67e45" class="outline-3">
-<h3 id="orgde67e45">Design Principles</h3>
-<div class="outline-text-3" id="text-orgde67e45">
+<div id="outline-container-org4db9fac" class="outline-3">
+<h3 id="org4db9fac">Design Principles</h3>
+<div class="outline-text-3" id="text-org4db9fac">
 <p>
 Design principles found in this chapter:
 1.Classes should be open for extension, but closed for modification. (This is called the Open-Closed Principle)
@@ -169,15 +143,15 @@ Design principles found in this chapter:
 </div>
 </div>
 
-<div id="outline-container-org2addb4b" class="outline-3">
-<h3 id="org2addb4b">Example</h3>
-<div class="outline-text-3" id="text-org2addb4b">
+<div id="outline-container-org3e3fa17" class="outline-3">
+<h3 id="org3e3fa17">Example</h3>
+<div class="outline-text-3" id="text-org3e3fa17">
 <p>
 the <code>Java.io</code> package is one example of many where the Decorator Pattern is largely used.
 </p>
 
 
-<figure>
+<figure id="org96da71c">
 <img src="notes.org_imgs/20221004_144956_Hxvl16.png" alt="20221004_144956_Hxvl16.png">
 
 </figure>
@@ -188,9 +162,9 @@ Java I/O also points out one of the downsides of the Decorator Pattern: designs 
 </div>
 </div>
 
-<div id="outline-container-org1c4940b" class="outline-3">
-<h3 id="org1c4940b">Points</h3>
-<div class="outline-text-3" id="text-org1c4940b">
+<div id="outline-container-org21820b2" class="outline-3">
+<h3 id="org21820b2">Points</h3>
+<div class="outline-text-3" id="text-org21820b2">
 <p>
 <b>Good points:</b>
 </p>
@@ -212,13 +186,13 @@ Java I/O also points out one of the downsides of the Decorator Pattern: designs 
 </div>
 </section>
 
-<section id="outline-container-org1633121" class="outline-2">
-<h2 id="org1633121">Chapter 4</h2>
-<div class="outline-text-2" id="text-org1633121">
+<section id="outline-container-org3413d00" class="outline-2">
+<h2 id="org3413d00">Chapter 4</h2>
+<div class="outline-text-2" id="text-org3413d00">
 </div>
-<div id="outline-container-orga529aef" class="outline-3">
-<h3 id="orga529aef">The Factory Pattern</h3>
-<div class="outline-text-3" id="text-orga529aef">
+<div id="outline-container-org316312f" class="outline-3">
+<h3 id="org316312f">The Factory Pattern</h3>
+<div class="outline-text-3" id="text-org316312f">
 <p>
 Inside the Factory Pattern we have a few variants:
 </p>
@@ -230,49 +204,49 @@ Inside the Factory Pattern we have a few variants:
 </ul>
 
 <p>
-Examples of the pattern can be found on my repository<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> under this <a href="https://github.com/aang7/DesignPatternsExamples/tree/master/src/main/java/com/designpatterns/factory">path</a>.  
+Examples of the pattern can be found on my repository<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> under this <a href="https://github.com/aang7/DesignPatternsExamples/tree/master/src/main/java/com/designpatterns/factory">path</a>.  
 </p>
 </div>
 </div>
 
-<div id="outline-container-org409cebe" class="outline-3">
-<h3 id="org409cebe">Abstract Factory and Factory method - Comparison</h3>
-<div class="outline-text-3" id="text-org409cebe">
+<div id="outline-container-org782eca9" class="outline-3">
+<h3 id="org782eca9">Abstract Factory and Factory method - Comparison</h3>
+<div class="outline-text-3" id="text-org782eca9">
 <p>
 We can say that in this pattern we have the creator and the product. Where the creator is the factory itself and the product is the one that requires the creator.
 So the we have the creator classes and the product classes.
 </p>
 
 
-<figure>
+<figure id="orgb65ed83">
 <img src="notes.org_imgs/20221006_151133_tzEe5m.png" alt="20221006_151133_tzEe5m.png">
 
-<figcaption><span class="figure-number">Figure 3: </span>factory method general overview of the pattern</figcaption>
+<figcaption><span class="figure-number">Figure 1: </span>factory method general overview of the pattern</figcaption>
 </figure>
 
 
-<figure>
+<figure id="org7fa1a8b">
 <img src="notes.org_imgs/20221006_143714_JGd9Ky.png" alt="20221006_143714_JGd9Ky.png">
 
-<figcaption><span class="figure-number">Figure 4: </span>abstract factory general overview of the pattern</figcaption>
+<figcaption><span class="figure-number">Figure 2: </span>abstract factory general overview of the pattern</figcaption>
 </figure>
 
 
-<figure>
+<figure id="org85bcc3a">
 <img src="notes.org_imgs/20221006_150512_wFk60t.png" alt="20221006_150512_wFk60t.png">
 
-<figcaption><span class="figure-number">Figure 5: </span>abstract factory general overview of the pattern - Practical Illustration</figcaption>
+<figcaption><span class="figure-number">Figure 3: </span>abstract factory general overview of the pattern - Practical Illustration</figcaption>
 </figure>
 
 
-<figure>
+<figure id="orgaec3191">
 <img src="notes.org_imgs/20221005_164049_z1pNFs.png" alt="20221005_164049_z1pNFs.png">
 
-<figcaption><span class="figure-number">Figure 6: </span>example of design - simple factory on the left and abstract on the right</figcaption>
+<figcaption><span class="figure-number">Figure 4: </span>example of design - simple factory on the left and abstract on the right</figcaption>
 </figure>
 
 
-<figure>
+<figure id="org3be1fdf">
 <img src="notes.org_imgs/20221005_164219_ymwp0U.png" alt="20221005_164219_ymwp0U.png">
 
 </figure>
@@ -281,9 +255,9 @@ So the we have the creator classes and the product classes.
 
 
 
-<div id="outline-container-orgdd3e114" class="outline-3">
-<h3 id="orgdd3e114">Principles</h3>
-<div class="outline-text-3" id="text-orgdd3e114">
+<div id="outline-container-org8ea92a8" class="outline-3">
+<h3 id="org8ea92a8">Principles</h3>
+<div class="outline-text-3" id="text-org8ea92a8">
 <ul class="org-ul">
 <li>Depend upon abstractions. Do not depend upon concrete classes. (This is called &ldquo;<b>Dependency Inversion Principle</b>&rdquo;)
 At first, this principle sounds a lot like &ldquo;Program to an interface, not an implementation,&rdquo; right? It is similar; however, the Dependency Inversion Principle makes an even stronger statement about abstraction. It suggests that our high-level components should not depend on our low-level components; rather, they should both depend on abstractions.</li>
@@ -293,9 +267,9 @@ At first, this principle sounds a lot like &ldquo;Program to an interface, not a
 
 
 
-<div id="outline-container-orgb097d1e" class="outline-3">
-<h3 id="orgb097d1e">Points</h3>
-<div class="outline-text-3" id="text-orgb097d1e">
+<div id="outline-container-org664e503" class="outline-3">
+<h3 id="org664e503">Points</h3>
+<div class="outline-text-3" id="text-org664e503">
 <ul class="org-ul">
 <li>All factories encapsulate object creation.</li>
 <li>Simple Factory, while not a bona fide design pattern, is a simple way to decouple your clients from concrete classes.</li>
@@ -310,13 +284,13 @@ At first, this principle sounds a lot like &ldquo;Program to an interface, not a
 </div>
 </section>
 
-<section id="outline-container-org708904f" class="outline-2">
-<h2 id="org708904f">Chapter 5</h2>
-<div class="outline-text-2" id="text-org708904f">
+<section id="outline-container-org4625d03" class="outline-2">
+<h2 id="org4625d03">Chapter 5</h2>
+<div class="outline-text-2" id="text-org4625d03">
 </div>
-<div id="outline-container-orgf79b56d" class="outline-3">
-<h3 id="orgf79b56d">The Singleton Pattern</h3>
-<div class="outline-text-3" id="text-orgf79b56d">
+<div id="outline-container-org7147663" class="outline-3">
+<h3 id="org7147663">The Singleton Pattern</h3>
+<div class="outline-text-3" id="text-org7147663">
 <p>
 This is easily the shortest pattern so far in the book.
 The singleton pattern basically handle the creation of only one instance of a determined class.
@@ -338,9 +312,9 @@ For more details please refer to <a href="https://dzone.com/articles/java-single
 </div>
 </div>
 
-<div id="outline-container-orgcd2777b" class="outline-3">
-<h3 id="orgcd2777b">Points</h3>
-<div class="outline-text-3" id="text-orgcd2777b">
+<div id="outline-container-org2280353" class="outline-3">
+<h3 id="org2280353">Points</h3>
+<div class="outline-text-3" id="text-org2280353">
 <ul class="org-ul">
 <li>The Singleton Pattern ensures you have at most one instance of a class in your application.</li>
 <li>The Singleton Pattern also provides a global access point to that instance.</li>
@@ -357,7 +331,7 @@ For more details please refer to <a href="https://dzone.com/articles/java-single
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://github.com/aang7/DesignPatternsExamples">https://github.com/aang7/DesignPatternsExamples</a> 
 </p></div></div>
 
@@ -368,7 +342,7 @@ For more details please refer to <a href="https://dzone.com/articles/java-single
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 18, 2024 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3) <br>
+Last updated on Aug 29, 2025 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.3 (<a href="https://orgmode.org">Org</a> mode 9.6.15) <br>
 </div>
 </footer>
 </body>

@@ -1,57 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
-<meta name="generator" content="Org mode">
+<meta name="generator" content="Org Mode" />
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
 </script>
 </head>
 <body>
@@ -59,10 +33,10 @@ for the JavaScript code in this tag.
  <a accesskey="h" href="../"> UP </a>
  |
  <a accesskey="H" href="../"> HOME </a>
-</div><nil id="nil">
-<section id="outline-container-orgd337661" class="outline-2">
-<h2 id="orgd337661">What are Large Language Models (LLMs)</h2>
-<div class="outline-text-2" id="text-orgd337661">
+</div><nil id="nil" class="content">
+<section id="outline-container-orgb887bc5" class="outline-2">
+<h2 id="orgb887bc5">What are Large Language Models (LLMs)</h2>
+<div class="outline-text-2" id="text-orgb887bc5">
 <p>
 Large, general-purpose language models can be pre-trained and then fine-tuned
 for specific purposes.
@@ -75,9 +49,9 @@ Source: <a href="https://www.youtube.com/watch?v=zizonToFXDs">Introduction to La
 </section>
 
 
-<section id="outline-container-org6daea49" class="outline-2">
-<h2 id="org6daea49">Marqo.ai</h2>
-<div class="outline-text-2" id="text-org6daea49">
+<section id="outline-container-orgcde215e" class="outline-2">
+<h2 id="orgcde215e">Marqo.ai</h2>
+<div class="outline-text-2" id="text-orgcde215e">
 <p>
 <b>What is tensor search?</b>
 </p>
@@ -96,62 +70,62 @@ Tensor search uses deep-learning to transform documents, images and other data i
 </section>
 
 
-<section id="outline-container-orga8532cb" class="outline-2">
-<h2 id="orga8532cb">LLM-150</h2>
-<div class="outline-text-2" id="text-orga8532cb">
+<section id="outline-container-org0468cd1" class="outline-2">
+<h2 id="org0468cd1">LLM-150</h2>
+<div class="outline-text-2" id="text-org0468cd1">
 </div>
-<div id="outline-container-org50ad36a" class="outline-3">
-<h3 id="org50ad36a">Some References</h3>
-<div class="outline-text-3" id="text-org50ad36a">
+<div id="outline-container-org69ed3c3" class="outline-3">
+<h3 id="org69ed3c3">Some References</h3>
+<div class="outline-text-3" id="text-org69ed3c3">
 <ul class="org-ul">
 <li><a href="https://raffaeu.medium.com/generate-an-amazon-s3-pre-signed-url-with-aws-lambda-and-amazon-api-gateway-4ffbea99207d">https://raffaeu.medium.com/generate-an-amazon-s3-pre-signed-url-with-aws-lambda-and-amazon-api-gateway-4ffbea99207d</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgae23347" class="outline-3">
-<h3 id="orgae23347">CANCELED Create cdk project</h3>
-<div class="outline-text-3" id="text-orgae23347">
+<div id="outline-container-orgecb5e20" class="outline-3">
+<h3 id="orgecb5e20">CANCELED Create cdk project</h3>
+<div class="outline-text-3" id="text-orgecb5e20">
 <p>
 <a href="https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/rekognition-lambda-s3-trigger/lib/rekognition-lambda-s3-trigger-stack.ts">https://github.com/aws-samples/aws-cdk-examples/blob/master/typescript/rekognition-lambda-s3-trigger/lib/rekognition-lambda-s3-trigger-stack.ts</a>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org74c8d50" class="outline-3">
-<h3 id="org74c8d50"><span class="done DONE">DONE</span> Create an s3 bucket</h3>
-<div class="outline-text-3" id="text-org74c8d50">
+<div id="outline-container-org43a184b" class="outline-3">
+<h3 id="org43a184b"><span class="done DONE">DONE</span> Create an s3 bucket</h3>
+<div class="outline-text-3" id="text-org43a184b">
 <p>
 Create a lambda that triggers on s3 bucket creation
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfac49d2" class="outline-3">
-<h3 id="orgfac49d2"><span class="done DONE">DONE</span> Create Lambda with Python</h3>
-<div class="outline-text-3" id="text-orgfac49d2">
+<div id="outline-container-org680affc" class="outline-3">
+<h3 id="org680affc"><span class="done DONE">DONE</span> Create Lambda with Python</h3>
+<div class="outline-text-3" id="text-org680affc">
 </div>
 </div>
 
-<div id="outline-container-orge2262d1" class="outline-3">
-<h3 id="orge2262d1"><span class="done DONE">DONE</span> Receive document from s3 bucket</h3>
-<div class="outline-text-3" id="text-orge2262d1">
+<div id="outline-container-org7f9048a" class="outline-3">
+<h3 id="org7f9048a"><span class="done DONE">DONE</span> Receive document from s3 bucket</h3>
+<div class="outline-text-3" id="text-org7f9048a">
 </div>
 </div>
 
-<div id="outline-container-org86ec8f9" class="outline-3">
-<h3 id="org86ec8f9"><span class="done DONE">DONE</span> Get chunks of document</h3>
-<div class="outline-text-3" id="text-org86ec8f9">
+<div id="outline-container-orgd2c521c" class="outline-3">
+<h3 id="orgd2c521c"><span class="done DONE">DONE</span> Get chunks of document</h3>
+<div class="outline-text-3" id="text-orgd2c521c">
 </div>
 </div>
 
-<div id="outline-container-org3dfb705" class="outline-3">
-<h3 id="org3dfb705">INPROGRESS integrate marqo</h3>
+<div id="outline-container-org3ad74df" class="outline-3">
+<h3 id="org3ad74df">INPROGRESS integrate marqo</h3>
 </div>
 
-<div id="outline-container-org70a98f9" class="outline-3">
-<h3 id="org70a98f9">INPROGRESS upload document chunks to marqo</h3>
-<div class="outline-text-3" id="text-org70a98f9">
+<div id="outline-container-orgcdce7fe" class="outline-3">
+<h3 id="orgcdce7fe">INPROGRESS upload document chunks to marqo</h3>
+<div class="outline-text-3" id="text-orgcdce7fe">
 <p>
 For the indexing I thought I can get the folder path of the file where we can have somo sort of hierarchy like:
 </p>
@@ -199,7 +173,7 @@ Constraints:
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 18, 2024 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3) <br>
+Last updated on Aug 29, 2025 using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 29.3 (<a href="https://orgmode.org">Org</a> mode 9.6.15) <br>
 </div>
 </footer>
 </body>

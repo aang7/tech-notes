@@ -1,59 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Oct 18, 2024 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Aug 29, 2025 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Azure AZ-900 notes</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Abel Abner">
+<meta name="author" content="Abel Abner" />
+<meta name="generator" content="Org Mode" />
 <link rel='stylesheet' href='https://cdn.simplecss.org/simple.min.css' />
    <link rel='stylesheet' type='text/css' href='../css/tech-notes-site.css' />
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+<script>
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+// @license-end
 </script>
 </head>
 <body>
@@ -61,13 +35,13 @@ for the JavaScript code in this tag.
  <a accesskey="h" href="../"> UP </a>
  |
  <a accesskey="H" href="../"> HOME </a>
-</div><nil id="nil">
+</div><nil id="nil" class="content">
 <header>
 <h1 class="title">Azure AZ-900 notes</h1>
 </header>
-<section id="outline-container-orgb2414bb" class="outline-2">
-<h2 id="orgb2414bb">Intro</h2>
-<div class="outline-text-2" id="text-orgb2414bb">
+<section id="outline-container-org6ea7541" class="outline-2">
+<h2 id="org6ea7541">Intro</h2>
+<div class="outline-text-2" id="text-org6ea7541">
 <p>
 Notes of azure az-900 training
 </p>
@@ -94,9 +68,9 @@ Tree:
 </div>
 </section>
 
-<section id="outline-container-orged873ac" class="outline-2">
-<h2 id="orged873ac">Describe core Azure services</h2>
-<div class="outline-text-2" id="text-orged873ac">
+<section id="outline-container-org90027b8" class="outline-2">
+<h2 id="org90027b8">Describe core Azure services</h2>
+<div class="outline-text-2" id="text-org90027b8">
 <p>
 Each service provides different options depending on your requirements. Some of the most prominent services are:
 </p>
@@ -111,9 +85,9 @@ Each service provides different options depending on your requirements. Some of 
 
 
 
-<div id="outline-container-org319ff5d" class="outline-3">
-<h3 id="org319ff5d">App Service</h3>
-<div class="outline-text-3" id="text-org319ff5d">
+<div id="outline-container-org282fe1f" class="outline-3">
+<h3 id="org282fe1f">App Service</h3>
+<div class="outline-text-3" id="text-org282fe1f">
 <p>
 With App Service, you can host most common app service styles like:
 </p>
@@ -127,13 +101,13 @@ With App Service, you can host most common app service styles like:
 </div>
 </div>
 
-<div id="outline-container-orgb6d5df6" class="outline-3">
-<h3 id="orgb6d5df6">Containerazation</h3>
-<div class="outline-text-3" id="text-orgb6d5df6">
+<div id="outline-container-orgce0f63f" class="outline-3">
+<h3 id="orgce0f63f">Containerazation</h3>
+<div class="outline-text-3" id="text-orgce0f63f">
 </div>
-<div id="outline-container-orge4a3b76" class="outline-4">
-<h4 id="orge4a3b76">Manage containers</h4>
-<div class="outline-text-4" id="text-orge4a3b76">
+<div id="outline-container-org35f83c2" class="outline-4">
+<h4 id="org35f83c2">Manage containers</h4>
+<div class="outline-text-4" id="text-org35f83c2">
 <p>
 Containers are managed through a container orchestrator, which can start, stop, and scale out application instances as needed. There are two ways to manage both Docker and Microsoft-based containers in Azure: Azure Container Instances and Azure Kubernetes Service (AKS).
 </p>
@@ -144,13 +118,13 @@ Containers are managed through a container orchestrator, which can start, stop, 
 
 
 
-<section id="outline-container-org79ffcb5" class="outline-2">
-<h2 id="org79ffcb5">Explore Azure networking services</h2>
-<div class="outline-text-2" id="text-org79ffcb5">
+<section id="outline-container-org450afc8" class="outline-2">
+<h2 id="org450afc8">Explore Azure networking services</h2>
+<div class="outline-text-2" id="text-org450afc8">
 </div>
-<div id="outline-container-org3f1026b" class="outline-3">
-<h3 id="org3f1026b">Azure virtual networking</h3>
-<div class="outline-text-3" id="text-org3f1026b">
+<div id="outline-container-org0053175" class="outline-3">
+<h3 id="org0053175">Azure virtual networking</h3>
+<div class="outline-text-3" id="text-org0053175">
 <p>
 Azure virtual networks provide the following key networking capabilities:
 </p>
@@ -167,9 +141,9 @@ Azure virtual networks provide the following key networking capabilities:
 </div>
 
 
-<div id="outline-container-orgf583a90" class="outline-4">
-<h4 id="orgf583a90">Azure Express route</h4>
-<div class="outline-text-4" id="text-orgf583a90">
+<div id="outline-container-org291bf5e" class="outline-4">
+<h4 id="org291bf5e">Azure Express route</h4>
+<div class="outline-text-4" id="text-org291bf5e">
 <p>
 Is used to connect on-premises infrastructure with cloud services of azure.
 The connection is not encrypted.
@@ -184,7 +158,7 @@ Directly from ExpressRoute sites
 </p>
 
 
-<figure>
+<figure id="org37fb82a">
 <img src="az900.org_imgs/20220822_162711_FKKQRf.png" alt="20220822_162711_FKKQRf.png">
 
 </figure></li>
@@ -195,9 +169,9 @@ Directly from ExpressRoute sites
 </section>
 
 
-<section id="outline-container-org7923cdf" class="outline-2">
-<h2 id="org7923cdf">Explore Azure storage services</h2>
-<div class="outline-text-2" id="text-org7923cdf">
+<section id="outline-container-orge005cbf" class="outline-2">
+<h2 id="orge005cbf">Explore Azure storage services</h2>
+<div class="outline-text-2" id="text-orge005cbf">
 <ul class="org-ul">
 <li>Azure Blob Storage</li>
 <li>Azure Disk Storage</li>
@@ -219,19 +193,19 @@ FOS: flight operation system
 </div>
 </section>
 
-<section id="outline-container-org608ee20" class="outline-2">
-<h2 id="org608ee20">Explore Azure databases and analytics services</h2>
-<div class="outline-text-2" id="text-org608ee20">
+<section id="outline-container-org8bf6789" class="outline-2">
+<h2 id="org8bf6789">Explore Azure databases and analytics services</h2>
+<div class="outline-text-2" id="text-org8bf6789">
 </div>
-<div id="outline-container-org88c6822" class="outline-3">
-<h3 id="org88c6822">Azure SQL Database</h3>
+<div id="outline-container-org1705b1a" class="outline-3">
+<h3 id="org1705b1a">Azure SQL Database</h3>
 </div>
-<div id="outline-container-orge844005" class="outline-3">
-<h3 id="orge844005">Azure SQL Managed Instance</h3>
+<div id="outline-container-orgbb8e0ed" class="outline-3">
+<h3 id="orgbb8e0ed">Azure SQL Managed Instance</h3>
 </div>
-<div id="outline-container-orgabab2a2" class="outline-3">
-<h3 id="orgabab2a2">Explore big data and analytics</h3>
-<div class="outline-text-3" id="text-orgabab2a2">
+<div id="outline-container-orgb34748f" class="outline-3">
+<h3 id="orgb34748f">Explore big data and analytics</h3>
+<div class="outline-text-3" id="text-orgb34748f">
 <ul class="org-ul">
 <li>Azure Synapse Analytics
 antes sql data warehouse,</li>
@@ -245,23 +219,23 @@ para uso on-demand.</li>
 </div>
 </div>
 </section>
-<section id="outline-container-org5eb23ee" class="outline-2">
-<h2 id="org5eb23ee">Protect against security threats on Azure</h2>
-<div class="outline-text-2" id="text-org5eb23ee">
+<section id="outline-container-orgcdd5747" class="outline-2">
+<h2 id="orgcdd5747">Protect against security threats on Azure</h2>
+<div class="outline-text-2" id="text-orgcdd5747">
 
-<figure>
+<figure id="org7818bf4">
 <img src="az900.org_imgs/20220826_143049_UnjaY6.png" alt="20220826_143049_UnjaY6.png">
 
 </figure>
 </div>
 </section>
-<section id="outline-container-org8fe8491" class="outline-2">
-<h2 id="org8fe8491">Secure network connectivity on azure</h2>
-<div class="outline-text-2" id="text-org8fe8491">
+<section id="outline-container-orgffe4dfd" class="outline-2">
+<h2 id="orgffe4dfd">Secure network connectivity on azure</h2>
+<div class="outline-text-2" id="text-orgffe4dfd">
 </div>
-<div id="outline-container-org1edb820" class="outline-3">
-<h3 id="org1edb820">What is defense in depth?</h3>
-<div class="outline-text-3" id="text-org1edb820">
+<div id="outline-container-org63bcd16" class="outline-3">
+<h3 id="org63bcd16">What is defense in depth?</h3>
+<div class="outline-text-3" id="text-org63bcd16">
 <ul class="org-ul">
 <li>The objective of defense in depth is to protect information and prevent it from being stolen.</li>
 <li>A defense-in-depth strategy uses a series of mechanisms to slow the advance of an attack that aims at acquiring unauthorized access to data.</li>
@@ -269,7 +243,7 @@ para uso on-demand.</li>
 
 
 
-<figure>
+<figure id="orgfb56b18">
 <img src="az900.org_imgs/20220929_135212_B9yKgY.png" alt="20220929_135212_B9yKgY.png">
 
 </figure>
@@ -277,24 +251,24 @@ para uso on-demand.</li>
 </div>
 
 
-<div id="outline-container-org975d496" class="outline-3">
-<h3 id="org975d496">Security posture</h3>
-<div class="outline-text-3" id="text-org975d496">
+<div id="outline-container-orgfed2c27" class="outline-3">
+<h3 id="orgfed2c27">Security posture</h3>
+<div class="outline-text-3" id="text-orgfed2c27">
 <p>
 The common principles used to define a security posture are confidentiality, integrity, and availability, known collectively as CIA.
 </p>
 
 
-<figure>
+<figure id="org4f78b45">
 <img src="az900.org_imgs/20220929_141320_A89NTu.png" alt="20220929_141320_A89NTu.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-orgbaa949a" class="outline-3">
-<h3 id="orgbaa949a">Protect virtual networks by using Azure Firewall</h3>
-<div class="outline-text-3" id="text-orgbaa949a">
+<div id="outline-container-orga345516" class="outline-3">
+<h3 id="orga345516">Protect virtual networks by using Azure Firewall</h3>
+<div class="outline-text-3" id="text-orga345516">
 <p>
 A <code>firewall</code> is a network security device that monitors incoming and outgoing network traffic and decides whether to allow or block specific traffic based on a defined set of security rules.
 </p>
@@ -315,30 +289,30 @@ With Azure Firewall, you can configure:
 </div>
 
 
-<div id="outline-container-org57a0fca" class="outline-3">
-<h3 id="org57a0fca">Protect from DDoS attacks by using Azure DDoS Protection</h3>
-<div class="outline-text-3" id="text-org57a0fca">
+<div id="outline-container-org44e35c6" class="outline-3">
+<h3 id="org44e35c6">Protect from DDoS attacks by using Azure DDoS Protection</h3>
+<div class="outline-text-3" id="text-org44e35c6">
 <p>
 A distributed denial of service attack attempts to overwhelm and exhaust an application&rsquo;s resources, making the application slow or unresponsive to legitimate users. DDoS attacks can target any resource that&rsquo;s publicly reachable through the internet, including websites.
 </p>
 
 
-<figure>
+<figure id="org26ad19b">
 <img src="az900.org_imgs/20220929_142833_Jj3bCB.png" alt="20220929_142833_Jj3bCB.png">
 
 </figure>
 
 
-<figure>
+<figure id="org9afa0ea">
 <img src="az900.org_imgs/20220929_143158_ljNQjB.png" alt="20220929_143158_ljNQjB.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org34e176b" class="outline-3">
-<h3 id="org34e176b">Filter network traffic by using network security groups</h3>
-<div class="outline-text-3" id="text-org34e176b">
+<div id="outline-container-orgce4cff0" class="outline-3">
+<h3 id="orgce4cff0">Filter network traffic by using network security groups</h3>
+<div class="outline-text-3" id="text-orgce4cff0">
 <p>
 A network security group enables you to filter network traffic to and from Azure resources within an Azure virtual network. You can think of NSGs like an internal firewall.
 </p>
@@ -352,37 +326,37 @@ A network security group enables you to filter network traffic to and from Azure
 </div>
 </section>
 
-<section id="outline-container-orga0ac434" class="outline-2">
-<h2 id="orga0ac434">Secure access to your applications by using Azure identity services</h2>
-<div class="outline-text-2" id="text-orga0ac434">
+<section id="outline-container-orgf2829ea" class="outline-2">
+<h2 id="orgf2829ea">Secure access to your applications by using Azure identity services</h2>
+<div class="outline-text-2" id="text-orgf2829ea">
 </div>
-<div id="outline-container-org22df19c" class="outline-3">
-<h3 id="org22df19c">Compare Authentication and Authorization</h3>
-<div class="outline-text-3" id="text-org22df19c">
+<div id="outline-container-orgac8cc63" class="outline-3">
+<h3 id="orgac8cc63">Compare Authentication and Authorization</h3>
+<div class="outline-text-3" id="text-orgac8cc63">
 </div>
-<div id="outline-container-orgb5e5646" class="outline-4">
-<h4 id="orgb5e5646">What is Authentication?</h4>
-<div class="outline-text-4" id="text-orgb5e5646">
+<div id="outline-container-org07a9083" class="outline-4">
+<h4 id="org07a9083">What is Authentication?</h4>
+<div class="outline-text-4" id="text-org07a9083">
 <p>
 It establishes whether the user is who they say they are.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org830bdc1" class="outline-4">
-<h4 id="org830bdc1">What is Authorization?</h4>
-<div class="outline-text-4" id="text-org830bdc1">
+<div id="outline-container-orgb4921bc" class="outline-4">
+<h4 id="orgb4921bc">What is Authorization?</h4>
+<div class="outline-text-4" id="text-orgb4921bc">
 <p>
 Authentication establishes the user&rsquo;s identity, but authorization is the process of establishing what level of access an authenticated person or service has. It specifies what data they&rsquo;re allowed to access and what they can do with it.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org201fd20" class="outline-4">
-<h4 id="org201fd20">How are Authentication and Authorization related?</h4>
-<div class="outline-text-4" id="text-org201fd20">
+<div id="outline-container-org8e8c93d" class="outline-4">
+<h4 id="org8e8c93d">How are Authentication and Authorization related?</h4>
+<div class="outline-text-4" id="text-org8e8c93d">
 
-<figure>
+<figure id="org7aea926">
 <img src="az900.org_imgs/20220930_150943_zcTLtH.png" alt="20220930_150943_zcTLtH.png">
 
 </figure>
@@ -392,9 +366,9 @@ Authentication establishes the user&rsquo;s identity, but authorization is the p
 
 
 
-<div id="outline-container-org6e14a92" class="outline-3">
-<h3 id="org6e14a92">What services does Azure AD provide?</h3>
-<div class="outline-text-3" id="text-org6e14a92">
+<div id="outline-container-orgccf63f8" class="outline-3">
+<h3 id="orgccf63f8">What services does Azure AD provide?</h3>
+<div class="outline-text-3" id="text-orgccf63f8">
 <ul class="org-ul">
 <li>Authentication
 This includes verifying identity to access applications and resources. It also includes providing functionality such as self-service password reset, multifactor authentication, a custom list of banned passwords, and smart lockout services.</li>
@@ -406,9 +380,9 @@ SSO enables you to remember only one username and one password to access multipl
 </div>
 </div>
 
-<div id="outline-container-org1f2f4a1" class="outline-3">
-<h3 id="org1f2f4a1">What&rsquo;s multifactor authentication?</h3>
-<div class="outline-text-3" id="text-org1f2f4a1">
+<div id="outline-container-org6827fcf" class="outline-3">
+<h3 id="org6827fcf">What&rsquo;s multifactor authentication?</h3>
+<div class="outline-text-3" id="text-org6827fcf">
 <p>
 Multifactor authentication is a process where a user is prompted during the sign-in process for an additional form of identification. Examples include a code on their mobile phone or a fingerprint scan.
 </p>
@@ -432,9 +406,9 @@ This is typically some sort of biometric property, such as a fingerprint or face
 </div>
 </div>
 
-<div id="outline-container-org21a7038" class="outline-3">
-<h3 id="org21a7038">Summary</h3>
-<div class="outline-text-3" id="text-org21a7038">
+<div id="outline-container-org6a4c8e1" class="outline-3">
+<h3 id="org6a4c8e1">Summary</h3>
+<div class="outline-text-3" id="text-org6a4c8e1">
 <p>
 <a href="https://learn.microsoft.com/en-us/training/modules/secure-access-azure-identity-services/6-summary">https://learn.microsoft.com/en-us/training/modules/secure-access-azure-identity-services/6-summary</a>
 </p>
@@ -442,17 +416,17 @@ This is typically some sort of biometric property, such as a fingerprint or face
 </div>
 </section>
 
-<section id="outline-container-org28d6eba" class="outline-2">
-<h2 id="org28d6eba">Build a cloud governance strategy on Azure</h2>
-<div class="outline-text-2" id="text-org28d6eba">
+<section id="outline-container-org99f5cb3" class="outline-2">
+<h2 id="org99f5cb3">Build a cloud governance strategy on Azure</h2>
+<div class="outline-text-2" id="text-org99f5cb3">
 <p>
 The term <code>governance</code> describes the general process of establishing rules and policies and ensuring that those rules and policies are enforced.
 </p>
 </div>
 
-<div id="outline-container-orgfeb3391" class="outline-3">
-<h3 id="orgfeb3391">Control access to cloud resources by using Azure role-based access control</h3>
-<div class="outline-text-3" id="text-orgfeb3391">
+<div id="outline-container-orgebaf143" class="outline-3">
+<h3 id="orgebaf143">Control access to cloud resources by using Azure role-based access control</h3>
+<div class="outline-text-3" id="text-orgebaf143">
 <p>
 Role-based access control is applied to a scope, which is a resource or set of resources that this access applies to.
 </p>
@@ -477,9 +451,9 @@ To manage the RBAC you can go to the IAM section on the Azure portal.
 </div>
 </div>
 
-<div id="outline-container-org803026c" class="outline-3">
-<h3 id="org803026c">Prevent accidental changes by using resource locks</h3>
-<div class="outline-text-3" id="text-org803026c">
+<div id="outline-container-org83f3b17" class="outline-3">
+<h3 id="org83f3b17">Prevent accidental changes by using resource locks</h3>
+<div class="outline-text-3" id="text-org83f3b17">
 <p>
 A <code>resource lock</code> prevents resources from being accidentally deleted or changed.
 </p>
@@ -488,9 +462,9 @@ A <code>resource lock</code> prevents resources from being accidentally deleted 
 
 
 
-<div id="outline-container-orgb0e1220" class="outline-3">
-<h3 id="orgb0e1220">What levels of locking are available?</h3>
-<div class="outline-text-3" id="text-orgb0e1220">
+<div id="outline-container-org7db7d95" class="outline-3">
+<h3 id="org7db7d95">What levels of locking are available?</h3>
+<div class="outline-text-3" id="text-org7db7d95">
 <ul class="org-ul">
 <li>CanNotDelete: user can view and modify the resource.</li>
 <li>ReadOnly: user can only view the resource, he can&rsquo;t delete nor modify.</li>
@@ -502,9 +476,9 @@ Resource locks apply regardless of RBAC permissions. Even if you&rsquo;re an own
 </div>
 </div>
 
-<div id="outline-container-org1fa9c09" class="outline-3">
-<h3 id="org1fa9c09">Combine resource lock with Azure Blueprints</h3>
-<div class="outline-text-3" id="text-org1fa9c09">
+<div id="outline-container-org336d4db" class="outline-3">
+<h3 id="org336d4db">Combine resource lock with Azure Blueprints</h3>
+<div class="outline-text-3" id="text-org336d4db">
 <p>
 What if a cloud administrator accidentally deletes a resource lock? If the resource lock is removed, its associated resources can be changed or deleted.
 </p>
@@ -515,9 +489,9 @@ To make the protection process more robust, you can combine resource locks with 
 </div>
 </div>
 
-<div id="outline-container-orgc237a45" class="outline-3">
-<h3 id="orgc237a45">Organize your resources by using tags</h3>
-<div class="outline-text-3" id="text-orgc237a45">
+<div id="outline-container-org592b9e6" class="outline-3">
+<h3 id="org592b9e6">Organize your resources by using tags</h3>
+<div class="outline-text-3" id="text-org592b9e6">
 <p>
 Interestingly we can use Azure DevOps and process resources with certain tag.
 We can also use tags for creating cost managament, security and governance and regulatory compliance.
@@ -525,9 +499,9 @@ We can also use tags for creating cost managament, security and governance and r
 </div>
 </div>
 
-<div id="outline-container-org7b000c0" class="outline-3">
-<h3 id="org7b000c0">How do I manage resource tags?</h3>
-<div class="outline-text-3" id="text-org7b000c0">
+<div id="outline-container-orgbde0462" class="outline-3">
+<h3 id="orgbde0462">How do I manage resource tags?</h3>
+<div class="outline-text-3" id="text-orgbde0462">
 <ul class="org-ul">
 <li>PowerShell</li>
 <li>Azure CLI</li>
@@ -547,9 +521,9 @@ A tag consist of a name and value.
 </div>
 </div>
 
-<div id="outline-container-orgfc8cb7b" class="outline-3">
-<h3 id="orgfc8cb7b">Azure Policy</h3>
-<div class="outline-text-3" id="text-orgfc8cb7b">
+<div id="outline-container-org00097b5" class="outline-3">
+<h3 id="org00097b5">Azure Policy</h3>
+<div class="outline-text-3" id="text-org00097b5">
 <p>
 Website: <a href="https://azure.microsoft.com/es-mx/products/azure-policy/#getting-started">Azure Policy - Getting started</a>
 </p>
@@ -574,7 +548,7 @@ A policiy consists of a
 
 <div class='footer'>
 Copyright © 2022 <a href='mailto:aang.drummer@gmail.com'>Abel Güitian</a> | <a href='https://github.com/aang7/aang7.github.io'>Source</a><br>
-Last updated on Oct 18, 2024 using Emacs 28.1 (Org mode 9.5.2) <br>
+Last updated on Aug 29, 2025 using Emacs 28.1 (Org mode 9.5.2) <br>
 </div>
 </footer>
 </body>
